@@ -1,0 +1,11 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dto.MyOrderListVO;
+
+public interface MyOrderService {
+
+   List<MyOrderListVO> orderdruglist(String mo_no)throws SQLException;
+}

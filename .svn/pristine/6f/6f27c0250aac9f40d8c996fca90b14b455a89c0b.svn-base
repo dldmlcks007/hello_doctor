@@ -1,0 +1,22 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/manager")
+public class ManagerController {
+	
+	@RequestMapping("/manager")
+	public String main() {
+		String url = "manager/manager";
+		return url;
+	}
+	
+	@RequestMapping("/medicine")
+	public String medicine() {
+		String url = "manager/medicine";
+		return url;
+	}
+}
+

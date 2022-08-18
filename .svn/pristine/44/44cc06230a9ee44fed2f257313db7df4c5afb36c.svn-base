@@ -1,0 +1,19 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dto.ChartFormVO;
+import kr.or.ddit.dto.Co_taskVO;
+import kr.or.ddit.dto.SubTaskVO;
+
+public interface Co_TaskDAO {
+
+	List<ChartFormVO> selectAllReco(String d_id)throws SQLException;
+
+	Co_taskVO mycotask(String ta_no)throws SQLException;
+
+	List<SubTaskVO> mySubCoTask(String ta_no)throws SQLException;
+
+}

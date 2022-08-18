@@ -1,0 +1,26 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dto.ChartFormVO;
+
+public interface MediRecoService {
+
+	Map<String, Object> selectAllReco(String dId)throws Exception;
+
+	Map<String,Object> selectOneReco(String pNo,String dId)throws Exception;
+
+	String docuinput(String dId)throws SQLException;
+
+	Map<String,Object> pastreco(String mNo)throws SQLException;
+
+	String registTempPic(String name)throws SQLException;
+
+	Map<String,Object> reservationDetail(String taNo)throws Exception;
+	String durCheck(List<String> drugNm)throws SQLException;
+	List<ChartFormVO> watingList(String dId)throws SQLException;
+
+	boolean overDose(String drugNm, int quantity)throws SQLException;
+}

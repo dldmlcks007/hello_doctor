@@ -1,0 +1,17 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/coworklist")
+public class CoWorkController {
+
+	@RequestMapping("/colist")
+	public String ing() {
+		String url = "colist/coworklist";
+		System.out.println("정민이하이");
+		return url;
+	}
+	
+}

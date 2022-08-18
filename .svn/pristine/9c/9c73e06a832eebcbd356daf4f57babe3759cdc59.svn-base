@@ -1,0 +1,85 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+public class IssueVO {
+private String pNo;
+private String pName;
+private String pRnum;
+private String coDisease;
+private String coDoc;
+private String issNo;
+private Date mDate;
+private String dId;
+private String issTitle;
+private String issContent;
+
+public String getpNo() {
+	return pNo;
+}
+public void setpNo(String pNo) {
+	this.pNo = pNo;
+}
+public String getpName() {
+	return pName;
+}
+public void setpName(String pName) {
+	this.pName = pName;
+}
+public String getpRnum() {
+	return pRnum;
+}
+public void setpRnum(String pRnum) {
+	this.pRnum = pRnum;
+}
+public String getCoDisease() {
+	return coDisease;
+}
+public void setCoDisease(String coDisease) {
+	this.coDisease = coDisease;
+}
+public String getCoDoc() {
+	return coDoc;
+}
+public void setCoDoc(String coDoc) {
+	this.coDoc = coDoc;
+}
+public String getIssNo() {
+	return issNo;
+}
+public void setIssNo(String issNo) {
+	this.issNo = issNo;
+}
+public Date getmDate() {
+	return mDate;
+}
+public void setmDate(Date mDate) {
+	this.mDate = mDate;
+}
+public String getdId() {
+	return dId;
+}
+public void setdId(String dId) {
+	this.dId = dId;
+}
+public String getIssTitle() {
+	return issTitle;
+}
+public void setIssTitle(String issTitle) {
+	this.issTitle = issTitle;
+}
+public String getIssContent() {
+	return issContent;
+}
+public void setIssContent(String issContent) {
+	this.issContent = issContent;
+}
+@Override
+public String toString() {
+	return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+}
+
+}

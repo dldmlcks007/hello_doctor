@@ -1,0 +1,15 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ManagerDoctorListVO;
+
+public interface ManagerDAO {
+
+	List<ManagerDoctorListVO> doctorListForPage(SearchCriteria cri)throws SQLException;
+
+	int doctorListCount()throws SQLException;
+
+}

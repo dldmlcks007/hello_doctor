@@ -1,0 +1,36 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.ChartFormVO;
+import kr.or.ddit.dto.SchedulerVO;
+
+public class SchedulerDAOImpl implements SchedulerDAO {
+
+	private SqlSession session;
+	private SchedulerDAO schedulerDao;
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	public void setSchedulerDao(SchedulerDAO schedulerDao) {
+		this.schedulerDao = schedulerDao;
+	}
+
+	@Override
+	public List<ChartFormVO> TodayList(String dId) throws SQLException {
+		List<ChartFormVO> TodayList = session.selectList("Scheduler-Mapper.TodayList");
+		return TodayList;
+	}
+
+	@Override
+	public List<ChartFormVO> TodayCooperation(String dId) throws SQLException {
+		List<ChartFormVO> TodayCooperation = session.selectList("Scheduler-Mapper.TodayCooperation");
+		return TodayCooperation;
+	}
+
+}

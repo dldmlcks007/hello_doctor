@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Case-Mapper">
+
+
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			and dis_title like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'd'.toString()">
+			and dis_class like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'w'.toString()">
+			and d_id like '%'||#{keyword}||'%'
+		</if>
+
+		<if test="userFilter == 'b'.toString()">
+			order by dis_cnt desc
+		</if>
+		<if test="userFilter == 'r'.toString()">
+			order by dis_date desc
+		</if>
+		<if test="userFilter == 'l'.toString()">
+			order by recom desc
+		</if>
+
+
+
+	</sql>
+
+	<select id="selectSearchCaseList" resultType="caseVO" >
+		select
+		a.dis_no,
+		a.d_id,
+		a.dis_title,
+		a.dis_content,
+		to_char(a.dis_date, 'YYYY-MM-DD')as dis_date,
+		a.dis_cnt,
+		a.del_yn,
+		a.dis_d_name,
+		a.dis_sex,
+		a.dis_class,
+		c.ma_name,
+		(select count(d.d_id) from dis_recom d where d.dis_no = a.dis_no) as recom
+		from
+		case_dis a, doctor b, major c
+		where a.d_id = b.d_id
+		and b.ma_no = c.ma_no
+		and a.del_yn = 'N'
+		<if test="userChoice == 'q'.toString()">
+		<!-- 	<if test="dId != NULL and dId != ''"/> -->
+		and a.d_id = #{dId}
+		</if>
+		<if test="userChoice == 't'.toString()">
+			<!-- <if test="maName != NULL and maName != ''"/> -->
+		and c.ma_name = #{maName}
+		</if>
+		<include refid="search"></include>
+	</select>
+
+	<select id="selectSearchCaseListCount" resultType="int">
+		select count(*)
+    	 from (select
+		a.dis_no as adis_no,
+		a.d_id as ad_id,
+		a.dis_title,
+		a.dis_content,
+		to_char(a.dis_date, 'YYYY-MM-DD')as dis_date,
+		a.dis_cnt,
+		a.del_yn,
+		a.dis_d_name,
+		a.dis_sex,
+		a.dis_class,
+		c.ma_name as cma_name,
+		(select count(d.d_id) from dis_recom d, case_dis a  where d.dis_no = a.dis_no) as recom
+		from
+		case_dis a, doctor b, major c
+		where a.d_id = b.d_id
+		and b.ma_no = c.ma_no
+		and a.del_yn = 'N') a where a.adis_no is not null
+		<if test="userChoice == 'q'.toString()">
+			<!-- <if test="dId != NULL and dId != ''"/> -->
+		and a.ad_id = #{dId}
+		</if>
+		<if test="userChoice == 't'.toString()">
+			<!-- <if test="maName != NULL and maName != ''"/> -->
+		and a.cma_name = #{maName}
+		</if>
+		<include refid="search" />
+
+	</select>
+
+	<select id="selectCase" resultType="caseVO">
+		select
+		a.dis_no,
+		a.d_id,
+		a.dis_title,
+		a.dis_content,
+		to_char(a.dis_date, 'YYYY-MM-DD')as dis_date,
+		a.dis_cnt,
+		a.del_yn,
+		a.dis_d_name,
+		a.dis_sex,
+		a.dis_class,
+		c.ma_name,
+		(select count(d.d_id) from dis_recom d where d.dis_no = a.dis_no) as recom
+		from
+		case_dis a, doctor b, major c
+		where a.d_id = b.d_id
+		and b.ma_no = c.ma_no
+
+		order by dis_date
+	</select>
+
+	<update id="insertCase" parameterType="caseVO">
+		insert into
+		case_dis(dis_no, d_id, dis_title, dis_content, dis_d_name, dis_sex,
+		dis_class, dis_date, dis_cnt, del_yn)
+		values(#{disNo}, #{dId},
+		#{disTitle}, #{disContent}, #{disDName}, #{disSex}, #{disClass},
+		sysdate, 0, 'N')
+	</update>
+
+	<update id="insertSub" parameterType="caseVO">
+		insert into
+		dis_sub_d(sub_d_name, dis_no) values(#{subDName}, #{disNo})
+	</update>
+
+	<select id="selectCaseSeqNextValue" resultType="int">
+		select
+		case_seq.nextVal from dual
+	</select>
+
+	<select id="selectCaseByNo" resultType="caseVO" parameterType="string">
+		select
+		a.dis_no,
+		a.d_id,
+		a.dis_title,
+		a.dis_content,
+		to_char(a.dis_date, 'YYYY-MM-DD')as dis_date,
+		a.dis_cnt,
+		a.del_yn,
+		a.dis_d_name,
+		a.dis_sex,
+		a.dis_class,
+		b.ma_name,
+		d.sub_d_name,
+        (select count(e.d_id) from dis_recom e where e.dis_no = a.dis_no) as recom
+		from
+		case_dis a, major b, doctor c, dis_sub_d d
+		where
+		a.d_id = c.d_id
+		and b.ma_no = c.ma_no
+		and a.dis_no = d.dis_no
+		and a.dis_no = #{disNo}
+	</select>
+
+	<update id="increaseViewCnt" parameterType="string">
+		update case_dis set
+		dis_cnt = dis_cnt + 1
+		where dis_no = #{disNo}
+	</update>
+
+	<update id="deleteCase" parameterType="string">
+		update case_dis set del_yn
+		= 'Y'
+		where dis_no = #{disNo}
+	</update>
+
+	<update id="updateCase" parameterType="caseVO">
+		update case_dis set
+		dis_title = #{disTitle}, dis_content = #{disContent}, dis_d_name =
+		#{disDName}, dis_sex = #{disSex}, dis_class = #{disClass}
+		where
+		dis_no = #{disNo}
+	</update>
+
+	<update id="updateSubCase" parameterType="caseVO">
+		update dis_sub_d set
+		sub_d_name = #{subDName} where dis_no = #{disNo}
+	</update>
+
+	<select id="mainBottomShow" resultType="caseVO">
+		<![CDATA[
+		select * from(
+			select
+				a.dis_no,
+				a.d_id,
+				a.dis_title,
+				a.dis_content,
+				to_char(a.dis_date, 'YYYY-MM-DD')as dis_date,
+				a.dis_cnt,
+				a.del_yn,
+				a.dis_d_name,
+				a.dis_sex,
+				a.dis_class,
+				c.ma_name,
+				(select count(d.d_id) from dis_recom d where d.dis_no = a.dis_no) as recom
+			from
+				case_dis a, doctor b, major c
+			where a.d_id = b.d_id
+			and b.ma_no = c.ma_no
+			and a.del_yn = 'N'
+			order by dis_date desc
+		)
+		where rownum < 5
+		]]>
+	</select>
+
+	<select id="selectMajor" parameterType="string" resultType="caseVO">
+	<![CDATA[
+	select * from(
+		select
+			a.dis_no
+			, a.d_id
+			, a.dis_title
+			, substr(a.dis_content,0,20) as dis_content
+			, a.dis_date
+			, a.dis_cnt
+			, a.del_yn
+			, a.dis_d_name
+			, a.dis_sex
+			, a.dis_class
+			, c.ma_name
+		from
+			case_dis a, doctor b, major c
+			where a.d_id = b.d_id
+			and c.ma_no = b.ma_no
+			and c.ma_name = #{maName}
+			order by a.dis_date desc)
+	where rownum < 7
+	]]>
+	</select>
+
+	<select id="recomSelect" parameterType="recomVO" resultType="recomVO">
+		select * from dis_recom where d_id = #{dId} and dis_no = #{disNo}
+	</select>
+	<update id="recomInsert" parameterType="recomVO">
+		insert into dis_recom(d_id, dis_no) values(#{dId}, #{disNo})
+	</update>
+	<update id="recomDelete" parameterType="recomVO">
+		delete from dis_recom where d_id = #{dId} and dis_no = #{disNo}
+	</update>
+
+
+</mapper>
+
+

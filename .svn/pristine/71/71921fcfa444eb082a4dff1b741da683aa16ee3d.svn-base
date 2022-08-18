@@ -1,0 +1,199 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="caseList" value="${dataMap.caselist }"/>
+<c:set var="cri" value="${dataMap.pageMaker.cri }"/>
+<c:set var="pageMaker" value="${dataMap.pageMaker }"/>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+    <link href="<%=request.getContextPath()%>/resources/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+
+    <link href="<%=request.getContextPath()%>/resources/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+
+
+<style>
+.col-8 {
+	max-width: 100%;
+}
+
+.img-responsive {
+	width: 20px;
+	height: 20px;
+	object-fit: cover;
+}
+
+#pagediv {
+	position: absolute;
+	margin: -150px 0px 0px -200px;
+	top: 108%;
+	left: 57%;
+	padding: 3px;
+}
+
+.contact-box{
+border-radius: 5%;
+
+}
+
+</style>
+
+</head>
+<body>
+
+
+		<div class="row">
+			<div class="col-sm-3" style="padding-left: 2%; display: flex;">
+			      <button type="button" class="btn btn-w-m btn-primary" onclick="subgoPage('/case/registForm.do')" >의견 공유</button>
+<!-- 			      <div style="display: inline;margin-left: 22%;"> -->
+<!-- 	               <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button" aria-expanded="false">전체 </button> -->
+<!-- 	               <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 35px; left: 0px; will-change: top, left;"> -->
+<!-- 	                   <li><a href="#">조회순</a></li> -->
+<!-- 	                   <li><a href="#">등록순</a></li> -->
+<!-- 	                   <li><a href="#">추천순</a></li> -->
+<!-- 	               </ul> -->
+<!-- 	           </div> -->
+					<div class="input-group-prepend filter" style="margin-left: 1%;">
+					<select class="form-control" name="userFilter" style="height: 36px" onchange="list_go(1);">
+						<option value="l"  ${cri.userFilter eq 'l' ? 'selected' : ''  }>조회순</option>
+						<option value="r"  ${cri.userFilter eq 'r' ? 'selected' : ''  }>등록순</option>
+						<option value="b"  ${cri.userFilter eq 'b' ? 'selected' : ''  }>추천순</option>
+					</select>
+	           </div>
+			</div>
+			<div class="col-sm-3">
+				<div class="i-checks">
+					<label class="" style="margin-left: 37%; vertical-align: -6px;"><i></i>내가 등록한 글
+						<div class="icheckbox_square-green" style="position: relative; margin-left: 10px;">
+							<input type="checkbox" value="" style="position: absolute; opacity: 0;">
+								<ins class="iCheck-helper" name="myRegist" value="${doctorLogin.d_id }" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+								</ins>
+						</div>
+					</label>
+				</div>
+
+			</div>
+			<div class="col-sm-3" style="display: contents;">
+				<div class="input-group-prepend search" style="margin-left: 20.4%;">
+					<select class="form-control" name="searchType" style="height: 36px">
+						<option value="t"  ${cri.searchType eq 't' ? 'selected' : ''  }>제 목</option>
+						<option value="d"  ${cri.searchType eq 'd' ? 'selected' : ''  }>질병명</option>
+						<option value="w"  ${cri.searchType eq 'w' ? 'selected' : ''  }>작성자</option>
+					</select>
+	           </div>
+			</div>
+			<div class="col-sm-3" style="display: contents;">
+				<input type="text" name="keyword" class="form-control" style="width: 240px;" placeholder="검색어를 입력하세요" value="${param.keyword }">
+				<i style="font-size: 1.5em;margin-top: 7px;position: absolute;margin-left: 99%;" class="fa fa-search" onclick="list_go(1);"></i>
+			</div>
+		</div>
+
+
+
+<div>
+	<div style="margin-top: 2%;">
+		<div class="row">
+		<c:if test="${!empty caseList }">
+			<c:forEach items="${caseList }" var="clist">
+				<div class="col-lg-4">
+					<div class="contact-box">
+						<div class="col-8" onclick="subgoPage('/case/detail.do?from=list&dis_no=${clist.disNo}')" type="button">
+							<h3 style="text-align: center; font-size: 20px;">
+								<strong>${clist.dis_title }</strong>
+							</h3>
+							<p style=" text-align: center;font-size: 15px;margin-top: 34px;"><strong>${clist.dId }</strong></p>
+							<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-signal" style="margin-right: 4%;"></i><h5 style="display: contents;">${clist.maName }</h5></div>
+							<div class="col-sm-6" style="display: inline;"><i class="fa fa-calendar" style="margin-right: 3%; margin-left: 7.9%;"></i><h5 style="display: contents;">${clist.disDate }</h5></div>
+							<hr>
+							<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-eye" style="margin-right: 4%;"></i><h5 style="display: contents;">${clist.disCnt }</h5></div>
+							<div class="col-sm-6" style="display: inline;"><i class="fa fa-thumbs-o-up" style="margin-right: 3%; margin-left: 25.9%;"></i><h5 style="display: contents;">${clist.recom }</h5></div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</c:if>
+
+
+		</div>
+	</div>
+</div>
+
+	<%@ include file="/WEB-INF/views/common/pagination.jsp" %>
+
+
+	<script src="<%=request.getContextPath()%>/resources/js/common.js"></script>
+
+  <script src="<%=request.getContextPath()%>/resources/js/plugins/iCheck/icheck.min.js"></script>
+  <!-- iCheck -->
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+
+//     function list_go(page,url){
+// 		//alert(page);
+// 		if(!url) url="list.do";
+
+// 		var jobForm=$('#jobForm');
+// 		jobForm.find("[name='page']").val(page);
+// // 		jobForm.find("[name='perPageNum']").val($('select[name="perPageNum"]').val());
+// 		jobForm.find("[name='searchType']")
+// 			.val($('select[name="searchType"]').val());
+// 		jobForm.find("[name='keyword']")
+// 			.val($('input[name="keyword"]').val());
+// 		console.log(search);
+// 		subgoPage(url+"?page="+page+"&perPageNum=9&searchType=&keyword=");
+
+
+// 	}
+</script>
+
+<script type="text/javascript">
+
+// function list_go(page, url){
+
+// 	if(!url) url="/case/list.do";
+
+// 	var jobForm=$('#jobForm');
+// 	var a= jobForm.find("[name='page']").val(page);
+// 	var b= jobForm.find("[name='perPageNum']").val($('select[name="perPageNum"]').val());
+// 	var c = jobForm.find("[name='searchType']")
+// 		.val($('select[name="searchType"]').val());
+// 	var d= jobForm.find("[name='keyword']")
+// 		.val($('div.input-group>input[name="keyword"]').val());
+// 	alert("page" + a);
+// 	alert("perPageNUm" + b);
+// 	jobForm.find("[name='page']").val(page);
+// 	jobForm.find("[name='perPageNum']").val($('select[name="perPageNum"]').val());
+// 	jobForm.find("[name='searchType']")
+// 		.val($('select[name="searchType"]').val());
+// 	jobForm.find("[name='keyword']")
+// 		.val($('div.input-group>input[name="keyword"]').val());
+
+// 	subgoPage(url+"?page="+a.val()+"&perPageNum="+b.val()+"&searchType="+c.val()+"&keyword="+d.val());
+
+// }
+</script>
+
+
+<!-- 	<div class="card-body"> -->
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-sm-4"></div> -->
+<!-- 			<div class="col-sm-4"></div> -->
+<!-- 			<div class="col-sm-4"></div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.col-md-12 {
+	border: 1px solid black;
+	padding: 10px;
+	height: 200px;
+}
+
+.row {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+tr{
+	text-align:center;
+}
+</style>
+
+</head>
+<body>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+			<div class="ibox-content">
+
+                            <table class="table table-hover">
+                                
+                                <tbody>
+                                <tr>
+                                    <td>외래진료</td>
+                                    <td>2022-06-22</td>
+                                    <td>노혜지/피부과</td>
+                                </tr>
+                                <tr>
+                                    <td>외래진료</td>
+                                    <td>2022-06-22</td>
+                                    <td>이의찬/피부과</td>
+                                </tr>
+                                <tr>
+                                    <td>외래진료</td>
+                                    <td>2022-06-22</td>
+                                    <td>박태정/피부과</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+			
+			</div>
+		</div>
+		
+		<div class="row">
+				<div class="col-lg-4">
+					<div class="contact-box">
+						<div class="col-8">
+							<h3>
+								<strong>아토피(소아)</strong>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+								<i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+							</h3>
+							
+							<p>소아용프리마린시럽</p>
+							<p>프로토픽 연고</p>
+							<p>소아용에포프림연질캡슐</p>
+							<p>데스오웬로션</p>
+							
+							<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+							<hr>
+							<p style="color:red; float:right;">결과 작성 미완료</p>
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="contact-box">
+						<div class="col-8">
+							<h3>
+								<strong>아토피(소아)</strong>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+								<i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+							</h3>
+							
+							<p>소아용프리마린시럽</p>
+							<p>프로토픽 연고</p>
+							<p>소아용에포프림연질캡슐</p>
+							<p>데스오웬로션</p>
+							
+							<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+							<hr>
+							<p style="color:red; float:right;">결과 작성 미완료</p>
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="contact-box">
+						<div class="col-8">
+							<h3>
+								<strong>아토피(소아)</strong>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+								<i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+							</h3>
+							
+							<p>소아용프리마린시럽</p>
+							<p>프로토픽 연고</p>
+							<p>소아용에포프림연질캡슐</p>
+							<p>데스오웬로션</p>
+							
+							<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+							<hr>
+							<p style="color:red; float:right;">결과 작성 미완료</p>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		
+		<div class="row">
+			<div class="col-md-12"></div>
+		</div>
+	</div>
+
+
+</body>
+</html>

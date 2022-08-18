@@ -1,0 +1,88 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+public class MyHistoryCommentVO {
+
+	private String comNo;
+	private String comCoNo;
+	private String dId;
+	private String coNo;
+	private String comContent;
+	private Date comDate;
+
+
+	public String getComNo() {
+		return comNo;
+	}
+
+
+	public void setComNo(String comNo) {
+		this.comNo = comNo;
+	}
+
+
+	public String getComCoNo() {
+		return comCoNo;
+	}
+
+
+	public void setComCoNo(String comCoNo) {
+		this.comCoNo = comCoNo;
+	}
+
+
+	public String getdId() {
+		return dId;
+	}
+
+
+	public void setdId(String dId) {
+		this.dId = dId;
+	}
+
+
+	public String getCoNo() {
+		return coNo;
+	}
+
+
+	public void setCoNo(String coNo) {
+		this.coNo = coNo;
+	}
+
+
+	public String getComContent() {
+		return comContent;
+	}
+
+
+	public void setComContent(String comContent) {
+		this.comContent = comContent;
+	}
+
+
+	public Date getComDate() {
+		return comDate;
+	}
+
+
+	public void setComDate(Date comDate) {
+		this.comDate = comDate;
+	}
+
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+
+
+
+
+
+
+}

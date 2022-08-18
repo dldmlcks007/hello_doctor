@@ -1,0 +1,44 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class Co_MedVO {
+	
+	private String co_start_date;
+	private String co_release;
+	private String co_disease;
+	private String ma_no;
+	private String ma_name;
+	public String getCo_start_date() {
+		return co_start_date;
+	}
+	public void setCo_start_date(String co_start_date) {
+		this.co_start_date = co_start_date;
+	}
+	public String getCo_release() {
+		return co_release;
+	}
+	public void setCo_release(String co_release) {
+		this.co_release = co_release;
+	}
+	public String getCo_disease() {
+		return co_disease;
+	}
+	public void setCo_disease(String co_disease) {
+		this.co_disease = co_disease;
+	}
+	public String getMa_no() {
+		return ma_no;
+	}
+	public void setMa_no(String ma_no) {
+		this.ma_no = ma_no;
+	}
+	public String getMa_name() {
+		return ma_name;
+	}
+	public void setMa_name(String ma_name) {
+		this.ma_name = ma_name;
+	}
+	
+	
+}

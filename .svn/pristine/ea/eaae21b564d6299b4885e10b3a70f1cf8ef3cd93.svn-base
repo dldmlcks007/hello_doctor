@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!-- Repository -->
+
+
+<!-- DAO   -->
+<bean id="co_taskDAO" class="kr.or.ddit.dao.Co_TaskDAOImpl"/>
+<bean id="medi_RecoDAO" class="kr.or.ddit.dao.Medi_RecoDAOImpl"/>
+<bean id="my_OrderDAO" class="kr.or.ddit.dao.My_OrderDAOImpl"/>
+<!-- Service -->
+<bean id="medi_RecoService" class="kr.or.ddit.service.Medi_RecoServiceImpl"
+		p:co_TaskDAO-ref="co_taskDAO"
+		p:medi_recoDAO-ref="medi_RecoDAO"
+		p:my_OrderDAO-ref="my_OrderDAO"
+/>
+
+</beans>

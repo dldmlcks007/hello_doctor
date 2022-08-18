@@ -1,0 +1,961 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link
+	href="<%=request.getContextPath()%>/resources/css/plugins/iCheck/custom.css"
+	rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/css/plugins/slick/slick.css"
+	rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/css/plugins/slick/slick-theme.css"
+	rel="stylesheet">
+
+  <!-- Sweet Alert -->
+    <link href="<%=request.getContextPath()%>/resources/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+ <link href="<%=request.getContextPath()%>/resources/css/animate.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/css/style.css" rel="stylesheet">
+
+<style type="text/css">
+
+div {
+
+}
+
+.diagnosis {
+	width: 70%;
+	float: left;
+	height: 450px;
+}
+
+.history {
+	width: 29%;
+	float: right;
+	height: 900px;
+}
+
+.clean {
+	clear: both;
+}
+
+.rest {
+	width: 70%;
+	float: left;
+	height: 450px;
+}
+
+.container {
+	max-width: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.buttonplace {
+	width: 100%;
+	height: 70px;
+	padding-top: 13px;
+	padding-left: 30px;
+	padding-right: 15px;
+	text-align: right;
+}
+
+.todaydiagnosis {
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+.alldiagnosis{
+    width: 48%;
+    float: right;
+	height: 100%;
+}
+.allrest {
+	width: 35%;
+	height: 100%;
+	float: left;
+}
+
+.issue {
+	width: 65%;
+	height: 100%;
+	float: right;
+	margin-top: 15px;
+}
+
+.i-checks {
+	display: inline-block;
+	float: right;
+	s
+}
+
+.ibox-title {
+	margin: 0;
+	padding: 0;
+	padding-top: 10px;
+}
+
+.time {
+	font-size: 70%;
+}
+
+.titlefont {
+	font-size: 15px;
+}
+
+.ibox {
+	margin-bottom: 0px;
+}
+
+.ibox-content {
+	padding: 0;
+	display: block;
+	height: 400px;
+	overflow: auto;
+}
+#ibox-content{
+
+overflow: none;
+}
+.fa-plus-circle::before {
+	font-size: 20px;
+}
+
+.btn-default {
+	width: 25px;
+	height: 20px;
+	padding: 0;
+	margin-left: 12px;
+}
+
+button.dim {
+	margin-bottom: 13px !important;
+	padding-top: 0;
+}
+
+.selectbox {
+	width: 110px;
+	float: right;
+	margin-right: 15px;
+	margin-left: 5px;
+	font-size: 15px
+}
+
+.nav-tabs>li>a {
+	width: 80px;
+	padding: 0;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 8px;
+	margin-right: 5px;
+}
+
+.tabicon {
+	font-size: 20px;
+}
+
+.panel-body {
+	height: 380px;
+	margin: 0;
+}
+
+.tabs-container .panel-body {
+	padding: 0;
+}
+
+.disc {
+	font-size: 50px;
+	width: 20%;
+	float: left;
+}
+
+.download {
+	width: 100%;
+	height: 13%;
+	padding: 0;
+	padding-left: 10px;
+}
+
+.fileinfo {
+	width: 80%;
+	float: right;
+	padding-left: 5px;
+}
+.loginfo{
+	width: 80%;
+	float: right;
+	padding-left: 5px;
+	padding-top:10px;
+}
+#recordtable>tbody>tr>td, #recordtable>tfoot>tr>td {
+	padding: 0;
+	border : 1px dotted #999;
+	padding-left: 10px;
+}
+
+#recordtable>tbody>tr {
+	display: flex;
+}
+
+
+#vertical-timeline {
+	margin: 0;
+	width: 100%;
+}
+
+.datefont {
+	color: #1ab394;
+}
+
+.historyibox {
+	height: 850px;
+}
+
+.title {
+	width: 120px;
+	display: inline-block;
+	text-align: center;
+}
+
+.vertical-timeline-content p {
+	margin: 2px;
+}
+
+#pastrecord {
+	height: 300px;
+}
+
+.fa-paperclip {
+	display: block;
+	border: 1px solid #e2e2e2;
+}
+
+.checkbutton {
+	padding-top: 5px;
+	margin: 0;
+	height: 35px;
+}
+
+.table {
+	margin-bottom: 0px;
+}
+.logicon::before{
+	font-size: 30px;
+}
+.logdisc{
+	    width: 30px;
+    display: inline-block;
+        padding-left: 10px;
+    padding-top: 10px;
+}
+.medidisc{
+   width: 40px;
+    display: inline-block;
+        padding-left: 10px;
+    padding-top: 10px;
+}
+.medipic{
+	border-radius: 50%;
+	width: 40px;
+	height: 50px;
+}
+.loginfo > p{
+	margin-bottom : 3px;
+	padding-left: 15px;
+}
+.fileinfo > p{
+	margin-bottom : 3px;
+	padding-left: 15px;
+}
+.panel-body{
+	height: 380px;
+	display: block;
+	overflow:auto;
+
+}
+#allsearch{
+	font-size: 20px;
+	margin: 20px;
+
+}
+.fa-cog{
+	font-size: 30px;
+	float:right;
+	margin-right:20px;
+}
+#dropdown-toggle{
+	float:right;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="buttonplace">
+			<button class="btn btn-outline btn-warning dim" type="button">업무등록</button>
+			<button class="btn btn-outline btn-success  dim" type="button">전체
+				채팅</button>
+
+		</div>
+		<div class="diagnosis">
+			<div class="todaydiagnosis">
+				<div class="ibox">
+					<div class="ibox-title">
+						<div class="bg-primary p-xs b-r-xl title">전체 진료</div>
+
+						<select class="form-control selectbox" name="account">
+
+							<option>최신순</option>
+							<option>등록일순</option>
+
+						</select>
+						<div class="i-checks">
+							<label class="checkbutton">
+								<div class="icheckbox_square-green" style="position: relative;">
+									<input type="checkbox" style="position: absolute; opacity: 0;">
+									<ins class="iCheck-helper"
+										style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+								</div>나의 진료
+							</label>
+						</div>
+					</div>
+					<div class="ibox-content" style="">
+
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>진료일시</th>
+									<th>담당의료진</th>
+									<th>진료구분</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="time">2022-07-05 09:15</td>
+									<td>이정규</td>
+									<td>입원 치료</td>
+								</tr>
+								<tr>
+									<td class="time">2022-07-05 09:15</td>
+									<td>이정규</td>
+									<td>외래 진료</td>
+								</tr>
+								<tr>
+									<td class="time">2022-07-05 09:15</td>
+									<td>이정규</td>
+									<td>입원치료</td>
+								</tr>
+								<tr>
+									<td class="time">2022-07-05 09:15</td>
+									<td>이정규</td>
+									<td>외래진료</td>
+								</tr>
+								<tr>
+									<td class="time">2022-07-05 09:15</td>
+									<td>이정규</td>
+									<td>외래진료</td>
+								</tr>
+								<tr>
+									<td class="time">2022-07-05 09:15</td>
+									<td>이정규</td>
+									<td>외래진료</td>
+								</tr>
+								<tr>
+									<td class="time">2022-07-05 09:15</td>
+									<td>이정규</td>
+									<td>외래진료</td>
+								</tr>
+
+								<tr>
+									<td class="time">2022-07-05 09:15</td>
+									<td>이정규</td>
+									<td>외래진료</td>
+								</tr>
+								<tr>
+									<td class="time">2022-07-05 09:15</td>
+									<td>이정규</td>
+									<td>외래진료</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="alldiagnosis">
+
+				<div class="ibox">
+					<div class="ibox" style="margin-bottom: 0">
+
+						<div class="bg-primary p-xs b-r-xl title" style="margin-top:5px;">최근 진료 기록</div>
+						<div class="ibox-content" id="pastrecord">
+
+							c/c)팔과 목 부위가 간지러워요<br> Onset)1 년전<br> Cause) unknown<br>
+							P/I)상기 환자 상기 증상으로 본원 내원함<br> P.M.Hx.)모 아토피성 피부염<br>
+							HTN(-)DM(-)Tbc(-)Heeatitis(-)<br> F/C/C/S/R(-/-/-/-/-)<br>
+							A/N/V/C/D(-/-/-/-/-)<br> Abdmoinal Pain(-)<br> Lab)시행
+							안함<br> Imp)<br>
+
+
+
+
+							<div class="lightBoxGallery">
+								<a
+									href="<%=request.getContextPath()%>/resources/img/gallery/1.jpg"
+									title="Image from Unsplash" data-gallery=""><img
+									src="<%=request.getContextPath()%>/resources/img/gallery/1s.jpg"
+									style="width: 40%; height: 90%"></a> <a
+									href="<%=request.getContextPath()%>/resources/img/gallery/2.jpg"
+									title="Image from Unsplash" data-gallery=""><img
+									src="<%=request.getContextPath()%>/resources/img/gallery/2s.jpg"
+									style="width: 40%; height: 90%"></a> <a
+									title="Image from Unsplash" data-gallery=""><img></a> <i
+									class="fa fa-paperclip">알레르기 검사결과서 </i> <i
+									class="fa fa-paperclip">혈액 검사결과서</i>
+							</div>
+						</div>
+
+						<div class="ibox" style="margin-bottom: 0">
+							<div class="ibox" style="margin-bottom: 0">
+
+								<h4 style="text-align: center">처방</h4>
+								<div class="ibox-content" style="height: 80px;">
+
+									<table class="table table-bordered" class="medicine">
+
+										<tbody>
+											<tr>
+												<td class="mediname">항히스타민제</td>
+												<td>1</td>
+												<td>2</td>
+												<td>3</td>
+											</tr>
+											<tr>
+												<td class="mediname">스테로이드제</td>
+												<td>1</td>
+												<td>2</td>
+												<td>3</td>
+											</tr>
+										</tbody>
+									</table>
+
+
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="history">
+
+			<div class="ibox-title">
+			<div class="bg-primary p-xs b-r-xl title">
+				<a style="font-size: 12px"><i class="fa fa-history"></i>히스토리</a> </div>
+
+				<select	class="form-control selectbox" name="account">
+
+					<option>최신순</option>
+					<option>등록일순</option>
+
+				</select>
+			</div>
+			<div class="ibox-content historyibox" id="ibox-content">
+				<a href="#" id="allsearch">전체보기</a>
+
+				<div id="vertical-timeline" class="vertical-container dark-timeline">
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-user-md"></i>
+						</div>
+
+						<div class="vertical-timeline-content">
+							<h2>노혜지(정신의학과)</h2>
+							<p>외래진료</p>
+							<span class="vertical-date">
+
+								<p class="datefont">2022-05-23</p>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div id="vertical-timeline" class="vertical-container dark-timeline">
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-user-md"></i>
+						</div>
+
+						<div class="vertical-timeline-content">
+							<h2>노혜지(정신의학과)</h2>
+							<p>외래진료</p>
+							<span class="vertical-date">
+
+								<p class="datefont">2022-05-23</p>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div id="vertical-timeline" class="vertical-container dark-timeline">
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-user-md"></i>
+						</div>
+
+						<div class="vertical-timeline-content">
+							<h2>노혜지(정신의학과)</h2>
+							<p>외래진료</p>
+							<span class="vertical-date">
+
+								<p class="datefont">2022-05-23</p>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div id="vertical-timeline" class="vertical-container dark-timeline">
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-user-md"></i>
+						</div>
+
+						<div class="vertical-timeline-content">
+							<h2>노혜지(정신의학과)</h2>
+							<p>외래진료</p>
+							<span class="vertical-date">
+
+								<p class="datefont">2022-05-23</p>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div id="vertical-timeline" class="vertical-container dark-timeline">
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-user-md"></i>
+						</div>
+
+						<div class="vertical-timeline-content">
+							<h2>노혜지(정신의학과)</h2>
+							<p>외래진료</p>
+							<span class="vertical-date">
+
+								<p class="datefont">2022-05-23</p>
+							</span>
+						</div>
+					</div>
+
+				</div>
+				<div id="vertical-timeline" class="vertical-container dark-timeline">
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-user-md"></i>
+						</div>
+
+						<div class="vertical-timeline-content">
+							<h2>노혜지(정신의학과)</h2>
+							<p>외래진료</p>
+							<span class="vertical-date">
+
+								<p class="datefont">2022-05-23</p>
+							</span>
+						</div>
+					</div>
+
+				</div>
+				<div id="vertical-timeline" class="vertical-container dark-timeline">
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-user-md"></i>
+						</div>
+
+						<div class="vertical-timeline-content">
+							<h2>노혜지(정신의학과)</h2>
+							<p>외래진료</p>
+							<span class="vertical-date">
+
+								<p class="datefont">2022-05-23</p>
+							</span>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<span class="clean"></span>
+
+
+		<div class="rest">
+			<div class="allrest">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs" style="background-color: #e7eaec">
+						<li><a class="nav-link active" data-toggle="tab"
+							href="#tab-3"> <i class="fa fa-laptop tabicon"></i>로그
+						</a></li>
+						<li><a class="nav-link" data-toggle="tab" href="#tab-4"><i
+								class="fa fa-user-md tabicon"></i>의료진</a></li>
+						<li><a class="nav-link" data-toggle="tab" href="#tab-5"><i
+								class="fa fa-archive tabicon"></i>자료실</a></li>
+					</ul>
+					<div class="tab-content">
+						<div id="tab-3" class="tab-pane active">
+							<div class="panel-body">
+								<table class="table table-bordered" class="logtable">
+
+						<tbody>
+						<tr>
+									<td class="download">
+
+								<div class="logdisc"><i class="fa fa-plus-circle logicon"></i></div>
+								<div class="loginfo">
+								<p> 박태정님이 특이사항을 등록하였습니다.</p>
+								</div>
+
+								</td>
+
+							</tr>
+						<tr>
+						<tr>
+									<td class="download">
+
+								<div class="logdisc"><i class="fa fa-check-circle logicon"></i></div>
+								<div class="loginfo">
+								<p> 이정규님이 협진요청을 수락하셨습니다.</p>
+								</div>
+
+								</td>
+
+							</tr>
+						<tr>
+						<tr>
+									<td class="download">
+
+								<div class="logdisc"><i class="fa fa-times-circle logicon"></i></div>
+								<div class="loginfo">
+								<p> 강현수님이 협진요청을 거절하셨습니다.</p>
+								</div>
+
+								</td>
+
+							</tr>
+						<tr>
+						<tr>
+									<td class="download">
+
+								<div class="logdisc"><i class="fa fa-plus-circle logicon"></i></div>
+								<div class="loginfo">
+								<p> 박태정님이 특이사항을 등록하였습니다.</p>
+								</div>
+
+								</td>
+
+							</tr>
+						<tr>
+						<tr>
+									<td class="download">
+
+								<div class="logdisc"><i class="fa fa-plus-circle logicon"></i></div>
+								<div class="loginfo">
+								<p> 박태정님이 특이사항을 등록하였습니다.</p>
+								</div>
+
+								</td>
+
+							</tr>
+						<tr>
+
+
+						</tbody>
+					</table>
+							</div>
+						</div>
+						<div id="tab-4" class="tab-pane">
+							<div class="panel-body">
+							<a id="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                               <i class="fa fa-cog"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user" x-placement="bottom-start" style="position: absolute; top: 18px; left: 26px; will-change: top, left;">
+                                <li><a href="#" class="dropdown-item  ">의료진 초대</a>
+
+
+                                </li>
+                                <li class="demo3"><a href="#" class="dropdown-item">협진 탈퇴</a>
+                                </li>
+                            </ul>
+							<table class="table table-bordered" class="logtable">
+
+						<tbody>
+
+						<tr>
+									<td class="download">
+
+								<div class="medidisc"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="" class="medipic"></div>
+								<div class="loginfo">
+								<p>의료진명 : 박태정</p>
+								<p>담당분야 : 흉부외과</p>
+								<p>상태 : 수술중</p>
+								</div>
+
+								</td>
+
+							</tr>
+						<tr>
+									<td class="download">
+
+								<div class="medidisc"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="" class="medipic"></div>
+								<div class="loginfo">
+								<p>의료진명 : 박태정</p>
+								<p>담당분야 : 흉부외과</p>
+								<p>상태 : 수술중</p>
+								</div>
+
+								</td>
+
+							</tr>
+						<tr>
+									<td class="download">
+
+								<div class="medidisc"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="" class="medipic"></div>
+								<div class="loginfo">
+								<p>의료진명 : 박태정</p>
+								<p>담당분야 : 흉부외과</p>
+								<p>상태 : 수술중</p>
+								</div>
+
+								</td>
+
+							</tr>
+						<tr>
+									<td class="download">
+
+								<div class="medidisc"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="" class="medipic"></div>
+								<div class="loginfo">
+								<p>의료진명 : 박태정</p>
+								<p>담당분야 : 흉부외과</p>
+								<p>상태 : 수술중</p>
+								</div>
+
+								</td>
+
+							</tr>
+						<tr>
+									<td class="download">
+
+								<div class="medidisc"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="" class="medipic"></div>
+								<div class="loginfo">
+								<p>의료진명 : 박태정</p>
+								<p>담당분야 : 흉부외과</p>
+								<p>상태 : 수술중</p>
+								</div>
+
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+
+							</div>
+						</div>
+						<div id="tab-5" class="tab-pane">
+							<div class="panel-body">
+								<table class="table table-bordered" id="recordtable">
+
+									<tbody>
+										<tr>
+											<td class="download">
+
+												<div class="disc">
+													<a href="#"><i class="fa fa-floppy-o "></i></a>
+												</div>
+												<div class="fileinfo">
+													<p>
+														<label>파일명 : </label>박태정_CHESTPA
+													</p>
+													<p>
+														<label>등록일 : </label>2022-07-05
+													</p>
+													<p>
+														<label>작성자 : </label>노혜지
+													</p>
+												</div>
+
+											</td>
+
+										</tr>
+										<tr>
+											<td class="download">
+
+												<div class="disc">
+													<a href="#"><i class="fa fa-floppy-o "></i></a>
+												</div>
+												<div class="fileinfo">
+													<p>
+														<label>파일명 : </label>박태정_CHESTPA
+													</p>
+													<p>
+														<label>등록일 : </label>2022-07-05
+													</p>
+													<p>
+														<label>작성자 : </label>노혜지
+													</p>
+												</div>
+
+											</td>
+
+										</tr>
+										<tr>
+											<td class="download">
+
+												<div class="disc">
+													<a href="#"><i class="fa fa-floppy-o "></i></a>
+												</div>
+												<div class="fileinfo">
+													<p>
+														<label>파일명 : </label>박태정_CHESTPA
+													</p>
+													<p>
+														<label>등록일 : </label>2022-07-05
+													</p>
+													<p>
+														<label>작성자 : </label>노혜지
+													</p>
+												</div>
+
+											</td>
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="issue">
+				<div class="col-md-12" style="padding-right: 0">
+					<div class="bg-primary p-xs b-r-xl title">특이사항</div>
+					<div class="btn-groups"
+						style="float: right; margin-top: 10px; margin-right: 15px;">
+
+						<ul class="pagination float-right">
+							<li class="footable-page-arrow disabled"><a data-page="prev"
+								href="#prev">‹</a></li>
+							<li class="footable-page active"><a data-page="0" href="#">1</a></li>
+							<li class="footable-page"><a data-page="1" href="#">2</a></li>
+							<li class="footable-page"><a data-page="2" href="#">3</a></li>
+							<li class="footable-page"><a data-page="3" href="#">4</a></li>
+							<li class="footable-page"><a data-page="4" href="#">5</a></li>
+							<li class="footable-page-arrow"><a data-page="next"
+								href="#next">›</a></li>
+						</ul>
+
+					</div>
+					<div class="ibox-content" style="height: 380px">
+
+						<table class="table">
+							<thead>
+								<tr>
+
+									<th>주치의</th>
+									<th>특이사항</th>
+									<th>발생일</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>강현수 <br> 호흡기내과
+									</td>
+									<td>기흉폐포증가,시술요망,소변검사추가</td>
+									<td>2022-07-05 09:45</td>
+								</tr>
+								<tr>
+									<td>강현수 <br> 호흡기내과
+									</td>
+									<td>기흉폐포증가,시술요망,소변검사추가</td>
+									<td>2022-07-05 09:45</td>
+								</tr>
+								<tr>
+									<td>강현수 <br> 호흡기내과
+									</td>
+									<td>기흉폐포증가,시술요망,소변검사추가</td>
+									<td>2022-07-05 09:45</td>
+								</tr>
+								<tr>
+									<td>강현수 <br> 호흡기내과
+									</td>
+									<td>기흉폐포증가,시술요망,소변검사추가</td>
+									<td>2022-07-05 09:45</td>
+								</tr>
+								<tr>
+									<td>강현수 <br> 호흡기내과
+									</td>
+									<td>기흉폐포증가,시술요망,소변검사추가</td>
+									<td>2022-07-05 09:45</td>
+								</tr>
+								<tr>
+									<td>강현수 <br> 호흡기내과
+									</td>
+									<td>기흉폐포증가,시술요망,소변검사추가</td>
+									<td>2022-07-05 09:45</td>
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<script
+		src="<%=request.getContextPath()%>/resources/js/plugins/iCheck/icheck.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/js/plugins/slick/slick.min.js"></script>
+
+ <!-- Sweet alert -->
+    <script src="<%=request.getContextPath()%>/resources/js/plugins/sweetalert/sweetalert.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('.i-checks').iCheck({
+				checkboxClass : 'icheckbox_square-green',
+				radioClass : 'iradio_square-green',
+			});
+		});
+
+        $('.demo3').click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            }, function () {
+                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                setTimeout(function(){
+		              window.location.reload();
+	            },1000);
+            });
+        });
+
+
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+package kr.or.ddit.controller;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ManagerDoctorListVO;
+import kr.or.ddit.service.ManagerService;
+
+@Controller
+@RequestMapping("/manager")
+public class ManagerController {
+
+	@Autowired
+	ManagerService managerService;
+
+	@RequestMapping("/manager")
+	public String main() {
+		String url = "manager/manager";
+		return url;
+	}
+
+	@RequestMapping("/med_admin")
+	public String med_admin() {
+		String url = "manager/med_admin";
+		return url;
+	}
+
+	@RequestMapping("/medicine")
+	public String medicine() {
+		String url = "manager/medicine";
+		return url;
+	}
+
+	@RequestMapping("/doctor")
+	public ModelAndView doctor(ModelAndView mnv, SearchCriteria cri) throws Exception{
+		String url = "manager/doctor";
+
+		Map<String, Object> dataMap = managerService.doctorListForPage(cri);
+		mnv.addObject("dataMap", dataMap);
+		mnv.setViewName(url);
+		return mnv;
+	}
+
+	@RequestMapping("/change")
+	public ModelAndView change(String dId, ModelAndView mnv) throws Exception{
+		String url = "manager/change";
+		ManagerDoctorListVO doctorvo = managerService.doctorStatus(dId);
+		mnv.addObject("doctorvo", doctorvo);
+		mnv.setViewName(url);
+		return mnv;
+	}
+	// 정직
+	@ResponseBody
+	@RequestMapping("/sus")
+	public ResponseEntity<Map<String, String>> sus(@RequestBody Map<String, String> map)throws Exception{
+		ResponseEntity<Map<String, String>> entity = null;
+		entity = new ResponseEntity<Map<String,String>>(map, HttpStatus.OK);
+		ManagerDoctorListVO doctorvo = new ManagerDoctorListVO();
+		System.out.println(map.get("dId"));
+		doctorvo.setdId(map.get("dId"));
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+		doctorvo.setSusEndDate(format.parse(map.get("susEndDate")));
+		doctorvo.setSusStartDate(format.parse(map.get("susStartDate")));
+
+		managerService.susDoctor(doctorvo);
+		return entity;
+	}
+	@ResponseBody
+	@RequestMapping("/work")
+	public ResponseEntity<Map<String, String>> work(@RequestBody Map<String, String>map)throws Exception{
+		ResponseEntity<Map<String, String>> entity = null;
+		entity = new ResponseEntity<Map<String,String>>(map, HttpStatus.OK);
+		String dId = map.get("dId");
+		managerService.workDoctor(dId);
+		return entity;
+	}
+	@ResponseBody
+	@RequestMapping("/retire")
+	public ResponseEntity<Map<String, String>> retire(@RequestBody Map<String, String>map)throws Exception{
+		ResponseEntity<Map<String, String>> entity = null;
+		entity = new ResponseEntity<Map<String,String>>(map, HttpStatus.OK);
+		ManagerDoctorListVO doctorvo = new ManagerDoctorListVO();
+		doctorvo.setdId(map.get("dId"));
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		doctorvo.setRetireDate(format.parse(map.get("retireDate")));
+		managerService.retireDoctor(doctorvo);
+		return entity;
+	}
+	@RequestMapping("/notice")
+	public String notice() {
+		String url = "manager/notice";
+		return url;
+	}
+	@RequestMapping("/regist")
+	public String regist() {
+		String url = "manager/regist";
+		return url;
+	}
+	@RequestMapping("/disstatus")
+	public String disstatus() {
+		String url = "manager/disstatus";
+		return url;
+	}
+	@RequestMapping("/ip_manager")
+	public ModelAndView ip_manager(ModelAndView mnv, SearchCriteria cri, String dId) throws Exception{
+		String url = "manager/ip_manager";
+		Map<String, Object> dataMap = managerService.ipListForPage(cri);
+		ManagerDoctorListVO doctorvo = managerService.doctorStatus(dId);
+		List<ManagerDoctorListVO> iplist = managerService.memberIp(dId);
+		System.out.println(dataMap);
+		mnv.addObject("iplist", iplist);
+		mnv.addObject("doctorvo", doctorvo);
+		mnv.addObject("dataMap", dataMap);
+		mnv.setViewName(url);
+		return mnv;
+	}
+	// ip 추가
+	@ResponseBody
+	@RequestMapping("/ip_add")
+	public ResponseEntity<Map<String, String>>ip_add(@RequestBody Map<String, String> map)throws Exception{
+		ResponseEntity<Map<String, String>> entity = null;
+		ManagerDoctorListVO doctorvo = new ManagerDoctorListVO();
+		doctorvo.setIpNo(map.get("ipNo"));
+		doctorvo.setdId(map.get("dId"));
+		managerService.ipInsert(doctorvo);
+		entity = new ResponseEntity<Map<String,String>>(map, HttpStatus.OK);
+
+		return entity;
+	}
+	@RequestMapping("/regist_notice")
+	public String regist_notice() {
+		String url = "manager/regist_notice";
+		return url;
+	}
+	@RequestMapping("/notice_detail")
+	public String notice_detail() {
+		String url = "manager/notice_detail";
+		return url;
+	}
+}
+

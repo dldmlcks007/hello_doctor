@@ -1,0 +1,46 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class NotiVO {
+Date noti_date;
+String reqd_id;
+String resd_id;
+int response;
+String mysetting;
+
+
+public String getMysetting() {
+	return mysetting;
+}
+public void setMysetting(String mysetting) {
+	this.mysetting = mysetting;
+}
+public Date getNoti_date() {
+	return noti_date;
+}
+public void setNoti_date(Date noti_date) {
+	this.noti_date = noti_date;
+}
+public String getReqd_id() {
+	return reqd_id;
+}
+public void setReqd_id(String reqd_id) {
+	this.reqd_id = reqd_id;
+}
+public String getResd_id() {
+	return resd_id;
+}
+public void setResd_id(String resd_id) {
+	this.resd_id = resd_id;
+}
+public int getResponse() {
+	return response;
+}
+public void setResponse(int response) {
+	this.response = response;
+}
+
+
+
+}

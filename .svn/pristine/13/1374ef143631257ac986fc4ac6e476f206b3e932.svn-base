@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.ibox-title{
+ 
+ margin-left: 11px;
+}
+
+.form-text{
+
+border:1px solid lightgray;
+border-radius: 10px;
+ display: block;
+ height: 120px;
+ overflow:auto;
+ padding-left: 10px;
+}
+
+.ibox-content{
+padding-left:10px;
+}
+
+.buttons{
+text-align:center;
+}
+</style>
+</head>
+<body>
+	<div class="ibox">
+		<div class="ibox-title">
+	             <h3>거절사유를 입력해주세요.</h3>         
+	    </div>
+	    <div class="ibox-content">   
+		    <div class="form-text">
+		    	<h4>일정이 너무 많아서 협진거절합니다. 죄송합니다.</h4>
+		<!-- 			<textarea class="form-control" name="content" id="content" rows="5" placeholder=""></textarea>						 -->
+			</div>
+		</div>
+				<hr>
+									
+				<div class="buttons">
+						<button type="button" class="btn btn-w-m btn-success">전송</button>&nbsp;
+	                    <button type="button" class="btn btn-w-m btn-default" onclick="CloseWindow();">취소</button>
+	            </div>			
+		
+	</div>
+</body>
+</html>
+

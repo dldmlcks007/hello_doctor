@@ -1,0 +1,74 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.OtherDoctorCommand;
+import kr.or.ddit.dto.CoDoctorVO;
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.dto.MajorVO;
+
+public class DoctorDAOImpl implements DoctorDAO {
+	private SqlSession session;
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public DoctorVO doctorLogin(DoctorVO vo) throws SQLException {
+
+
+		DoctorVO result = session.selectOne("Doctor-Mapper.doctorLogin", vo);
+
+		return result;
+	}
+
+	@Override
+	public DoctorVO profileChange(DoctorVO vo) throws SQLException {
+
+		DoctorVO result = session.selectOne("Doctor-Mapper.profileChange",vo);
+
+		return result;
+
+	}
+
+	@Override
+	public String searchDoctorName(String d_id) throws SQLException {
+		String dName = session.selectOne("Doctor-Mapper.searchDoctorName",d_id);
+		return dName;
+	}
+
+	@Override
+	public DoctorVO selectDoctorVO(String dId) throws SQLException {
+
+		return session.selectOne("Doctor-Mapper.selectDoctorVO",dId);
+	}
+
+	@Override
+	public List<MajorVO> majorList() throws SQLException {
+		List<MajorVO> result = session.selectList("Doctor-Mapper.majorList");
+		return result;
+	}
+	@Override
+	public List<CoDoctorVO> coDoctor(OtherDoctorCommand command) throws SQLException {
+		List<CoDoctorVO> result = session.selectList("Doctor-Mapper.coDoctor", command);
+		return result;
+	}
+
+	@Override
+	public MajorVO detailDoctor(String doId) throws SQLException {
+		MajorVO result = session.selectOne("Doctor-Mapper.detailDoctor", doId);
+		return result;
+	}
+
+	@Override
+	public List<MajorVO> majorDoctors(MajorVO vo) throws SQLException {
+		List<MajorVO> result = session.selectList("Doctor-Mapper.majorDoctors", vo);
+		return result;
+
+	}
+
+}

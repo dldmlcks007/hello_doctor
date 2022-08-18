@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Co_Med-Mapper">
+	<select id="selectAll" resultType="co_medVO" >
+	select to_char(C.co_start_date,'YYYY-MM-DD')as co_start_date,
+	C.co_release, C.co_disease,
+	A.d_name, D.ma_name
+	from doctor A, co_doctor B, co_med C, major2 D
+	where A.d_id=C.CO_DOC
+	and B.co_no=C.co_no
+	and A.ma_no=D.ma_no
+	
+	</select>
+	
+<!-- 	<select id="proceedingCooperation" resultType=""> -->
+	
+<!-- 	</select> -->
+	
+<!-- 	<select id="selectOneProceed" resultType=""> -->
+	
+	
+<!-- 	</select> -->
+		
+<!-- 	<select id="completeCooperation" resultType=""> -->
+	
+<!-- 	</select> -->
+
+<!-- 	<select id="selectOneComplete" resultType=""> -->
+	
+	
+<!-- 	</select> -->
+</mapper>
+

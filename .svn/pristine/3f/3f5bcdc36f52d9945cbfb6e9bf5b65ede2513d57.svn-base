@@ -1,0 +1,73 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section class="content container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-md-9" style="max-width:960px;">
+				<div class="card card-outline card-info">
+					<div class="card-header">
+						<h3 class="card-title p-1"></h3>
+
+					</div><!--end card-header  -->
+					<div class="card-body pad">
+						<form role="form" method="post" action="regist.do" name="registForm">
+						
+							<div class="col-md-6">
+								<div class="form-group">
+									<i class="fa fa-calendar"></i> 
+									<label for="date"></label> 
+									<input type="text" id="writer" readonly
+										name="writer" class="form-control" value="${loginUser.id }">
+								</div>
+							</div>
+							</a>
+							<div class="form-group">
+								<label for="title">협진명</label> 
+								<input type="text" id="title"
+									name='title' class="form-control" placeholder="내용을 입력하세요">
+							</div>							
+							
+							<select class="form-control m-b" name="account">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                            </select>
+							<div class="form-group">
+								<label for="title_disease">진료명</label> 
+								<input type="text" id="title"
+									name='title_disease' class="form-control" placeholder="내용을 입력하세요">
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="writer">담당자</label> 
+									<input type="text" id="writer" readonly
+										name="writer" class="form-control" value="${loginUser.id }">
+								</div>
+							</div>
+						</form>
+						
+						<div class ="card-tools">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-primary" id="registBtn" onclick="regist_go();">등 록</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-warning" id="cancelBtn" onclick="CloseWindow();" >취 소</button>
+						</div>
+					</div><!--end card-body  -->
+					<div class="card-footer" style="display:none">
+					
+					</div><!--end card-footer  -->
+				</div><!-- end card -->				
+			</div><!-- end col-md-12 -->
+		</div><!-- end row -->
+    </section>
+
+</body>
+</html>

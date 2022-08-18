@@ -1,0 +1,42 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/scheduler")
+public class SchedulerController {
+	
+	@RequestMapping("/main")
+	public String main() throws Exception{
+		String url = "scheduler/main";
+		return url;
+	}
+	
+	@RequestMapping("/regist")
+	public String resist() throws Exception{
+		String url = "scheduler/regist";
+		return url;
+	}
+	@RequestMapping("/detailList")
+	public String detailList() throws Exception{
+		String url = "scheduler/detailList";
+		return url;
+	}
+	@RequestMapping("/detail")
+	public String detail() throws Exception{
+		String url = "scheduler/detail";
+		return url;
+	}
+	@RequestMapping("/modify")
+	public String modify() throws Exception{
+		String url = "scheduler/modify";
+		return url;
+	}
+	@RequestMapping("/delete")
+	public String delete() throws Exception{
+		String url = "scheduler/delete";
+		return url;
+	}
+
+}

@@ -1,0 +1,63 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class Co_taskVO {
+	private String ta_no        ;
+	private String co_no        ;
+	private String d_id         ;
+	private String ta_name      ;
+	private String ta_content   ;
+	private Date ta_date      ;
+	private int ta_status    ;
+	private int reserv_yn    ;
+	public String getTa_no() {
+		return ta_no;
+	}
+	public void setTa_no(String ta_no) {
+		this.ta_no = ta_no;
+	}
+	public String getCo_no() {
+		return co_no;
+	}
+	public void setCo_no(String co_no) {
+		this.co_no = co_no;
+	}
+	public String getD_id() {
+		return d_id;
+	}
+	public void setD_id(String d_id) {
+		this.d_id = d_id;
+	}
+	public String getTa_name() {
+		return ta_name;
+	}
+	public void setTa_name(String ta_name) {
+		this.ta_name = ta_name;
+	}
+	public String getTa_content() {
+		return ta_content;
+	}
+	public void setTa_content(String ta_content) {
+		this.ta_content = ta_content;
+	}
+	public Date getTa_date() {
+		return ta_date;
+	}
+	public void setTa_date(Date ta_date) {
+		this.ta_date = ta_date;
+	}
+	public int getTa_status() {
+		return ta_status;
+	}
+	public void setTa_status(int ta_status) {
+		this.ta_status = ta_status;
+	}
+	public int getReserv_yn() {
+		return reserv_yn;
+	}
+	public void setReserv_yn(int reserv_yn) {
+		this.reserv_yn = reserv_yn;
+	}
+
+}

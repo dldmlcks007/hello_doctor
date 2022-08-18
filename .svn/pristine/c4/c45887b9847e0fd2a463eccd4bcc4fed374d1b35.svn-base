@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MyDrug-Mapper">
+	<select id="orderdruglist" resultType="myorderlistVO">
+
+		select o_drug, quantity, aday, days
+		from my_drug
+		where mo_no = #{mo_no}
+
+	</select>
+		<select id="pastdrug" resultType="prescriptVO">
+		select
+    cure_name,
+    p_quantity as quantity ,
+    p_aday as aday,
+    p_days as days
+	from  prescript
+    where m_no = #{m_no}
+
+
+		 </select>
+		 <select id="pastsubD" resultType="subDVO">
+			select sub_d_name
+			from sub_d
+			where m_no = #{m_no}
+		 </select>
+		 <select id="durCheck" resultType="str">
+		select drug_nm
+		from dur
+		where drug_nm = #{drug_nm}
+
+		union all
+
+		select '0' as drug_nm
+		from dual
+		where not exists(
+		select drug_nm
+		from dur
+		where drug_nm = #{drug_nm}
+		)
+
+
+
+		 </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

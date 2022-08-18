@@ -1,0 +1,55 @@
+package kr.or.ddit.controller;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.command.SearchCriteria;
+
+import kr.or.ddit.service.Co_MedService;
+
+@Controller
+@RequestMapping("/coworklist")
+public class CoWorkController {
+	
+	@Autowired
+	private Co_MedService service;
+	
+	//협진메인(전체리스트)
+	@RequestMapping("/colist")
+	public String coopermainlist(SearchCriteria cri, Model model) throws SQLException {
+		String url = "colist/coworklist";
+		Map<String, Object> dataMap = null;
+		
+		dataMap = service.getCooperationMainList(cri);
+		System.out.println(dataMap);
+		model.addAttribute("dataMap",dataMap);
+		
+		return url;
+	}
+	
+	//협진메인(진행중리스트)
+//	@RequestMapping("/proceedingCooperation")
+//	public ModelAndView proceedingCooperation(ModelAndView mnv, String co_no) throws SQLException{
+//		List<Co_MedVO> proceedingCooperation = service.proceedingCooperation(co_no);
+//		mnv.addObject("proceedingCooperation",proceedingCooperation);
+//		mnv.setViewName("colist/proceedingCooperation");
+//		return mnv;
+//	}
+	
+	//협진메인(완료리스트)
+//	@RequestMapping("/colist")
+//	public ModelAndView completeCooperation(ModelAndView mnv, String co_no) throws SQLException{
+//		List<Co_MedVO> completeCooperation = service.completeCooperation(co_no);
+//		mnv.addObject("completeCooperation",completeCooperation);
+//		mnv.setViewName("colist/proceedingCooperation");
+//		return mnv;
+//	}
+	
+}
+

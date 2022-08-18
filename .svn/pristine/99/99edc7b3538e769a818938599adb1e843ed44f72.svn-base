@@ -1,0 +1,40 @@
+package kr.or.ddit.dto;
+
+public class Docu_orderVO {
+	private String do_no     ;
+	private String doc_id    ;
+	private String do_name   ;
+	private String do_input  ;
+	private String do_main   ;
+	public String getDo_no() {
+		return do_no;
+	}
+	public void setDo_no(String do_no) {
+		this.do_no = do_no;
+	}
+	public String getDoc_id() {
+		return doc_id;
+	}
+	public void setDoc_id(String doc_id) {
+		this.doc_id = doc_id;
+	}
+	public String getDo_name() {
+		return do_name;
+	}
+	public void setDo_name(String do_name) {
+		this.do_name = do_name;
+	}
+	public String getDo_input() {
+		return do_input;
+	}
+	public void setDo_input(String do_input) {
+		this.do_input = do_input;
+	}
+	public String getDo_main() {
+		return do_main;
+	}
+	public void setDo_main(String do_main) {
+		this.do_main = do_main;
+	}
+
+}

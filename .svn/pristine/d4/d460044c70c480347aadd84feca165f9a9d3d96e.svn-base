@@ -1,0 +1,107 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/cooperation") //대분류
+public class CooperationController {
+
+	@RequestMapping("/agile") //기능
+	public String agile(){
+		String url = "cooperation/agile";
+		return url;
+	}
+
+	@RequestMapping("/request") //기능
+	public String request(){
+		String url = "cooperation/request";
+		return url;
+	}
+
+	@RequestMapping("/request_deny") //기능
+	public String request_deny(){
+		String url = "cooperation/request_deny";
+		return url;
+	}
+
+	@RequestMapping("/request_permit") //기능
+	public String request_permit(){
+		String url = "cooperation/request_permit";
+		return url;
+	}
+	@RequestMapping("/detail")
+	public String cooperdetail() {
+		String url = "cooperation/cooperdetail";
+
+		return url;
+
+	}
+
+	@RequestMapping("/main")
+	public String main() {
+		String url = "cooperation/main";
+		return url;
+	}
+
+	@RequestMapping("/coopermain")
+	public String coopermain() {
+		String url = "cooperation/coopermain";
+		return url;
+	}
+
+	@RequestMapping("/significant_detail")
+	public String significant_detail() {
+		String url = "cooperation/significant_detail";
+		return url;
+	}
+	@RequestMapping("/cooperation_regist")
+	public String cooperation_regist() {
+		String url = "cooperation/cooperation_regist";
+		return url;
+	}
+	@RequestMapping("/reservationform")
+	public String reservationform() {
+		String url = "cooperation/reservationform";
+		return url;
+	}
+
+	@RequestMapping("/cooperation_progress")
+	public String cooperation_progress() {
+		String url = "cooperation/cooperation_progress";
+		return url;
+	}
+
+	@RequestMapping("/cooperation_recruit")
+	public String cooperation_recruit() {
+		String url = "cooperation/cooperation_recruit";
+		return url;
+	}
+
+	@RequestMapping("/cooperation_request")
+	public String cooperation_request() {
+		String url = "cooperation/cooperation_request";
+		return url;
+	}
+	@RequestMapping("/reservation_detail")
+	public String reservation_detail() {
+		String url = "cooperation/reservation_detail";
+		return url;
+	}
+	@RequestMapping("/history_detail")
+	public String history_detail() {
+		String url = "cooperation/history_detail";
+		return url;
+	}
+
+
+	@RequestMapping("/doctor_invite")
+	public String doctor_invite() {
+		String url = "cooperation/doctor_invite";
+		return url;
+	}
+
+
+}
+
+

@@ -1,0 +1,241 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<style>
+.col-8 {
+	max-width: 100%;
+}
+
+.img-responsive {
+	width: 20px;
+	height: 20px;
+	object-fit: cover;
+}
+
+#pagediv {
+	position: absolute;
+	margin: -150px 0px 0px -200px;
+	top: 108%;
+	left: 57%;
+	padding: 3px;
+}
+
+.contact-box{
+border-radius: 5%;
+
+}
+
+</style>
+
+</head>
+<body>
+
+	<div style="padding-top: 2%; margin-bottom: 2%;"">
+		<div class="col-sm-12" style="text-align: end;">
+			<button type="button" class="btn btn-w-m btn-primary">의견공유</button>
+		</div>
+	</div>
+
+
+
+	<div class="row">
+
+		<div style="color: white;width: 26%;margin-left: 5%;">
+			<div class="contact-box" style="background: #fb3939;">
+				<div>
+					<h3 style="text-align: center; font-size: 20px;">
+						<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+					</h3>
+					<p style="text-align: center; font-size: 14px; padding-top: 7%;">
+						<strong>아토피</strong>
+					</p>
+					<div class="row">
+						<div style="width: 35%;margin-left: 5%;">
+							<i class="fa fa-signal" style=""></i>
+							<h5 style="display: inline; margin-left: 6%;">피부과/피부염</h5>
+						</div>
+						<div style="margin-left: 5%;">
+							<h5 style="display: inline;">작성자</h5>
+						</div>
+						<div style="width: 30%;margin-left: 6%;">
+							<i class="fa fa-calendar" style=""></i>
+							<h5 style="display: inline; margin-left: 6%;">2022-07-06</h5>
+						</div>
+					</div>
+					<hr style="background-color: white;margin-top: 5px;margin-bottom: 5px;">
+					<div class="row">
+						<div class="col-sm-6" style="padding-left: 16%;">
+							<i class="fa fa-eye"></i>
+							<h5 style="display: inline; margin-left: 7%;">84</h5>
+						</div>
+						<div class="col-sm-6" style="text-align: end; padding-right: 23%;">
+							<i class="fa fa-thumbs-o-up"></i>
+							<h5 style="display: inline; margin-left: 7%;">21</h5>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+			<div class="col-sm-4" style="color: white;">
+			<div class="contact-box" style="background: #fbb039;">
+				<div>
+					<h3 style="text-align: center; font-size: 20px;">
+						<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+					</h3>
+					<p style="text-align: center; font-size: 14px; padding-top: 7%;">
+						<strong>아토피</strong>
+					</p>
+					<div class="row">
+						<div style="width: 30%; margin-left: 5%;">
+							<i class="fa fa-signal" style=""></i>
+							<h5 style="display: inline; margin-left: 6%;">피부과/피부염</h5>
+						</div>
+						<div style="margin-left: 10%;">
+							<h5 style="display: inline;">작성자</h5>
+						</div>
+						<div style="width: 30%; margin-left: 12%;">
+							<i class="fa fa-calendar" style=""></i>
+							<h5 style="display: inline; margin-left: 6%;">2022-07-06</h5>
+						</div>
+					</div>
+					<hr style="background-color: white;">
+					<div class="row">
+						<div class="col-sm-6" style="padding-left: 16%;">
+							<i class="fa fa-eye"></i>
+							<h5 style="display: inline; margin-left: 7%;">84</h5>
+						</div>
+						<div class="col-sm-6" style="text-align: end; padding-right: 23%;">
+							<i class="fa fa-thumbs-o-up"></i>
+							<h5 style="display: inline; margin-left: 7%;">21</h5>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-sm-4" style="color: white;">
+			<div class="contact-box" style="background: #00b400;">
+				<div>
+					<h3 style="text-align: center; font-size: 20px;">
+						<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+					</h3>
+					<p style="text-align: center; font-size: 14px; padding-top: 7%;">
+						<strong>아토피</strong>
+					</p>
+					<div class="row">
+						<div style="width: 30%; margin-left: 5%;">
+							<i class="fa fa-signal" style=""></i>
+							<h5 style="display: inline; margin-left: 6%;">피부과/피부염</h5>
+						</div>
+						<div style="margin-left: 10%;">
+							<h5 style="display: inline;">작성자</h5>
+						</div>
+						<div style="width: 30%; margin-left: 12%;">
+							<i class="fa fa-calendar" style=""></i>
+							<h5 style="display: inline; margin-left: 6%;">2022-07-06</h5>
+						</div>
+					</div>
+					<hr style="background-color: white;">
+					<div class="row">
+						<div class="col-sm-6" style="padding-left: 16%;">
+							<i class="fa fa-eye"></i>
+							<h5 style="display: inline; margin-left: 7%;">84</h5>
+						</div>
+						<div class="col-sm-6" style="text-align: end; padding-right: 23%;">
+							<i class="fa fa-thumbs-o-up"></i>
+							<h5 style="display: inline; margin-left: 7%;">21</h5>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row" style="background: white; margin: 0px auto; padding-top: 2%;">
+		<div class="col-sm-6">
+			<h5 style="font-size: 20px;margin-left: 3%;">도움이 필요해요</h5>
+		</div>
+		<div class="col-sm-6" style="">
+			<h5 style="text-align: end; margin-top: 2.5%; margin-right: 3%;">2022-06-27</h5>
+		</div>
+		<hr style="width: 95%">
+		<div class="col-lg-6">
+                <div class="ibox ">
+                    <div class="ibox-content">
+                        <table class="table">
+                            <thead>
+                            <tr style="border-bottom: hidden;">
+                               <th>1</th>
+                               <th>처음보는 아토피 환자 입니다. 조언 부탁드립니다.</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>처음 보는 영유아 아토피 환자입니다. 피부가 건조해 지고 가려워 긁게 되어 피부가 손상되는 증상과 다르게 환...</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              </div>
+         </div>
+         <div class="col-lg-6">
+                <div class="ibox ">
+                    <div class="ibox-content">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>1</th>
+                                <th>처음보는 아토피 환자 입니다. 조언 부탁드립니다.</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              </div>
+         </div>
+
+	</div>
+
+
+</body>
+</html>

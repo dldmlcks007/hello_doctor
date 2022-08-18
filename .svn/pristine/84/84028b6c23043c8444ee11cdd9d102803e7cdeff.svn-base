@@ -1,0 +1,175 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-sm-3">
+				<h1>의료진 관리</h1>
+			</div>
+
+			<div class="row" style="margin-right: 20px; max-height: 30px; margin-top: 2%; margin-left: 50%">
+				<select>
+					<option>이름</option>
+					<option>전공</option>
+				</select> <input type="text" placeholder="검색어를 입력하세요">
+				<div class="input-group-append">
+					<button class="btn btn-primary btn-sm" type="button">검색</button>
+				</div>
+			</div>
+		</div>
+		<br> <br>
+		<table class="table table-bordered"
+			style="text-align: center; text-align: center; width: 100%;">
+			<thead>
+				<tr>
+					<th style="width: 10%">의료진 코드</th>
+					<th style="width: 10%">이름</th>
+					<th style="width: 20%">전공</th>
+					<th>생년월일</th>
+					<th style="width: 10%">의료진 상태</th>
+					<th style="width: 10%">상태변경</th>
+					<th>IP</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+					<td><a href="ip_manager">ip추가</a></td>
+				</tr>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+				</tr>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+				</tr>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+				</tr>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+				</tr>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+				</tr>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+				</tr>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+				</tr>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+				</tr>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+				</tr>
+				<tr>
+					<td>M001</td>
+					<td>이정규</td>
+					<td>피부과</td>
+					<td>19930718</td>
+					<td>재직</td>
+					<td style="margin: 20px;"><button class="btn btn-success btn-xs">상태변경</button></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div>
+			<ul class="pagination " style="justify-content: center;">
+				<li class="footable-page-arrow"><a data-page="first"
+					href="#first">«</a></li>
+				<li class="footable-page-arrow"><a data-page="prev"
+					href="#prev">‹</a></li>
+				<li class="footable-page"><a data-page="0" href="#">1</a></li>
+				<li class="footable-page"><a data-page="1" href="#">2</a></li>
+				<li class="footable-page"><a data-page="2" href="#">3</a></li>
+				<li class="footable-page active"><a data-page="3" href="#">4</a></li>
+				<li class="footable-page"><a data-page="4" href="#">5</a></li>
+				<li class="footable-page-arrow"><a data-page="next"
+					href="#next">›</a></li>
+				<li class="footable-page-arrow"><a data-page="last"
+					href="#last">»</a></li>
+			</ul>
+
+		</div>
+		
+	</div>
+	
+
+	
+	<!-- Mainly scripts -->
+	<script src="<%=request.getContextPath()%>/resources/js/common.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/popper.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+	<!-- Custom and plugin javascript -->
+	<script src="<%=request.getContextPath()%>/resources/js/inspinia.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/js/plugins/pace/pace.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/plugins/sweetalert/sweetalert.min.js"></script>
+		<script>
+	  $(".btn-success").on("click", function(){
+		  OpenWindow("./change","의료진 상태 변경",400,600);
+	  })
+	</script>
+	
+</body>
+</html>

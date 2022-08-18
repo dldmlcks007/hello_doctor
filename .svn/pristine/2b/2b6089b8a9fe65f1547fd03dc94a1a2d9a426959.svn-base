@@ -1,0 +1,23 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dao.MyOrderDAO;
+import kr.or.ddit.dto.MyOrderListVO;
+
+public class MyOrderServiceImpl implements MyOrderService {
+	private MyOrderDAO my_OrderDAO;
+
+	public void setMy_OrderDAO(MyOrderDAO my_OrderDAO) {
+		this.my_OrderDAO = my_OrderDAO;
+	}
+
+	@Override
+	public List<MyOrderListVO> orderdruglist(String mo_no) throws SQLException {
+		List<MyOrderListVO> list = my_OrderDAO.orderdruglist(mo_no);
+
+		return list;
+	}
+
+}

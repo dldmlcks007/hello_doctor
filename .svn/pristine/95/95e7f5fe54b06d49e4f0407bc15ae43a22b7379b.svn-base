@@ -1,0 +1,148 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>히스토리 상세</title>
+
+<style>
+
+img {
+    vertical-align: middle;
+    border-style: none;
+    width: 320px;
+    height: 400px;
+}
+</style>
+
+</head>
+<body>
+	<section style="padding: 0px;" class="content container-fluid">
+		<div class="justify-content-center">
+			<div class="col-md-13" style="padding: 3px">
+				<div class="card card-outline card-info">
+					<div class="card-header row" style="margin-right: 0px; margin-left: 0px;" >
+						<h4 class="col-md-8">박태정/1994-02-28 </h4>
+					</div>
+						<button class="btn btn-danger  dim " type="button" style="font-size: 0.8em;  position: absolute; right: 10px;top: 5px; ">닫 기</button>
+					<!--end card-header  -->
+					<div class="card-body pad">
+
+						<form role="form" method="post" action="regist.do"
+							name="registForm">
+
+							<div class="col-md-6" style="display: contents;">
+								<div class="form-group" style="width: 300px; display: contents;">
+									 <h5>진료일시:<small> 2022-06-27</small>&nbsp;&nbsp;&nbsp;검사명:<small>CHEST-PA</small>&nbsp;&nbsp;&nbsp;주치의:<small>최선미</small>&nbsp;&nbsp;&nbsp;</h5>
+								</div>
+							</div>
+
+							<div class="form-group">
+							<img alt="" src="https://www.medigatenews.com/file/news/1542">
+							</div>
+
+<div class="result">
+
+<div id="pastchart">
+			<div class="ibox" style="margin-bottom: 0">
+
+				<h4>진료 기록</h4>
+				<div class="ibox-content" id="pastrecord">
+
+					c/c)팔과 목 부위가 간지러워요<br> Onset)1 년전<br> Cause) unknown<br>
+					P/I)상기 환자 상기 증상으로 본원 내원함<br> P.M.Hx.)모 아토피성 피부염<br>
+					HTN(-)DM(-)Tbc(-)Heeatitis(-)<br> F/C/C/S/R(-/-/-/-/-)<br>
+					A/N/V/C/D(-/-/-/-/-)<br> Abdmoinal Pain(-)<br> Lab)시행 안함<br>
+					Imp)<br>
+				</div>
+
+				<div class="ibox" style="margin-bottom: 0">
+
+					<h4>진단</h4>
+					<div class="ibox-content" style="height: 35px;">
+
+						<table class="table table-bordered">
+
+							<tbody>
+								<tr>
+									<td class="recordtablelist"><i class="fa fa-stethoscope">원인모를
+											피부병</i></td>
+
+								</tr>
+
+							</tbody>
+						</table>
+
+
+
+					</div>
+					<div class="ibox" style="margin-bottom: 0">
+
+						<h4>처방</h4>
+						<div class="ibox-content" style="height: 100px;">
+
+							<table class="table table-bordered">
+
+								<tbody>
+									<tr>
+										<td class="mediname">항히스타민제</td>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+									</tr>
+									<tr>
+										<td class="mediname">스테로이드제</td>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+									</tr>
+								</tbody>
+							</table>
+
+
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+</div>
+
+
+						</form>
+
+
+					</div>
+					<div class="card-footer" style="display: none"></div>
+					<!--end card-footer  -->
+				</div>
+				<!-- end card -->
+			</div>
+			<!-- end col-md-12 -->
+		</div>
+		<!-- end row -->
+	</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script>
+		$(document).ready(function() {
+			$('.i-checks').iCheck({
+				checkboxClass : 'icheckbox_square-green',
+				radioClass : 'iradio_square-green',
+			});
+		});
+
+		  $(function(){
+		    $('.datepicker').datepicker();
+		  })
+
+
+	</script>
+
+</body>
+</html>

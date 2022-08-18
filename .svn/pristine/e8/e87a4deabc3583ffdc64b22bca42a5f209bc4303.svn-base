@@ -1,0 +1,224 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="<%=request.getContextPath()%>/resources/css/plugins/summernote/summernote-bs4.css" rel="stylesheet">
+<title>Insert title here</title>
+<style>
+.ibox-title{
+padding: 10px 5px 0px 10px;
+}
+</style>
+</head>
+<body>
+
+
+	<div class="col-lg-12">
+		<div class="ibox ">
+			<div class="ibox-title">
+				<h2 style="display: inline;">
+					약픔 오더세트 등록 <small style="font-size: 0.6em; float:right;">2022-07-06 &nbsp;&nbsp;&nbsp;작성자:노혜지</small>
+				</h2>
+				<hr style="background-color:black; width:770px;">
+				<span style="margin-left: 509px;">
+					<button class="btn btn-primary " type="button">
+						<i class="fa fa-check"></i>&nbsp;등록
+					</button>
+				</span>
+			</div>
+
+			<div class="ibox-content">
+
+				<form method="get">
+					<div class="form-group  row">
+						<label class="col-sm-2 col-form-label">질병명</label>
+
+						<div class="col-sm-10">
+							<input type="text" class="form-control" style="width: 40%;">
+						</div>
+
+						<label class="col-sm-2 col-form-label">급여대상</label>
+						<input type="text" class="form-control" style="width: 40%;">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">급여대상</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control">
+						</div>
+					</div>
+
+					<div class="hr-line-dashed"></div>
+
+
+
+					<div class="form-group row">
+						<label class="col-lg-2 col-form-label">증상</label>
+
+						<textarea class="textarea" name="content" id="content" rows="20" placeholder="1000자 내외로 작성하세요." style="display: none;">
+										</textarea>
+
+
+
+					</div>
+					<div class="hr-line-dashed"></div>
+
+
+					<div class="form-group row">
+						<label class="col-lg-2 col-form-label">약검색 : </label> <input style="width: 170px; font-size: 0.8em; border-radius: 5px;" type="text" placeholder="병명 또는 약명을 입력하세요" class="form-control"><span><i
+							style="font-size: 1.5em; padding-top: 6px; padding-left: 5px;" class="fa fa-search"></i></span>
+						<p style="font-weight: bold; margin-left: 25px; padding-top: 5px;" class="form-control-static">직접등록</p>
+						<span style="padding-top: 5px; margin-left: 4px"><i style="font-size: 1.5em;" class="fa fa-plus-square"></i></span>
+					</div>
+
+
+					<div style="margin-left: 100px;" class="table-responsive">
+						<table class="table " style="width: 715px;">
+							<thead>
+								<tr>
+
+									<th></th>
+									<th style="width: 280px;">추천 약명</th>
+									<th>1회급여량</th>
+									<th>하루 투약 횟수</th>
+									<th>투약일</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td></td>
+									<td><i style="margin-right: 6px; font-size: 1.2em;" class="fa fa-plus-circle"></i>소아용프리마란시럽</td>
+									<td>1(mg)</td>
+									<td>3</td>
+									<td>3</td>
+
+								</tr>
+								<tr>
+									<td><div class="icheckbox_square-green" style="position: relative;">
+											<input type="checkbox" class="i-checks" name="input[]" style="position: absolute; opacity: 0;">
+											<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+										</div></td>
+									<td><i style="margin-right: 6px; font-size: 1.2em;" class="fa fa-plus-circle"></i>프로토픽연고</td>
+									<td>1(회)</td>
+									<td>3</td>
+									<td>3</td>
+
+								</tr>
+								<tr>
+									<td><div class="icheckbox_square-green" style="position: relative;">
+											<input type="checkbox" class="i-checks" name="input[]" style="position: absolute; opacity: 0;">
+											<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+										</div></td>
+									<td><i style="margin-right: 6px; font-size: 1.2em;" class="fa fa-plus-circle"></i>소아용에포프림인질캡슐</td>
+									<td>1(정)</td>
+									<td>3</td>
+									<td>3</td>
+
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+
+
+					<div class="hr-line-dashed"></div>
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">처방내역:<br>
+						</label>
+						<div style="margin-left: 100px;" class="table-responsive">
+							<table class="table " style="width: 715px;">
+								<thead>
+									<tr>
+
+										<th></th>
+										<th style="width: 280px;">추천 약명</th>
+										<th>1회급여량</th>
+										<th>하루 투약 횟수</th>
+										<th>투약일</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td></td>
+										<td>소아용프리마란시럽</td>
+										<td>1(mg)</td>
+										<td>3</td>
+										<td>3</td>
+
+									</tr>
+									<tr>
+										<td><div class="icheckbox_square-green" style="position: relative;">
+												<input type="checkbox" class="i-checks" name="input[]" style="position: absolute; opacity: 0;">
+												<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+											</div></td>
+										<td>프로토픽연고</td>
+										<td>1(회)</td>
+										<td>3</td>
+										<td>3</td>
+
+									</tr>
+									<tr>
+										<td><div class="icheckbox_square-green" style="position: relative;">
+												<input type="checkbox" class="i-checks" name="input[]" style="position: absolute; opacity: 0;">
+												<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+											</div></td>
+										<td>소아용에포프림인질캡슐</td>
+										<td>1(정)</td>
+										<td>3</td>
+										<td>3</td>
+
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
+					<div class="hr-line-dashed"></div>
+
+
+					<div class="form-group row">
+						<label class="col-lg-2 col-form-label">주의사항 :</label>
+
+						<textarea class="textarea" name="content" id="content" rows="20" style="width: 600px; height: 130px; border-radius: 20px;" margin-left: -40px;
+							placeholder="1000자 내외로 작성하세요.">
+										</textarea>
+
+					</div>
+
+				</form>
+			</div>
+</div>
+</div>
+
+			<!-- SUMMERNOTE -->
+			<script src="<%=request.getContextPath()%>/resources/js/plugins/summernote/summernote-bs4.js"></script>
+			<script>
+        $(document).ready(function(){
+
+            $('.summernote').summernote();
+
+       });
+        
+        window.onload = function() {
+        	summernote_go($('#content'), '<%=request.getContextPath()%>'); 
+        	}
+        			
+        				
+        	function regist_go(){
+        		var form = document.registForm;
+        		if(form.title.value==""){
+        			alert("제목은 필수입니다.");
+        			return;
+        		}        		
+        		form.submit();
+
+        	}
+    </script>
+</body>
+</html>

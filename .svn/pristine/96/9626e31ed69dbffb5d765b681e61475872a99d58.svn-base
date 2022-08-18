@@ -1,0 +1,69 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+public class ComRecoVO { //최근진료기록 구할 때!
+
+	private String symptom;
+	private Date mDate;
+	private String comNo       ;
+	private String mNo         ;
+	private String coNo        ;
+	private Date comDate     ;
+	private String comStatus   ;
+	public String getSymptom() {
+		return symptom;
+	}
+	public void setSymptom(String symptom) {
+		this.symptom = symptom;
+	}
+	public Date getmDate() {
+		return mDate;
+	}
+	public void setmDate(Date mDate) {
+		this.mDate = mDate;
+	}
+	public String getComNo() {
+		return comNo;
+	}
+	public void setComNo(String comNo) {
+		this.comNo = comNo;
+	}
+	public String getmNo() {
+		return mNo;
+	}
+	public void setmNo(String mNo) {
+		this.mNo = mNo;
+	}
+	public String getCoNo() {
+		return coNo;
+	}
+	public void setCoNo(String coNo) {
+		this.coNo = coNo;
+	}
+	public Date getComDate() {
+		return comDate;
+	}
+	public void setComDate(Date comDate) {
+		this.comDate = comDate;
+	}
+	public String getComStatus() {
+		return comStatus;
+	}
+	public void setComStatus(String comStatus) {
+		this.comStatus = comStatus;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+
+
+
+}

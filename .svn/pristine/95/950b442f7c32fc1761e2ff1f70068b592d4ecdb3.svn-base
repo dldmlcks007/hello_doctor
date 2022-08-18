@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Co_Med-Mapper">
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			and co_doc like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'w'.toString()">
+			and co_disease like '%'||#{keyword}||'%'
+		</if>
+		<!-- <if test="searchType == 'c'.toString()"> -->
+		<!-- and co_name like '%'||#{keyword}||'%' -->
+		<!-- </if> -->
+		<if test="searchType == 'tw'.toString()">
+			and (
+			co_doc like '%'||#{keyword}||'%'
+			or
+			co_disease like
+			'%'||#{keyword}||'%'
+			)
+		</if>
+		<!-- <if test="searchType == 'tc'.toString()"> -->
+		<!-- and ( -->
+		<!-- co_doc like '%'||#{keyword}||'%' -->
+		<!-- or -->
+		<!-- co_name like '%'||#{keyword}||'%' -->
+		<!-- ) -->
+		<!-- </if> -->
+		<!-- <if test="searchType == 'cw'.toString()"> -->
+		<!-- and ( -->
+		<!-- co_disease like '%'||#{keyword}||'%' -->
+		<!-- or -->
+		<!-- co_name like '%'||#{keyword}||'%' -->
+		<!-- ) -->
+		<!-- </if> -->
+		<!-- <if test="searchType == 'tcw'.toString()"> -->
+		<!-- and ( -->
+		<!-- co_doc like '%'||#{keyword}||'%' -->
+		<!-- or -->
+		<!-- co_disease like '%'||#{keyword}||'%' -->
+		<!-- or -->
+		<!-- co_name like '%'||#{keyword}||'%' -->
+		<!-- ) -->
+		<!-- </if> -->
+	</sql>
+	<!-- 전체협진리스트 -->
+	<select id="selectAll" resultType="comedVO">
+		select to_char(C.co_start_date,'YYYY-MM-DD')as co_start_date,
+		C.co_release, C.co_disease,
+		A.d_name, D.ma_name,c.co_no
+		from doctor A, co_med C, major D
+		where A.d_id=C.CO_DOC
+		and A.ma_no=D.ma_no
+		order by co_start_date DESC
+	</select>
+	<select id="coopermain_doctors" parameterType="string"
+		resultType="comedVO">
+		select A.d_name, B.ma_name
+		from doctor A, major B, co_doctor C, co_med D
+		where D.co_no = C.co_no
+		and A.ma_no=B.ma_no
+		and A.d_id = C.d_id
+		and C.paty_yn='Y'
+		and D.co_no=#{co_no}
+	</select>
+
+	<!-- 진행중 -->
+	<select id="proceedingCooperation" resultType="comedVO">
+		select
+		to_char(C.co_start_date,'YYYY-MM-DD')as co_start_date,
+		C.co_release,
+		C.co_disease,C.co_no,
+		A.d_name, D.ma_name
+		from doctor A, co_med C, major D
+		where A.d_id=C.CO_DOC
+		and A.ma_no=D.ma_no
+		and C.co_ing_status='1'
+		order by C.co_start_date DESC
+	</select>
+	<select id="proceeding_doctors" parameterType="string"
+		resultType="comedVO">
+		select A.d_name, B.ma_name
+		from doctor A, major B, co_doctor C, co_med D
+		where D.co_no = C.co_no
+		and A.ma_no=B.ma_no
+		and A.d_id = C.d_id
+		and C.paty_yn='Y'
+		and D.co_no=#{co_no}
+	</select>
+	<!-- 완료된 협진리스트 -->
+	<select id="completeCooperation" resultType="comedVO">
+		select
+		to_char(C.co_start_date,'YYYY-MM-DD')as co_start_date,
+		to_char(E.end_date,'YYYY-MM-DD')as end_date,
+		C.co_release,
+		C.co_disease,C.co_no,
+		A.d_name, D.ma_name
+		from doctor A, co_med C, major D, co_end E
+		where A.d_id=C.CO_DOC
+		and A.ma_no=D.ma_no
+		and C.co_ing_status='2'
+		order by C.co_start_date DESC
+	</select>
+	<select id="complete_doctors" parameterType="string" resultType="comedVO">
+		select A.d_name, B.ma_name
+		from doctor A, major B, co_doctor C, co_med D
+		where D.co_no = C.co_no
+		and A.ma_no=B.ma_no
+		and A.d_id = C.d_id
+		and C.paty_yn='Y'
+		and D.co_no=#{co_no}
+	</select>
+
+	<!-- 전체협진리스트 내 전공과 일치 -->
+	<select id ="myCooperation" resultType="comedVO">
+		select * from
+		(select to_char(C.co_start_date,'YYYY-MM-DD')as co_start_date,
+		C.co_release,
+		C.co_disease,
+		A.d_name, D.ma_name, c.co_no, a.ma_no
+		from doctor A, co_med C, major D
+		where A.d_id=C.CO_DOC
+		and A.ma_no=D.ma_no)
+		where co_no in
+		(select distinct(co_no) as co_no
+		from co_doctor
+		where d_id in
+		(select a.d_id
+		from doctor a, major b
+		where a.ma_no = b.ma_no
+		and b.ma_name = '호흡기내과'))
+		order by co_start_date DESC
+	</select>
+	<select id="myCooperation_doctors" parameterType="string" resultType="comedVO">
+		select A.d_name, B.ma_name
+		from doctor A, major B, co_doctor C, co_med D
+		where D.co_no = C.co_no
+		and A.ma_no=B.ma_no
+		and A.d_id = C.d_id
+		and C.paty_yn='Y'
+		and D.co_no=#{co_no}
+
+	</select>
+
+	<!-- 진행협진리스트 내 전공과 일치 -->
+	<select id="myCooperation_proceeding" resultType="comedVO">
+		select * from
+		(select to_char(C.co_start_date,'YYYY-MM-DD')as co_start_date,
+		C.co_release, C.co_disease,C.co_no,
+		A.d_name, D.ma_name
+		from doctor A, co_med C, major D
+		where A.d_id=C.CO_DOC
+		and A.ma_no=D.ma_no
+		and C.co_ing_status='1')
+        where co_no in
+        (select distinct(co_no) as co_no
+        from co_doctor
+        where d_id in
+        (select a.d_id
+        from doctor a, major b
+        where a.ma_no = b.ma_no
+        and b.ma_name = '호흡기내과'))
+		order by co_start_date DESC
+	</select>
+	<select id="myCooperation_proceedingdoctors" parameterType="string" resultType="comedVO">
+		select A.d_name, B.ma_name
+		from doctor A, major B, co_doctor C, co_med D
+		where D.co_no = C.co_no
+		and A.ma_no=B.ma_no
+		and A.d_id = C.d_id
+		and C.paty_yn='Y'
+		and D.co_no=#{co_no}
+
+	</select>
+
+	<!-- 완료된협진리스트 내 전공과 일치 -->
+	<select id="myCooperation_complete" resultType="comedVO">
+		select * from
+        (select to_char(C.co_start_date,'YYYY-MM-DD')as co_start_date,
+        to_char(E.end_date,'YYYY-MM-DD')as end_date,
+		C.co_release, C.co_disease,C.co_no,
+		A.d_name, D.ma_name
+		from doctor A, co_med C, major D, co_end E
+		where A.d_id=C.CO_DOC
+		and A.ma_no=D.ma_no
+		and C.co_ing_status='2')
+        where co_no in
+        (select distinct(co_no) as co_no
+        from co_doctor
+        where d_id in
+        (select a.d_id
+        from doctor a, major b
+        where a.ma_no = b.ma_no
+        and b.ma_name = '호흡기내과'))
+		order by co_start_date DESC
+	</select>
+	<select id="myCooperation_completedoctors" parameterType="string" resultType="comedVO">
+		select A.d_name, B.ma_name
+		from doctor A, major B, co_doctor C, co_med D
+		where D.co_no = C.co_no
+		and A.ma_no=B.ma_no
+		and A.d_id = C.d_id
+		and C.paty_yn='Y'
+		and D.co_no=#{co_no}
+	</select>
+
+
+	<!-- </select> -->
+
+	<!-- <select id="selectOneComplete" resultType=""> -->
+
+
+	<!-- </select> -->
+</mapper>
+

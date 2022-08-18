@@ -1,0 +1,92 @@
+package kr.or.ddit.dto;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+public class MyOrderListVO {
+	private String o_drug    ;
+	private String mo_no     ;
+	private int quantity  ;
+	private int aday      ;
+	private int days      ;
+	private String d_name        ;
+	private String del_yn        ;
+
+
+	public String getO_drug() {
+		return o_drug;
+	}
+
+
+	public void setO_drug(String o_drug) {
+		this.o_drug = o_drug;
+	}
+
+
+	public String getMo_no() {
+		return mo_no;
+	}
+
+
+	public void setMo_no(String mo_no) {
+		this.mo_no = mo_no;
+	}
+
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+
+	public int getAday() {
+		return aday;
+	}
+
+
+	public void setAday(int aday) {
+		this.aday = aday;
+	}
+
+
+	public int getDays() {
+		return days;
+	}
+
+
+	public void setDays(int days) {
+		this.days = days;
+	}
+
+
+	public String getD_name() {
+		return d_name;
+	}
+
+
+	public void setD_name(String d_name) {
+		this.d_name = d_name;
+	}
+
+
+	public String getDel_yn() {
+		return del_yn;
+	}
+
+
+	public void setDel_yn(String del_yn) {
+		this.del_yn = del_yn;
+	}
+
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+
+
+}

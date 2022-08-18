@@ -1,0 +1,101 @@
+package kr.or.ddit.dto;
+
+public class SchedulerVO {
+	private String coNo;
+	private String dId;
+	private String rsvNo;
+	private String rsvDay;
+
+	private String maNo;
+	private String maName;
+
+	private String p_no;
+	private String p_name;
+	private String p_sex;
+	private String p_rnum;
+	private String p_tel;
+	private String p_address;
+	private String p_insurance;
+
+
+	public String getCoNo() {
+		return coNo;
+	}
+	public void setCoNo(String coNo) {
+		this.coNo = coNo;
+	}
+	public String getdId() {
+		return dId;
+	}
+	public void setdId(String dId) {
+		this.dId = dId;
+	}
+	public String getRsvNo() {
+		return rsvNo;
+	}
+	public void setRsvNo(String rsvNo) {
+		this.rsvNo = rsvNo;
+	}
+	public String getRsvDay() {
+		return rsvDay;
+	}
+	public void setRsvDay(String rsvDay) {
+		this.rsvDay = rsvDay;
+	}
+	public String getMaNo() {
+		return maNo;
+	}
+	public void setMaNo(String maNo) {
+		this.maNo = maNo;
+	}
+	public String getMaName() {
+		return maName;
+	}
+	public void setMaName(String maName) {
+		this.maName = maName;
+	}
+	public String getP_no() {
+		return p_no;
+	}
+	public void setP_no(String p_no) {
+		this.p_no = p_no;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public String getP_sex() {
+		return p_sex;
+	}
+	public void setP_sex(String p_sex) {
+		this.p_sex = p_sex;
+	}
+	public String getP_rnum() {
+		return p_rnum;
+	}
+	public void setP_rnum(String p_rnum) {
+		this.p_rnum = p_rnum;
+	}
+	public String getP_tel() {
+		return p_tel;
+	}
+	public void setP_tel(String p_tel) {
+		this.p_tel = p_tel;
+	}
+	public String getP_address() {
+		return p_address;
+	}
+	public void setP_address(String p_address) {
+		this.p_address = p_address;
+	}
+	public String getP_insurance() {
+		return p_insurance;
+	}
+	public void setP_insurance(String p_insurance) {
+		this.p_insurance = p_insurance;
+	}
+
+
+}

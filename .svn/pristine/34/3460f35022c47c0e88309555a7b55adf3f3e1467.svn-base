@@ -1,0 +1,22 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/scheduler")
+public class SchedulerController {
+	
+//	@RequestMapping("/main")
+//	public String main() throws Exception{
+//		String url = "scheduler/main";
+//		return url;
+//	}
+	
+	@RequestMapping("modify")
+	public String main() throws Exception{
+		String url = "scheduler/modify";
+		return url;
+	}
+
+}

@@ -1,0 +1,85 @@
+package kr.or.ddit.controller;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.service.ManagerService;
+
+@Controller
+@RequestMapping("/manager")
+public class ManagerController {
+
+	@Autowired
+	ManagerService managerService;
+
+	@RequestMapping("/manager")
+	public String main() {
+		String url = "manager/manager";
+		return url;
+	}
+
+	@RequestMapping("/med_admin")
+	public String med_admin() {
+		String url = "manager/med_admin";
+		return url;
+	}
+
+	@RequestMapping("/medicine")
+	public String medicine() {
+		String url = "manager/medicine";
+		return url;
+	}
+
+	@RequestMapping("/doctor")
+	public ModelAndView doctor(ModelAndView mnv, SearchCriteria cri) throws Exception{
+		String url = "manager/doctor";
+
+		Map<String, Object> dataMap = managerService.doctorListForPage(cri);
+		mnv.addObject("dataMap", dataMap);
+		mnv.setViewName(url);
+		return mnv;
+	}
+
+	@RequestMapping("/change")
+	public String change() {
+		String url = "manager/change";
+		return url;
+	}
+
+	@RequestMapping("/notice")
+	public String notice() {
+		String url = "manager/notice";
+		return url;
+	}
+	@RequestMapping("/regist")
+	public String regist() {
+		String url = "manager/regist";
+		return url;
+	}
+	@RequestMapping("/disstatus")
+	public String disstatus() {
+		String url = "manager/disstatus";
+		return url;
+	}
+	@RequestMapping("/ip_manager")
+	public String ip_manager() {
+		String url = "manager/ip_manager";
+		return url;
+	}
+	@RequestMapping("/regist_notice")
+	public String regist_notice() {
+		String url = "manager/regist_notice";
+		return url;
+	}
+	@RequestMapping("/notice_detail")
+	public String notice_detail() {
+		String url = "manager/notice_detail";
+		return url;
+	}
+}
+

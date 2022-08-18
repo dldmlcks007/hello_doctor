@@ -1,0 +1,212 @@
+package kr.or.ddit.controller;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import kr.or.ddit.command.InsertOrderSetCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.OrdersetVO;
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.dto.MajorVO;
+import kr.or.ddit.dto.MyOrderVO;
+import kr.or.ddit.service.DoctorService;
+import kr.or.ddit.service.MyOrderService;
+import kr.or.ddit.service.OrdersetService;
+
+
+@Controller
+@RequestMapping("/orderset")
+public class OrderSetController {
+
+
+	@Autowired
+	private OrdersetService orderservice;
+    @Autowired
+    private MyOrderService myorderService;
+
+    @Autowired
+    private DoctorService doctorService;
+
+
+	@RequestMapping("/main")
+	public String main(HttpSession session, Model model) throws Exception {
+		String url = "orderset/main";
+		Map<String, Object> dataMap = null;
+		dataMap = orderservice.getMainOrderset(session);
+		System.out.println(dataMap.get("ordersetList1"));
+		model.addAttribute("dataMap", dataMap);
+		return url;
+	}
+
+
+
+	@RequestMapping("/orderset_list")
+	public String orderset_list(HttpSession session, SearchCriteria cri ,Model model)throws Exception {
+		String url = "orderset/orderset_list";
+		Map<String, Object> dataMap = null;
+		System.out.println(cri);
+
+		dataMap = orderservice.getOrdersetList(session, cri);
+		model.addAttribute("dataMap", dataMap);
+
+		return url;
+	}
+
+
+	@RequestMapping("/orderset_registform")
+	public String orderset_registform() {
+		String url = "orderset/orderset_registform";
+		return url;
+	}
+
+	@RequestMapping("/orderset_regist")
+	public String orderset_regist( InsertOrderSetCommand vo ,HttpServletRequest request, HttpSession session, RedirectAttributes rttr) throws Exception {
+		String url = "redirect:orderset_list.do";
+
+		orderservice.insertOrderset(session,vo);
+
+		rttr.addFlashAttribute("from", "regist");
+		return url;
+	}
+
+
+	@RequestMapping("orderset_detail")
+	public String orderset_detail(HttpSession session, String oNo, String from ,Model model) throws Exception {
+		String url = "orderset/orderset_detail";
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		  if(from!=null && from.equals("list")) {
+			  orderservice.increaseViewCnt(oNo);
+			  model.addAttribute("from", from);
+		  }
+
+		dataMap = orderservice.getOrdersetDetail(session,oNo);
+		model.addAttribute("dataMap", dataMap);
+
+		return url;
+	}
+
+
+
+	@RequestMapping("/orderset_modifyForm")
+	public String orderset_modifyForm(HttpSession session, String oNo,Model model) throws Exception {
+		String url = "orderset/orderset_modify";
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap = orderservice.getOrdersetDetail(session,oNo);
+
+		dataMap = orderservice.getOrdersetDetail(session,oNo);
+		model.addAttribute("dataMap", dataMap);
+
+		return url;
+	}
+
+	@RequestMapping("/orderset_modify")
+	public String orderset_modify(InsertOrderSetCommand vo ,HttpServletRequest request, RedirectAttributes rttr) throws Exception {
+		String oNo = vo.getoNo();
+		String url = "redirect:orderset_detail.do";
+		orderservice.UpdateOrderset(vo);
+		rttr.addFlashAttribute("from", "modify");
+		rttr.addAttribute("oNo",oNo);
+
+
+		return url;
+	}
+
+	@RequestMapping("/orderset_remove")
+	public String orderset_remove(String oNo ,HttpServletRequest request, RedirectAttributes rttr) throws Exception {
+		String url = "redirect:orderset_list.do";
+		orderservice.deleteOrderset(oNo);
+
+		rttr.addFlashAttribute("from","remove");
+
+		return url;
+	}
+
+
+
+	@RequestMapping("/ordersetFeedBack_regist")
+	public String feedback_detail(OrdersetVO ordersetVO, RedirectAttributes rttr) throws SQLException {
+		String oNo = ordersetVO.getoNo();
+		String url = "redirect:orderset_detail.do?oNo="+oNo;
+
+		orderservice.insertOrdersetFeedBack(ordersetVO);
+		rttr.addFlashAttribute("from", "regist");
+
+		return url;
+	}
+
+
+
+	@RequestMapping("/myorderset_regist")
+	public String myorderset_regist() {
+		String url = "orderset/myorderset_regist";
+
+		return url;
+
+	}
+	@RequestMapping("/myorderset_upload")
+	public String myorderset_upload() {
+		String url = "orderset/myorderset_upload";
+		return url;
+	}
+
+	@RequestMapping("/myorderset_modify")
+	public String myorderset_modify() {
+		String url = "orderset/myorderset_modify";
+
+		return url;
+
+	}
+	@RequestMapping("/myorderset_detail")
+	public String myorderset_detail() {
+		String url = "orderset/myorderset_detail";
+
+		return url;
+
+	}
+	@RequestMapping("/myorderset_list")
+	public String myorderset_list(SearchCriteria cri,  HttpSession session, Model model) throws SQLException {
+		String url = "orderset/myorderset_list";
+		DoctorVO doctor = (DoctorVO)session.getAttribute("doctorLogin");
+		String dId = doctor.getdId();
+		cri.setDId(dId);
+		Map<String,Object> map = myorderService.myOrderList(cri);
+		model.addAttribute("myOrderList", map.get("myOrderList"));
+		model.addAttribute("pageMaker", map.get("pageMaker"));
+
+		return url;
+
+	}
+
+
+	@RequestMapping("/regist_customize")
+	public String regist_customize() {
+		String url = "orderset/regist_customize";
+		return url;
+	}
+
+	@RequestMapping("/share")
+	public String share(Model model) throws Exception {
+		String url = "orderset/doctorShare";
+
+
+		 List<MajorVO> list =doctorService.majorList();
+		 	model.addAttribute("major", list);
+
+		return url;
+	}
+
+
+
+}

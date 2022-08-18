@@ -1,0 +1,76 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.command.SearchCriteriaCommand;
+import kr.or.ddit.dao.Case_DAO;
+import kr.or.ddit.dto.CaseVO;
+
+public class CaseServiceImpl implements CaseService{
+	
+	private Case_DAO casedao;
+	
+	public void setCasedao(Case_DAO casedao) {
+		this.casedao = casedao;
+	}
+
+	@Override
+	public List<CaseVO> selectCase() throws SQLException {
+		// TODO Auto-generated method stub
+		return casedao.selectCase();
+	}
+
+	@Override
+	public Map<String, Object> getCaseListForPage(SearchCriteria cri) throws Exception {
+		
+		SearchCriteria searchCri = cri;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		
+		List<CaseVO> caselist = casedao.selectCase(searchCri);
+		System.out.println("caseList" + caselist);
+		map.put("caselist", caselist);
+		map.put("pageMaker", pageMaker);
+		
+		return map;
+	}
+
+	@Override
+	public void insertCase(CaseVO casevo) throws SQLException {
+		
+		int dis_no = casedao.selectCaseSeqNextValue();
+		String no = Integer.toString(dis_no);
+		if(dis_no < 10) {
+			no = "DIS00" + no;
+		}else if(dis_no >= 10) {
+			no = "DIS0" + no;
+		}else {
+			no = "DIS" + no;
+		}
+		
+		casevo.setDis_no(no);
+		casedao.insertCase(casevo);
+		
+	}
+
+	@Override
+	public CaseVO detailCase(String dis_no) throws SQLException {
+		CaseVO casevo = casedao.selectCaseByNo(dis_no);
+		return casevo;
+	}
+
+	
+	
+	
+
+}

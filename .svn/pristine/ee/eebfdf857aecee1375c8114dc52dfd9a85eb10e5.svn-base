@@ -1,0 +1,24 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dao.RegistDAO;
+
+public class RegistServiceImpl implements RegistService {
+
+	private RegistDAO registDao;
+
+	public void setRegistDao(RegistDAO registDao) {
+		this.registDao = registDao;
+	}
+
+	@Override
+	public List<String> registMajorList(String word) throws SQLException {
+
+		List<String> list = registDao.registMajorList(word);
+
+		return list;
+	}
+
+}

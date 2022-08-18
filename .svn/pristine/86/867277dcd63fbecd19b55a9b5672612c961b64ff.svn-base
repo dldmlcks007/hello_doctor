@@ -1,0 +1,279 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+    <link href="<%=request.getContextPath()%>/resources/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+
+    <link href="<%=request.getContextPath()%>/resources/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+
+
+<style>
+.col-8 {
+	max-width: 100%;
+}
+
+.img-responsive {
+	width: 20px;
+	height: 20px;
+	object-fit: cover;
+}
+
+#pagediv {
+	position: absolute;
+	margin: -150px 0px 0px -200px;
+	top: 108%;
+	left: 57%;
+	padding: 3px;
+}
+
+.contact-box{
+border-radius: 5%;
+
+}
+
+</style>
+
+</head>
+<body>
+
+
+		<div class="row">
+			<div class="col-sm-3" style="padding-left: 2%;">
+			      <button type="button" class="btn btn-w-m btn-primary">의견 공유</button>
+			      <div style="display: inline;margin-left: 22%;">
+	               <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button" aria-expanded="false">전체 </button>
+	               <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 35px; left: 0px; will-change: top, left;">
+	                   <li><a href="#">조회순</a></li>
+	                   <li><a href="#">등록순</a></li>
+	                   <li><a href="#">추천순</a></li>
+	               </ul>
+	           </div>
+			</div>
+			<div class="col-sm-3">
+				<div class="i-checks">
+					<label class="" style="margin-left: 37%; vertical-align: -6px;"><i></i>내가 등록한 글
+						<div class="icheckbox_square-green" style="position: relative; margin-left: 10px;">
+							<input type="checkbox" value="" style="position: absolute; opacity: 0;">
+								<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+								</ins>
+						</div>
+					</label>
+				</div>
+
+			</div>
+			<div class="col-sm-3" style="display: contents;">
+				<div class="input-group-prepend" style="margin-left: 20.4%;">
+	               <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button" aria-expanded="false">전체 </button>
+	               <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 35px; left: 0px; will-change: top, left;">
+	                   <li><a href="#">제목</a></li>
+	                   <li><a href="#">질병명</a></li>
+	                   <li><a href="#">작성자</a></li>
+	               </ul>
+	           </div>
+			</div>
+			<div class="col-sm-3" style="display: contents;"><input type="text" class="form-control" style="width: 250px;">
+				<i style="font-size: 1.5em;margin-top: 7px;position: absolute;margin-left: 99%;" class="fa fa-search"></i>
+			</div>
+		</div>
+
+
+
+<div>
+	<div style="margin-top: 2%;">
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="contact-box">
+					<div class="col-8">
+						<h3 style="text-align: center; font-size: 20px;">
+							<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+						</h3>
+						<p style=" text-align: center;font-size: 15px;margin-top: 34px;"><strong>사용자</strong></p>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-signal" style="margin-right: 4%;"></i><h5 style="display: contents;">피부과</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-calendar" style="margin-right: 3%; margin-left: 7.9%;"></i><h5 style="display: contents;">2022-07-06</h5></div>
+						<hr>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-eye" style="margin-right: 4%;"></i><h5 style="display: contents;">84</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-thumbs-o-up" style="margin-right: 3%; margin-left: 25.9%;"></i><h5 style="display: contents;">21</h5></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="contact-box">
+					<div class="col-8">
+						<h3 style="text-align: center; font-size: 20px;">
+							<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+						</h3>
+						<p style=" text-align: center;font-size: 15px;margin-top: 34px;"><strong>사용자</strong></p>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-signal" style="margin-right: 4%;"></i><h5 style="display: contents;">피부과</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-calendar" style="margin-right: 3%; margin-left: 7.9%;"></i><h5 style="display: contents;">2022-07-06</h5></div>
+						<hr>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-eye" style="margin-right: 4%;"></i><h5 style="display: contents;">84</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-thumbs-o-up" style="margin-right: 3%; margin-left: 25.9%;"></i><h5 style="display: contents;">21</h5></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="contact-box">
+					<div class="col-8">
+						<h3 style="text-align: center; font-size: 20px;">
+							<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+						</h3>
+						<p style=" text-align: center;font-size: 15px;margin-top: 34px;"><strong>사용자</strong></p>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-signal" style="margin-right: 4%;"></i><h5 style="display: contents;">피부과</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-calendar" style="margin-right: 3%; margin-left: 7.9%;"></i><h5 style="display: contents;">2022-07-06</h5></div>
+						<hr>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-eye" style="margin-right: 4%;"></i><h5 style="display: contents;">84</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-thumbs-o-up" style="margin-right: 3%; margin-left: 25.9%;"></i><h5 style="display: contents;">21</h5></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="contact-box">
+					<div class="col-8">
+						<h3 style="text-align: center; font-size: 20px;">
+							<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+						</h3>
+						<p style=" text-align: center;font-size: 15px;margin-top: 34px;"><strong>사용자</strong></p>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-signal" style="margin-right: 4%;"></i><h5 style="display: contents;">피부과</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-calendar" style="margin-right: 3%; margin-left: 7.9%;"></i><h5 style="display: contents;">2022-07-06</h5></div>
+						<hr>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-eye" style="margin-right: 4%;"></i><h5 style="display: contents;">84</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-thumbs-o-up" style="margin-right: 3%; margin-left: 25.9%;"></i><h5 style="display: contents;">21</h5></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="contact-box">
+					<div class="col-8">
+						<h3 style="text-align: center; font-size: 20px;">
+							<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+						</h3>
+						<p style=" text-align: center;font-size: 15px;margin-top: 34px;"><strong>사용자</strong></p>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-signal" style="margin-right: 4%;"></i><h5 style="display: contents;">피부과</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-calendar" style="margin-right: 3%; margin-left: 7.9%;"></i><h5 style="display: contents;">2022-07-06</h5></div>
+						<hr>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-eye" style="margin-right: 4%;"></i><h5 style="display: contents;">84</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-thumbs-o-up" style="margin-right: 3%; margin-left: 25.9%;"></i><h5 style="display: contents;">21</h5></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="contact-box">
+					<div class="col-8">
+						<h3 style="text-align: center; font-size: 20px;">
+							<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+						</h3>
+						<p style=" text-align: center;font-size: 15px;margin-top: 34px;"><strong>사용자</strong></p>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-signal" style="margin-right: 4%;"></i><h5 style="display: contents;">피부과</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-calendar" style="margin-right: 3%; margin-left: 7.9%;"></i><h5 style="display: contents;">2022-07-06</h5></div>
+						<hr>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-eye" style="margin-right: 4%;"></i><h5 style="display: contents;">84</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-thumbs-o-up" style="margin-right: 3%; margin-left: 25.9%;"></i><h5 style="display: contents;">21</h5></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="contact-box">
+					<div class="col-8">
+						<h3 style="text-align: center; font-size: 20px;">
+							<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+						</h3>
+						<p style=" text-align: center;font-size: 15px;margin-top: 34px;"><strong>사용자</strong></p>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-signal" style="margin-right: 4%;"></i><h5 style="display: contents;">피부과</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-calendar" style="margin-right: 3%; margin-left: 7.9%;"></i><h5 style="display: contents;">2022-07-06</h5></div>
+						<hr>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-eye" style="margin-right: 4%;"></i><h5 style="display: contents;">84</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-thumbs-o-up" style="margin-right: 3%; margin-left: 25.9%;"></i><h5 style="display: contents;">21</h5></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="contact-box">
+					<div class="col-8">
+						<h3 style="text-align: center; font-size: 20px;">
+							<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+						</h3>
+						<p style=" text-align: center;font-size: 15px;margin-top: 34px;"><strong>사용자</strong></p>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-signal" style="margin-right: 4%;"></i><h5 style="display: contents;">피부과</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-calendar" style="margin-right: 3%; margin-left: 7.9%;"></i><h5 style="display: contents;">2022-07-06</h5></div>
+						<hr>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-eye" style="margin-right: 4%;"></i><h5 style="display: contents;">84</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-thumbs-o-up" style="margin-right: 3%; margin-left: 25.9%;"></i><h5 style="display: contents;">21</h5></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="contact-box">
+					<div class="col-8">
+						<h3 style="text-align: center; font-size: 20px;">
+							<strong>처음보는 아토피 환자입니다. 조언 부탁 드려요.</strong>
+						</h3>
+						<p style=" text-align: center;font-size: 15px;margin-top: 34px;"><strong>사용자</strong></p>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-signal" style="margin-right: 4%;"></i><h5 style="display: contents;">피부과</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-calendar" style="margin-right: 3%; margin-left: 7.9%;"></i><h5 style="display: contents;">2022-07-06</h5></div>
+						<hr>
+						<div class="col-sm-6" style="display: inline-block;"><i class="fa fa-eye" style="margin-right: 4%;"></i><h5 style="display: contents;">84</h5></div>
+						<div class="col-sm-6" style="display: inline;"><i class="fa fa-thumbs-o-up" style="margin-right: 3%; margin-left: 25.9%;"></i><h5 style="display: contents;">21</h5></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<div>
+				<ul class="pagination " style="justify-content: center;">
+					<li class="footable-page-arrow"><a data-page="first"
+						href="#first">«</a></li>
+					<li class="footable-page-arrow"><a data-page="prev"
+						href="#prev">‹</a></li>
+					<li class="footable-page"><a data-page="0" href="#">1</a></li>
+					<li class="footable-page"><a data-page="1" href="#">2</a></li>
+					<li class="footable-page"><a data-page="2" href="#">3</a></li>
+					<li class="footable-page active"><a data-page="3" href="#">4</a></li>
+					<li class="footable-page"><a data-page="4" href="#">5</a></li>
+					<li class="footable-page-arrow"><a data-page="next"
+						href="#next">›</a></li>
+					<li class="footable-page-arrow"><a data-page="last"
+						href="#last">»</a></li>
+				</ul>
+
+			</div>
+
+
+
+
+  <script src="<%=request.getContextPath()%>/resources/js/plugins/iCheck/icheck.min.js"></script>
+  <!-- iCheck -->
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+</script>
+
+
+<!-- 	<div class="card-body"> -->
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-sm-4"></div> -->
+<!-- 			<div class="col-sm-4"></div> -->
+<!-- 			<div class="col-sm-4"></div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+
+
+</body>
+</html>

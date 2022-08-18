@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Main-Mapper.xml">
+	<select id="mainIssueList" parameterType="string">
+		select A.ISS_TITLE, B.ISS_YN , AC.PNAME as P_NAME, AC.MDATE as M_DATE
+      from ISSUE A, ISSUE_READYN B ,(select A.M_NO, A.ISS_NO AS INO, C.P_NAME AS PNAME, A.M_DATE AS MDATE
+       from MEDI_RECO A, COM_RECO B, PATIENT C
+      where A.M_NO = B.M_NO
+        AND A.P_NO = C.P_NO
+        AND B.COM_NO=(select A.COM_NO
+     from COM_RECO A, CO_MED B, CO_DOCTOR C
+    where A.CO_NO = B.CO_NO
+      AND B.CO_NO =C.CO_NO
+      AND C.D_ID=#{dId}
+      AND B.CO_ING_STATUS='1'
+      AND C.PATY_YN='Y')) AC
+     where A.ISS_NO=B.ISS_NO
+       AND A.ISS_NO = AC.INO
+
+
+	</select>
+
+
+
+
+</mapper>

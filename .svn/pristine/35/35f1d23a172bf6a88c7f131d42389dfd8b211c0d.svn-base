@@ -1,0 +1,44 @@
+package kr.or.ddit.dto;
+
+public class OrderSetShareVO {
+
+	private String os_no         ;
+	private String o_no          ;
+	private String d_id          ;
+	private String do_id         ;
+	private String os_regdate    ;
+	public String getOs_no() {
+		return os_no;
+	}
+	public void setOs_no(String os_no) {
+		this.os_no = os_no;
+	}
+	public String getO_no() {
+		return o_no;
+	}
+	public void setO_no(String o_no) {
+		this.o_no = o_no;
+	}
+	public String getD_id() {
+		return d_id;
+	}
+	public void setD_id(String d_id) {
+		this.d_id = d_id;
+	}
+	public String getDo_id() {
+		return do_id;
+	}
+	public void setDo_id(String do_id) {
+		this.do_id = do_id;
+	}
+	public String getOs_regdate() {
+		return os_regdate;
+	}
+	public void setOs_regdate(String os_regdate) {
+		this.os_regdate = os_regdate;
+	}
+
+
+
+
+}

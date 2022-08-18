@@ -1,0 +1,280 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+
+ <link href="<%=request.getContextPath() %>/resources/css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
+
+<style>
+
+*{
+font-size: xx-small;
+}
+div {
+	border:1px solid black;
+}
+
+.main {
+	margin-bottom: 5px;
+}
+
+#left {
+	width: 20%;
+	height: 700px;
+	float: left
+}
+
+#middle {
+	width: 45%;
+	height: 700px;
+	float: left;
+}
+
+#right {
+	width: 33%;
+	height: 700px;
+	float: left;
+}
+
+#wating {
+	width: 100%;
+	height: 30%;
+}
+
+#recordlist {
+	width: 100%;
+	height: 30%;
+}
+
+#inputpic {
+	width: 100%;
+	height: 38%;
+}
+
+#info {
+	width: 100%;
+	height: 10%;
+}
+
+#chart {
+	width: 100%;
+	heigth: 88%;
+}
+
+#pastchart {
+	width: 100%;
+	height: 60%;
+}
+
+#orderset {
+	width: 100%;
+	height: 38%;
+}
+
+#order {
+	width: 20px;
+}
+
+#watingtable {
+	display: block;
+	overflow: auto;
+	height: 150px;
+	margin-bottom: 0;
+}
+
+#recordtable {
+	display:block;
+	width: 100%;
+	overflow: auto;
+	height: 140px;
+	margin-bottom: 0;
+}
+#fileupload{
+	display: block;
+	overflow: auto;
+	height:40px;
+	margin-bottom: 0;
+}
+.recordtablelist{
+ 	width: 500px;
+ 	text-align: center;
+}
+  .fa-paperclip{
+                       display:block; border: 1px solid #e2e2e2
+                       }
+     
+</style>
+
+
+
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body class="light-skin pace-done">
+<style>
+.ibox-content{
+	padding: 0;
+}           
+</style>
+
+	<div id="left">
+
+		<div id="wating" class="main">
+			<div class="ibox">
+
+				<h5 style="text-align: center">외래 대기 환자</h5>
+
+
+				<div class="ibox-content">
+
+					<table class="table" id="watingtable">
+						<thead>
+							<tr>
+								<th id="order"></th>
+								<th>성명</th>
+								<th>주민번호</th>
+								<th>비고</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>이정규</td>
+								<td>930718-1</td>
+								<td>진료대기</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>이의찬</td>
+								<td>990115-1</td>
+								<td>진료대기</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>노혜지</td>
+								<td>970515-2</td>
+								<td>진료대기</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>노혜지</td>
+								<td>970515-2</td>
+								<td>진료대기</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+		<div id="recordlist">
+			<div class="ibox">
+			<h5 style="text-align: center">진료내역</h5>
+				<div class="ibox-content">
+					<table class="table table-bordered" id="recordtable">
+						
+						<tbody>
+							<tr>
+								<td class="recordtablelist">2022-06-23 10:13</td>
+
+							</tr>
+							<tr>
+								<td class="recordtablelist">2022-06-21 10:13</td>
+
+							</tr>
+							<tr>
+								<td class="recordtablelist">2021-06-20 10:13</td>
+
+							</tr>
+							<tr>
+								<td class="recordtablelist">2021-06-01 10:13</td>
+
+							</tr>
+							<tr>
+								<td class="recordtablelist">2021-06-02 10:13</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+		</div>
+		</div>
+		<div id="inputpic">
+			<div class="ibox">
+			<h5 style="text-align: center">자료등록</h5>
+				<div class="ibox-content">
+					<button class="btn-primary" style="width:30%"><i class="fa fa-camera" >촬영</i></button>
+					<button class="btn-primary" style="width:30%"><i class="fa fa-file-image-o">등록</i></button>
+					<button class="btn-primary" style="width:30%"><i class="fa fa-upload">등록</i></button>
+					<div class="hr-line-dashed"></div>
+					<div class="lightBoxGallery" style="height:100px">
+                            <a href="<%=request.getContextPath() %>/resources/img/gallery/1.jpg" title="Image from Unsplash" data-gallery=""><img src="<%=request.getContextPath() %>/resources/img/gallery/1s.jpg" style="width:45%; height:90%"></a>
+                            <a href="<%=request.getContextPath() %>/resources/img/gallery/2.jpg" title="Image from Unsplash" data-gallery=""><img src="<%=request.getContextPath() %>/resources/img/gallery/2s.jpg" style="width:45%; height:90%"></a>
+                            <a  title="Image from Unsplash" data-gallery=""><img></a>
+                           
+                            <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+                            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-svgasimg blueimp-gallery-smil" style="display: none;">
+                                <div class="slides" style="width: 138240px;" aria-live="polite"></div>
+                                <h3 class="title">Image from Unsplash</h3>
+                                <a class="prev">‹</a>
+                                <a class="next">›</a>
+                                <a class="close">×</a>
+                                <a class="play-pause" aria-pressed="false"></a>
+                                <ol class="indicator"></ol>
+                            </div>
+
+                        </div>
+                       <div id="fileupload" >
+                      
+                       <i class="fa fa-paperclip" >알레르기 검사결과서 <i class="fa fa-window-close-o" style="float:right"></i></i>
+                       <i class="fa fa-paperclip">혈액 검사결과서 <i class="fa fa-window-close-o" style="float:right"></i></i>
+                       </div>
+						<div>
+						</div>
+					
+				</div>
+		</div>
+		
+		
+		</div>
+
+	</div>
+
+	<div id="middle">
+		<div id="info"></div>
+		<div id="chart"></div>
+	</div>
+	<div id="right">
+		<div id="pastchart"></div>
+		<div id="orderset"></div>
+	</div>
+	
+
+<!-- Peity -->
+<script src="<%=request.getContextPath() %>/resources/js/plugins/peity/jquery.peity.min.js"></script>
+
+
+<!-- iCheck -->
+<script src="<%=request.getContextPath() %>/resources/js/plugins/iCheck/icheck.min.js"></script>
+
+<!-- Peity -->
+<script src="<%=request.getContextPath() %>/resources/js/demo/peity-demo.js"></script>
+
+    <!-- blueimp gallery -->
+    <script src="<%=request.getContextPath() %>/resources/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.i-checks').iCheck({
+			checkboxClass : 'icheckbox_square-green',
+			radioClass : 'iradio_square-green',
+		});
+	});
+</script>
+</body>
+
+
+
+</html>

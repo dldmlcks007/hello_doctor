@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Case-Mapper">
+
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			and dis_title like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'd'.toString()">
+			and dis_class like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'w'.toString()">
+			and d_id like '%'||#{keyword}||'%'
+		</if>
+	</sql>
+	
+	<select id="selectSearchCaseList" resultType="caseVO">
+			select
+				a.dis_no,
+				a.d_id,
+				a.dis_title,
+				a.dis_content,
+				to_char(a.dis_date, 'YYYY-MM-DD')as dis_date,
+				a.dis_cnt,
+				a.del_yn,
+				a.dis_d_name,
+				a.dis_sex,
+				a.dis_class,
+				c.ma_name,
+				(select count(d.d_id) from dis_recom d where d.dis_no = a.dis_no) as recom
+			from
+				case_dis a, doctor b, major c
+				where a.d_id = b.d_id	
+					and b.ma_no = c.ma_no
+					and a.del_yn = 'N'
+					<include refid="search"></include>
+					order by dis_date
+	</select>
+	
+	<select id = "selectSearchCaseListCount" resultType="int">
+		select count(*) from case_dis where dis_no is not null and del_yn = 'N'
+		<include refid="search"/>
+		order by dis_date desc
+	</select>
+	
+	<select id="selectCase" resultType="caseVO">
+		select
+			a.dis_no,
+			a.d_id,
+			a.dis_title,
+			a.dis_content,
+			to_char(a.dis_date, 'YYYY-MM-DD')as dis_date,
+			a.dis_cnt,
+			a.del_yn,
+			a.dis_d_name,
+			a.dis_sex,
+			a.dis_class,
+			c.ma_name,
+			(select count(d.d_id) from dis_recom d where d.dis_no = a.dis_no) as recom
+		from
+			case_dis a, doctor b, major c
+		where a.d_id = b.d_id	
+		and b.ma_no = c.ma_no
+		
+		order by dis_date
+	</select>
+	
+	<update id="insertCase" parameterType="caseVO">
+		insert into case_dis(dis_no, d_id, dis_title, dis_content, dis_d_name, dis_sex, dis_class, dis_date, dis_cnt, del_yn)
+		values(#{dis_no}, #{d_id}, #{dis_title}, #{dis_content}, #{dis_d_name}, #{dis_sex}, #{dis_class}, sysdate, 0, 'N')
+	</update>
+	
+	<update id="insertSub" parameterType="caseVO">
+		insert into dis_sub_d(sub_d_name, dis_no) values(#{sub_d_name}, #{dis_no})
+	</update>
+	
+	<select id="selectCaseSeqNextValue" resultType="int">
+		select case_seq.nextVal from dual
+	</select>
+	
+	<select id="selectCaseByNo" resultType="caseVO">
+		select
+		    a.dis_no,
+		    a.d_id,
+		    a.dis_title,
+		    a.dis_content,
+		    to_char(a.dis_date, 'YYYY-MM-DD')as dis_date,
+		    a.dis_cnt,
+		    a.del_yn,
+		    a.dis_d_name,
+		    a.dis_sex,
+		    a.dis_class,
+		    b.ma_name,
+		    d.sub_d_name
+		from
+		    case_dis a, major b, doctor c, dis_sub_d d
+		where 
+			a.d_id = c.d_id 
+        and b.ma_no = c.ma_no 
+        and a.dis_no = d.dis_no           
+		and	a.dis_no = #{dis_no}
+	</select>
+	
+	<update id="increaseViewCnt" parameterType="string">
+		update case_dis set dis_cnt = dis_cnt + 1
+		where dis_no = #{dis_no}
+	</update>
+	
+	<update id="deleteCase" parameterType="string">
+		update case_dis set del_yn = 'Y'
+		where dis_no = #{dis_no}
+	</update>
+	
+</mapper>  
+
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Doctor-Mapper">
+		<select id="doctorLogin" resultType="doctorVO" parameterType="doctorVO">
+select
+    d_id
+   ,ma_no
+   ,d_name
+   ,pwd
+   ,tel
+   ,email
+   ,status
+   ,d_pic
+   ,regdate
+   ,account_status
+   ,resident_num
+   ,retiredate
+   ,sus_startdate
+   sus_enddate
+from doctor
+   where d_id = #{d_id}
+		</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

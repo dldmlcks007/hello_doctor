@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CooperMain-Mapper">
+
+		<!-- 참여중인 협진리스트  -->
+
+		<select id="selectJoinList" resultType="joinCooperVO" parameterType="str">
+	select d.p_no,d.p_name,d.p_rnum,c.co_disease,c.co_no,c.co_doc from
+	patient d,
+	(select b.D_ID,b.CO_NO,a.p_no,a.co_disease,a.co_doc
+	from co_doctor b,
+	(select co_no,p_no,co_disease,co_doc
+	from co_med
+	where co_ing_status = 1) a
+	where a.co_no=b.co_no
+	and b.paty_yn='Y'
+	and b.D_ID= #{d_id})c
+	where d.p_no=c.p_no
+
+		</select>
+<!-- 환자의 최근 진료일 구하기  -->
+		<select id="selectMaxDate" resultType="Date" parameterType="str">
+
+	select max(m_date) as m_date
+	from medi_reco
+	where p_no= #{p_no}
+
+		</select>
+
+<!-- 특이사항 -->
+
+<select id="selectIssueList" resultType="issueVO" parameterType="str">
+
+	select g.*, h.iss_title, h.iss_content
+	from issue h,
+	(select e.*, f.iss_no,f.m_date ,f.d_id
+	from
+	medi_reco f,
+	(select d.p_no,d.p_name,d.p_rnum,c.co_disease,c.co_doc from
+	patient d,
+	(select b.D_ID,b.CO_NO,a.p_no,a.co_disease,a.co_doc
+	from co_doctor b,
+	(select co_no,p_no,co_disease,co_doc
+	from co_med
+	where co_ing_status = 1) a
+	where a.co_no=b.co_no
+	and b.paty_yn='Y'
+	and b.D_ID=#{d_id})c
+	where d.p_no=c.p_no)e
+	where f.p_no = e.p_no
+	order by f.m_date DESC)g
+	where g.iss_no = h.iss_no
+
+</select>
+
+<select id= "selectHistoryComment" resultType="myHistoryCommentVO" parameterType="str">
+
+	select d.com_no,d.com_co_no,d.d_id,d.co_no,d.com_content,d.com_date
+	from com_coment d,
+	(select a.com_no
+	from com_reco a ,medi_reco b
+	where b.d_id = #{d_id}
+	and a.m_no = b.m_no)c
+	where c.com_no = d.com_no
+	and d.del_yn ='N'
+</select>
+
+
+
+<select id= "selectNoti" resultType="notiVO" parameterType="str">
+select noti_date, reqd_id,resd_id,response
+from noti
+where resd_id = #{d_id}
+
+</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

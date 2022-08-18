@@ -1,0 +1,55 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class MyHistoryCommentVO {
+
+	String com_no;
+	String com_co_no;
+	String d_id;
+	String co_no;
+	String com_content;
+	Date com_date;
+	public String getCom_no() {
+		return com_no;
+	}
+	public void setCom_no(String com_no) {
+		this.com_no = com_no;
+	}
+	public String getCom_co_no() {
+		return com_co_no;
+	}
+	public void setCom_co_no(String com_co_no) {
+		this.com_co_no = com_co_no;
+	}
+	public String getD_id() {
+		return d_id;
+	}
+	public void setD_id(String d_id) {
+		this.d_id = d_id;
+	}
+	public String getCo_no() {
+		return co_no;
+	}
+	public void setCo_no(String co_no) {
+		this.co_no = co_no;
+	}
+	public String getCom_content() {
+		return com_content;
+	}
+	public void setCom_content(String com_content) {
+		this.com_content = com_content;
+	}
+	public Date getCom_date() {
+		return com_date;
+	}
+	public void setCom_date(Date com_date) {
+		this.com_date = com_date;
+	}
+
+
+
+
+
+
+}

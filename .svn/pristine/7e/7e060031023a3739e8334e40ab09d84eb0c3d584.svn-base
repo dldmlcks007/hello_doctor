@@ -1,0 +1,100 @@
+package kr.or.ddit.controller;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.mybatis.logging.Logger;
+import org.mybatis.logging.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ChartFormVO;
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.dto.SchedulerVO;
+import kr.or.ddit.service.SchedulerService;
+
+import org.springframework.ui.Model;
+@Controller
+@RequestMapping("/scheduler")
+public class SchedulerController {
+
+	HttpSession session = null;
+
+	@Autowired
+	private SchedulerService service;
+
+	private static final Logger log = LoggerFactory.getLogger(SchedulerController.class);
+
+	@RequestMapping("/main")
+	@ResponseBody
+	public ModelAndView main(HttpServletRequest request, ModelAndView mnv) throws Exception{
+		String url = "scheduler/main";
+		session = request.getSession();
+		DoctorVO doctorLogin = (DoctorVO) session.getAttribute("doctorLogin");
+		String dId = doctorLogin.getdId();
+
+		List<ChartFormVO> result = null;
+		result = service.TodayMyList(dId);
+		mnv.addObject("result",result);
+		mnv.setViewName(url);
+
+		return mnv;
+	}
+
+	//협진스케줄러 오른쪽
+	@RequestMapping(value="/scheduler/main.do", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<List<SchedulerVO>> CooperationScheduler() throws Exception{
+		ResponseEntity<List<SchedulerVO>> entity = null;
+		List<SchedulerVO> Cooperation = service.Cooperation();
+		try {
+		entity = new ResponseEntity<List<SchedulerVO>>(Cooperation, HttpStatus.OK);
+		}catch (Exception e) {
+			entity = new ResponseEntity<List<SchedulerVO>>(Cooperation, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+
+	@RequestMapping("/regist")
+	public String regist() throws Exception{
+		String url = "scheduler/regist";
+		return url;
+	}
+	@RequestMapping("/detailList")
+	public String detailList() throws Exception{
+		String url = "scheduler/detailList";
+		return url;
+	}
+	@RequestMapping("/detail")
+	public String detail() throws Exception{
+		String url = "scheduler/detail";
+		return url;
+	}
+	@RequestMapping("/modify")
+	public String modify() throws Exception{
+		String url = "scheduler/modify";
+		return url;
+	}
+	@RequestMapping("/delete")
+	public String delete() throws Exception{
+		String url = "scheduler/delete";
+		return url;
+	}
+
+}

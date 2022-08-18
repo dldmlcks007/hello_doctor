@@ -1,0 +1,92 @@
+package kr.or.ddit.restController;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import kr.or.ddit.dto.My_OrderListVO;
+import kr.or.ddit.service.DiseaseService;
+import kr.or.ddit.service.Medi_RecoService;
+import kr.or.ddit.service.My_OrderService;
+
+@RestController
+@RequestMapping("medi")
+public class MediRestController {
+		@Autowired
+		private My_OrderService my_OrderService;
+
+		@Autowired
+		private Medi_RecoService medi_RecoService;
+
+		@Autowired
+		private DiseaseService diseaseService;
+	@RequestMapping("orderlist")
+	public ResponseEntity<List<My_OrderListVO>> orderlist(@RequestBody Map<String,String> vo) throws Exception{
+		ResponseEntity<List<My_OrderListVO>> entity = null;
+		String mo_no = vo.get("mo_no");
+		System.out.println(mo_no);
+		List<My_OrderListVO> list = my_OrderService.orderdruglist(mo_no);
+		entity =  new ResponseEntity<List<My_OrderListVO>>(list, HttpStatus.OK);
+
+		return entity;
+	}
+	@RequestMapping("pastchart")
+	public ResponseEntity<Map<String,Object>> pastchart(@RequestBody Map<String,String> vo)throws Exception{
+		ResponseEntity<Map<String,Object>> entity = null;
+
+
+		return entity;
+	}
+	@RequestMapping("searchdisease")
+	public ResponseEntity<List<String>> searchdisease(@RequestBody Map<String,String> vo)throws Exception{
+		ResponseEntity<List<String>> entity = null;
+			String de_ko = vo.get("de_ko");
+			List<String> list = diseaseService.searchdisease(de_ko);
+				entity = new ResponseEntity<List<String>>(list, HttpStatus.OK);
+
+
+			return entity;
+	}
+	@RequestMapping("searchmedicine")
+	public ResponseEntity<List<String>> searchmedicine(@RequestBody Map<String,String> vo)throws Exception{
+		ResponseEntity<List<String>> entity = null;
+		String me_name = vo.get("me_name");
+		List<String> list = diseaseService.searchmedicine(me_name);
+		entity = new ResponseEntity<List<String>>(list, HttpStatus.OK);
+		return entity;
+	}
+	@RequestMapping("docuinput")
+	public ResponseEntity<String> docuinput(HttpSession session)throws Exception{
+
+		ResponseEntity<String> entity = null;
+		String d_id = (String)session.getAttribute("d_id");
+		d_id = "doctors";
+		String result = medi_RecoService.docuinput(d_id);
+		entity =  new ResponseEntity<String>(result, HttpStatus.OK);
+
+		return entity;
+
+	}
+	@RequestMapping("pastreco")
+	public ResponseEntity<Map<String, Object>> pastreco(@RequestBody Map<String,String> vo)throws Exception{
+
+		ResponseEntity<Map<String, Object>> entity = null;
+		String m_no = vo.get("m_no");
+		Map<String, Object> map = medi_RecoService.pastreco(m_no);
+
+		entity =  new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
+		return entity;
+
+	}
+
+}

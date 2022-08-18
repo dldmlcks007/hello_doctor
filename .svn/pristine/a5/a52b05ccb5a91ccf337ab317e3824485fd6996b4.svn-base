@@ -1,0 +1,156 @@
+package kr.or.ddit.dto;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+public class HistoryVO {
+
+	private String mNo;
+	private String pSex;
+	private String subDName;
+	private String pName;
+	private String dName;
+	private String mDate;
+	private String pRnum;
+	private String symptom;
+	private String comNo;
+	private String coNo;
+	private String coDoc;
+	private String comDate;
+	private String comStatus;
+	private String coDisease;
+	private String coStartDate;
+	private String nNo;
+	private String nTitle;
+	private String nDate;
+	private String noticeYn;
+	private String dId;
+
+
+	public String getnNo() {
+		return nNo;
+	}
+	public void setnNo(String nNo) {
+		this.nNo = nNo;
+	}
+	public String getnTitle() {
+		return nTitle;
+	}
+	public void setnTitle(String nTitle) {
+		this.nTitle = nTitle;
+	}
+	public String getnDate() {
+		return nDate;
+	}
+	public void setnDate(String nDate) {
+		this.nDate = nDate;
+	}
+	public String getNoticeYn() {
+		return noticeYn;
+	}
+	public void setNoticeYn(String noticeYn) {
+		this.noticeYn = noticeYn;
+	}
+	public String getdId() {
+		return dId;
+	}
+	public void setdId(String dId) {
+		this.dId = dId;
+	}
+	public String getpSex() {
+		return pSex;
+	}
+	public void setpSex(String pSex) {
+		this.pSex = pSex;
+	}
+	public String getSubDName() {
+		return subDName;
+	}
+	public void setSubDName(String subDName) {
+		this.subDName = subDName;
+	}
+	public String getSymptom() {
+		return symptom;
+	}
+	public void setSymptom(String symptom) {
+		this.symptom = symptom;
+	}
+	public String getCoStartDate() {
+		return coStartDate;
+	}
+	public void setCoStartDate(String coStartDate) {
+		this.coStartDate = coStartDate;
+	}
+	public String getComNo() {
+		return comNo;
+	}
+	public void setComNo(String comNo) {
+		this.comNo = comNo;
+	}
+	public String getCoNo() {
+		return coNo;
+	}
+	public void setCoNo(String coNo) {
+		this.coNo = coNo;
+	}
+	public String getCoDoc() {
+		return coDoc;
+	}
+	public void setCoDoc(String coDoc) {
+		this.coDoc = coDoc;
+	}
+	public String getComDate() {
+		return comDate;
+	}
+	public void setComDate(String comDate) {
+		this.comDate = comDate;
+	}
+	public String getComStatus() {
+		return comStatus;
+	}
+	public void setComStatus(String comStatus) {
+		this.comStatus = comStatus;
+	}
+	public String getCoDisease() {
+		return coDisease;
+	}
+	public void setCoDisease(String coDisease) {
+		this.coDisease = coDisease;
+	}
+	public String getpRnum() {
+		return pRnum;
+	}
+	public void setpRnum(String pRnum) {
+		this.pRnum = pRnum;
+	}
+	public String getmNo() {
+		return mNo;
+	}
+	public void setmNo(String mNo) {
+		this.mNo = mNo;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public String getdName() {
+		return dName;
+	}
+	public void setdName(String dName) {
+		this.dName = dName;
+	}
+	public String getmDate() {
+		return mDate;
+	}
+	public void setmDate(String mDate) {
+		this.mDate = mDate;
+	}
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+
+
+}

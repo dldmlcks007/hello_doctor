@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+	<!-- summernote Image Path -->
+
+
+	<!-- member.picture -->
+
+
+	<!-- file upload -->
+
+
+	<!-- Repository -->
+	<bean id="DoctorVO" class="kr.or.ddit.dto.DoctorVO"/>
+	<bean id="MainIssueVO" class="kr.or.ddit.dto.MainIssueVO"/>
+
+	<!-- DAOBean -->
+	<bean id="doctorDAO" class="kr.or.ddit.dao.DoctorDAOImpl"
+		p:session-ref="sqlSession"
+	/>
+	<bean id="mainIssueDAO" class="kr.or.ddit.dao.MainIssueDAOImpl"
+		p:session-ref="sqlSession"/>
+
+	<!-- Service -->
+	<bean id="doctorService" class="kr.or.ddit.service.DoctorServiceImpl"
+		p:doctorDAO-ref="doctorDAO"
+	/>
+	<bean id="mainIssueService" class="kr.or.ddit.service.MainIssueServiceImpl"
+		  p:issuedao-ref="mainIssueDAO"/>
+</beans>

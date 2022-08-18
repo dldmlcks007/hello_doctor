@@ -1,0 +1,188 @@
+package kr.or.ddit.controller;
+
+import java.sql.SQLException;
+import java.util.List;
+
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.dto.IssueVO;
+import kr.or.ddit.dto.JoinCooperVO;
+import kr.or.ddit.dto.MyHistoryCommentVO;
+import kr.or.ddit.dto.NotiVO;
+import kr.or.ddit.service.CooperMainService;
+
+
+
+
+
+
+@Controller
+@RequestMapping("/cooperation") //대분류
+public class CooperationController {
+
+	HttpSession session = null;
+
+@Autowired
+private CooperMainService service;
+
+
+
+	@RequestMapping("/request") //기능
+	public String request(){
+		String url = "cooperation/request";
+		return url;
+	}
+
+	@RequestMapping("/request_deny") //기능
+	public String request_deny(){
+		String url = "cooperation/request_deny";
+		return url;
+	}
+
+	@RequestMapping("/request_permit") //기능
+	public String request_permit(){
+		String url = "cooperation/request_permit";
+		return url;
+	}
+	@RequestMapping("/detail")
+	public String cooperdetail() {
+		String url = "cooperation/cooperdetail";
+
+		return url;
+
+	}
+
+	@RequestMapping("/main")
+	public String main() {
+		String url = "cooperation/main";
+
+
+		return url;
+	}
+
+	@RequestMapping("/coopermain")
+	public ModelAndView coopermain(ModelAndView mnv,HttpServletRequest request) throws SQLException {
+		String url = "cooperation/coopermain";
+		session = request.getSession();
+		DoctorVO doctorLogin = (DoctorVO) session.getAttribute("doctorLogin");
+		String d_id = doctorLogin.getD_id();
+
+		//참여중인 협진리스트
+		List<JoinCooperVO> cooList = service.selectCooperList(d_id);
+		for (JoinCooperVO vo : cooList) {
+			vo.setP_rnum(vo.getP_rnum().substring(0, 8));
+		}
+
+		mnv.addObject("cooList", cooList);
+
+		//특이사항
+		List<IssueVO> issueList = service.selectIssueList(d_id);
+		for (IssueVO vo : issueList) {
+			vo.setP_rnum(vo.getP_rnum().substring(0, 8));
+		}
+
+		mnv.addObject("issueList",issueList);
+
+
+        //내가 올린 진료에 달린 코멘트 리스트
+        List<MyHistoryCommentVO> historyCommentList =service.selectHistoryComment(d_id);
+        mnv.addObject("historyCommentList",historyCommentList);
+
+        //내가받은 협진요청
+        List<NotiVO> notiList = service.selectNoti(d_id);
+        //응답코드 : 0이면 거절 1이면 수락 2이면 보류
+        for(NotiVO vo : notiList) {
+        	if(vo.getResponse()==0) vo.setMysetting("거절");
+        	if(vo.getResponse()==1) vo.setMysetting("수락");
+        	if(vo.getResponse()==2) vo.setMysetting("보류");
+        	System.out.println(vo.getMysetting());
+        }
+        mnv.addObject("notiList",notiList);
+
+
+
+
+
+		mnv.setViewName(url);
+
+		return mnv;
+	}
+
+	@RequestMapping("/significant_detail")
+	public String significant_detail() {
+		String url = "cooperation/significant_detail";
+		return url;
+	}
+	@RequestMapping("/cooperation_regist")
+	public String cooperation_regist() {
+		String url = "cooperation/cooperation_regist";
+		return url;
+	}
+	@RequestMapping("/reservationform")
+	public String reservationform() {
+		String url = "cooperation/reservationform";
+		return url;
+	}
+
+	@RequestMapping("/cooperation_progress")
+	public String cooperation_progress() {
+		String url = "cooperation/cooperation_progress";
+		return url;
+	}
+
+	@RequestMapping("/cooperation_recruit")
+	public String cooperation_recruit() {
+		String url = "cooperation/cooperation_recruit";
+		return url;
+	}
+
+	@RequestMapping("/cooperation_request")
+	public String cooperation_request() {
+		String url = "cooperation/cooperation_request";
+		return url;
+	}
+	@RequestMapping("/reservation_detail")
+	public String reservation_detail() {
+		String url = "cooperation/reservation_detail";
+		return url;
+	}
+	@RequestMapping("/history_detail")
+	public String history_detail() {
+		String url = "cooperation/history_detail";
+		return url;
+	}
+
+
+	@RequestMapping("/doctor_invite")
+	public String doctor_invite() {
+		String url = "cooperation/doctor_invite";
+		return url;
+	}
+
+	@RequestMapping("/doctor_detail")
+	public String doctor_detail() {
+		String url = "cooperation/doctordetail";
+		return url;
+	}
+	@RequestMapping("/takeover")
+	public String takeover() {
+		String url = "cooperation/takeover";
+		return url;
+	}
+
+	@RequestMapping("/cooperover")
+	public String cooperover() {
+		String url = "cooperation/cooperover";
+		return url;
+	}
+}
+
+

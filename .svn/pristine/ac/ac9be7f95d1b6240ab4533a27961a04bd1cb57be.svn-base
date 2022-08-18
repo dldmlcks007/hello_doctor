@@ -1,0 +1,8 @@
+package kr.or.ddit.service;
+
+import java.util.Map;
+
+public interface Co_MedService {
+	
+	Map<String, Object> selectAll(String co_no) throws Exception;
+}

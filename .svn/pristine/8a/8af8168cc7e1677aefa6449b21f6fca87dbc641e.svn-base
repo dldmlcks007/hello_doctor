@@ -1,0 +1,82 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/orderset")
+public class OrderSetController {
+	@RequestMapping("/main")
+	public String main() {
+		String url = "orderset/main";
+		return url;
+	}
+
+	@RequestMapping("/orderset_list")
+	public String orderset_list() {
+		String url = "orderset/orderset_list";
+		return url;
+	}
+
+	@RequestMapping("/orderset_detail")
+	public String orderset_detail() {
+		String url = "orderset/orderset_detail";
+		return url;
+	}
+
+
+	@RequestMapping("/orderset_registform")
+	public String orderset_registform() {
+		String url = "orderset/orderset_registform";
+		return url;
+	}
+
+	@RequestMapping("/prescription_regist")
+	public String prescription_regist() {
+		String url = "orderset/prescription_regist";
+		return url;
+	}
+
+	@RequestMapping("/feedback_detail")
+	public String feedback_detail() {
+		String url = "orderset/feedback_detail";
+		return url;
+	}
+	@RequestMapping("/myorderset_regist")
+	public String myorderset_regist() {
+		String url = "orderset/myorderset_regist";
+
+		return url;
+
+	}
+	@RequestMapping("/myorderset_modify")
+	public String myorderset_modify() {
+		String url = "orderset/myorderset_modify";
+
+		return url;
+
+	}
+	@RequestMapping("/myorderset_list")
+	public String myorderset_list() {
+		String url = "orderset/myorderset_list";
+
+		return url;
+
+	}
+
+
+	@RequestMapping("/regist_customize")
+	public String regist_customize() {
+		String url = "orderset/regist_customize";
+		return url;
+	}
+
+	@RequestMapping("/share")
+	public String share() {
+		String url = "orderset/share";
+		return url;
+	}
+
+
+
+}

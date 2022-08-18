@@ -1,0 +1,20 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import javax.naming.directory.SearchResult;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.command.SearchCriteriaCommand;
+import kr.or.ddit.dto.CaseVO;
+
+public interface CaseService {
+	
+	public List<CaseVO> selectCase() throws SQLException;
+	
+	public Map<String, Object> getCaseListForPage(SearchCriteria cri) throws Exception;
+}

@@ -1,0 +1,400 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.container {
+	max-width: none;
+}
+
+.contact-box {
+	padding: 10px;
+	color: black; opacity : 40%;
+	
+	height: 300px;
+	border-radius: 10px;
+	padding-bottom: 30px;
+	width: 23.5%;
+	margin-left: 6px;
+	margin-right: 6px;
+	opacity: 80%;
+}
+
+
+
+.contact-box-3 {
+	color:black;
+	font-size: 1.2em;
+	border-radius: 10px;
+	width: 28%;
+	margin-left: 14px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+	height: 145px;
+	border:1px solid black;
+}
+
+.contact-box-2 {
+	background-color:#B7D3DF;
+	color:black;
+	border-radius: 10px;
+	width: 28%;
+	margin-left: 14px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+	height: 145px;
+	border:1px solid black;
+}
+
+.row {
+	margin-bottom: 4px;
+	margin-top: 4px;
+}
+
+.col-lg-3 {
+	width: 140px;
+}
+
+.col-8 {
+	max-width: 100%;
+}
+
+.panel-body {
+	height: 370px;
+}
+
+.contact-box-2>.col-8{
+	padding-top: 13px;
+	padding-left:25px;
+}
+
+.icons{
+	font-size:1.2em;
+}
+
+</style>
+
+</head>
+<body>
+	<div class="container">
+		<h2 style="color:black;">오더세트</h2>
+		<hr>
+		<div class="row" style="margin-left: -25px;">
+			<div class="col-md-12" style="height: 410px;">
+
+				<div class="tabs-container">
+					<ul class="nav nav-tabs" role="tablist">
+						<li><a class="nav-link active" data-toggle="tab" href="#tab-1"> 추천 오더세트</a></li>
+						<li><a class="nav-link" data-toggle="tab" href="#tab-2">최근 등록한 오더세트</a></li>
+					</ul>
+					<div class="tab-content">
+						<div role="tabpanel" id="tab-1" class="tab-pane active">
+							<div class="panel-body">
+								<div class="row">
+									<div class="contact-box" style="border: 2px solid #C9BBCF;">
+										<div class="col-8">
+											<h3>
+												<strong>아토피(소아)</strong>&emsp;&emsp; <i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+											</h3>
+											<br>
+
+											<p>소아용프리마린시럽</p>
+											<p>프로토픽 연고</p>
+											<p>소아용에포프림연질캡슐</p>
+											<p>데스오웬로션</p>
+
+											<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+
+
+										</div>
+									</div>
+									
+									<div class="contact-box" style="border: 2px solid #C9BBCF;">
+										<div class="col-8">
+											<h3>
+												<strong>아토피(소아)</strong>&emsp;&emsp; <i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+											</h3>
+											<br>
+
+											<p>소아용프리마린시럽</p>
+											<p>프로토픽 연고</p>
+											<p>소아용에포프림연질캡슐</p>
+											<p>데스오웬로션</p>
+
+											<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+
+
+										</div>
+									</div>
+
+									<div class="contact-box" style="border: 2px solid #C9BBCF;">
+										<div class="col-8">
+											<h3>
+												<strong>아토피(소아)</strong>&emsp;&emsp; <i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+											</h3>
+											<br>
+
+											<p>소아용프리마린시럽</p>
+											<p>프로토픽 연고</p>
+											<p>소아용에포프림연질캡슐</p>
+											<p>데스오웬로션</p>
+
+											<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+
+										</div>
+
+									</div>
+
+									<div class="contact-box" style="border: 2px solid #C9BBCF;">
+										<div class="col-8">
+											<h3>
+												<strong>아토피(소아)</strong>&emsp;&emsp; <i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+											</h3>
+											<br>
+											<p>소아용프리마린시럽</p>
+											<p>프로토픽 연고</p>
+											<p>소아용에포프림연질캡슐</p>
+											<p>데스오웬로션</p>
+
+											<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" id="tab-2" class="tab-pane">
+							<div class="panel-body">
+								<div class="row">
+									<div class="contact-box" style="border: 2px solid #6E85B7;">
+										<div class="col-8">
+											<h3>
+												<strong>아토피(소아)</strong>&emsp;&emsp; <i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+											</h3>
+											<br>
+
+											<p>소아용프리마린시럽</p>
+											<p>프로토픽 연고</p>
+											<p>소아용에포프림연질캡슐</p>
+											<p>데스오웬로션</p>
+
+											<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+
+
+										</div>
+									</div>
+
+									<div class="contact-box" style="border: 2px solid #6E85B7;">
+										<div class="col-8">
+											<h3>
+												<strong>아토피(소아)</strong>&emsp;&emsp; <i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+											</h3>
+											<br>
+
+											<p>소아용프리마린시럽</p>
+											<p>프로토픽 연고</p>
+											<p>소아용에포프림연질캡슐</p>
+											<p>데스오웬로션</p>
+											<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+
+										</div>
+
+									</div>
+
+									<div class="contact-box" style="border: 2px solid #6E85B7;">
+										<div class="col-8">
+											<h3>
+												<strong>아토피(소아)</strong>&emsp;&emsp; <i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+											</h3>
+											<br>
+
+											<p>소아용프리마린시럽</p>
+											<p>프로토픽 연고</p>
+											<p>소아용에포프림연질캡슐</p>
+											<p>데스오웬로션</p>
+
+											<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+
+										</div>
+
+									</div>
+									<div class="contact-box" style="border: 2px solid #6E85B7;">
+										<div class="col-8">
+											<h3>
+												<strong>아토피(소아)</strong>&emsp;&emsp; <i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+											</h3>
+											<br>
+
+											<p>소아용프리마린시럽</p>
+											<p>프로토픽 연고</p>
+											<p>소아용에포프림연질캡슐</p>
+											<p>데스오웬로션</p>
+
+											<h4>피부과/노혜지&nbsp;&nbsp;&nbsp;2022-06-27</h4>
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-5" style="height: 380px; padding-left: 0px; padding-top:5px;">
+				<h3 style="padding-left: 5px; color:black;" >피드백</h3>
+				<table class="table table-hover margin bottom">
+					<thead>
+
+					</thead>
+					<tbody>
+						<tr>
+							<td>2022-07-07 19:00 아토피 오더세트에 새로운 피드백이 등록되었습니다.</td>
+						</tr>
+						<tr>
+							<td>2022-07-07 19:00 아토피 오더세트에 새로운 피드백이 등록되었습니다.</td>
+						</tr>
+						<tr>
+							<td>2022-07-07 19:00 아토피 오더세트에 새로운 피드백이 등록되었습니다.</td>
+						</tr>
+						<tr>
+							<td>2022-07-07 19:00 아토피 오더세트에 새로운 피드백이 등록되었습니다.</td>
+						</tr>
+						<tr>
+							<td>2022-07-07 19:00 아토피 오더세트에 새로운 피드백이 등록되었습니다.</td>
+						</tr>
+						<tr>
+							<td>2022-07-07 19:00 아토피 오더세트에 새로운 피드백이 등록되었습니다.</td>
+						</tr>
+						<tr>
+							<td>2022-07-07 19:00 아토피 오더세트에 새로운 피드백이 등록되었습니다.</td>
+						</tr>
+						<tr>
+							<td>2022-07-07 19:00 아토피 오더세트에 새로운 피드백이 등록되었습니다.</td>
+						</tr>
+						<tr>
+							<td>2022-07-07 19:00 아토피 오더세트에 새로운 피드백이 등록되었습니다.</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="col-md-7" style="height: 380px; padding-top:5px;">
+				<h3 style="padding-left: 14px; color:black;">내가 공유한 오더세트</h3>
+				<div class="row" style="padding-left: 15px;">
+					<div class="contact-box-2">
+						<div class="col-8">
+
+							<h4>아토피(소아)</h4>
+							<h4>노혜지(피부과)</h4>
+							<h4>2022-07-07</h4>
+							<hr style="margin-top: -5px; margin-bottom: 5px;">
+							<div class="icons">
+								<i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<div class="contact-box-2">
+						<div class="col-8">
+
+							<h4>아토피(소아)</h4>
+							<h4>노혜지(피부과)</h4>
+							<h4>2022-07-07</h4>
+							<hr style="margin-top: -5px; margin-bottom: 5px;">
+							<div class="icons">
+								<i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<div class="contact-box-2">
+						<div class="col-8">
+
+							<h4>아토피(소아)</h4>
+							<h4>노혜지(피부과)</h4>
+							<h4>2022-07-07</h4>
+							<hr style="margin-top: -5px; margin-bottom: 5px;">
+							<div class="icons">
+								<i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<div class="contact-box-2">
+						<div class="col-8">
+
+							<h4>아토피(소아)</h4>
+							<h4>노혜지(피부과)</h4>
+							<h4>2022-07-07</h4>
+							<hr style="margin-top: -5px; margin-bottom: 5px;">
+							<div class="icons">
+								<i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<div class="contact-box-2">
+						<div class="col-8">
+
+							<h4>아토피(소아)</h4>
+							<h4>노혜지(피부과)</h4>
+							<h4>2022-07-07</h4>
+							<hr style="margin-top: -5px; margin-bottom: 5px;">
+							<div class="icons">
+								<i class="fa fa-eye">20</i> <i class="fa fa-thumbs-o-up">10</i>
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<div class="contact-box-3">
+						<div class="col-8">
+							<br>
+							<br> <i class="fa fa-arrow-right">&nbsp;더 보러가기</i>
+
+
+
+						</div>
+
+
+					</div>
+
+
+
+
+
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+</body>
+</html>

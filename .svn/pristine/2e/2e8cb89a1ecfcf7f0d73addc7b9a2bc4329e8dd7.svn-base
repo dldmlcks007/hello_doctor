@@ -1,0 +1,11 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dto.My_OrderListVO;
+
+public interface My_OrderDAO {
+
+	List<My_OrderListVO> myorderList(String d_id)throws SQLException;
+}

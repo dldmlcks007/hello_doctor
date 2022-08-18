@@ -1,0 +1,38 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MediController {
+	@RequestMapping("medi/form")
+	public String main() {
+		String url = "medi/mediForm";
+		
+		return url;
+	}
+	
+	@RequestMapping("medi/detailImg")
+	public String detailImg() {
+		String url = "medi/detailImg";
+		
+		return url;
+		
+	}
+	@RequestMapping("medi/pastcooper")
+	public String pastcooper() {
+		String url = "medi/pastcooper";
+		
+		return url;
+		
+		
+	}
+	@RequestMapping("medi/issueregist")
+	public String issueregist() {
+		String url = "medi/issueregist";
+		
+		return url;
+		
+		
+	}
+}

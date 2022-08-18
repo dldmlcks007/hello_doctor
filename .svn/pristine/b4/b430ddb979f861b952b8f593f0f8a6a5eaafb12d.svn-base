@@ -1,0 +1,45 @@
+package kr.or.ddit.dto;
+
+public class ReservationVO {
+
+	private String rsv_no   ;
+	private String rsv_day  ;
+	private String d_id     ;
+	private String p_no     ;
+	private String rsv_name ;
+
+
+	public String getRsv_name() {
+		return rsv_name;
+	}
+	public void setRsv_name(String rsv_name) {
+		this.rsv_name = rsv_name;
+	}
+	public String getRsv_no() {
+		return rsv_no;
+	}
+	public void setRsv_no(String rsv_no) {
+		this.rsv_no = rsv_no;
+	}
+	public String getRsv_day() {
+		return rsv_day;
+	}
+	public void setRsv_day(String rsv_day) {
+		this.rsv_day = rsv_day;
+	}
+	public String getD_id() {
+		return d_id;
+	}
+	public void setD_id(String d_id) {
+		this.d_id = d_id;
+	}
+	public String getP_no() {
+		return p_no;
+	}
+	public void setP_no(String p_no) {
+		this.p_no = p_no;
+	}
+
+
+
+}

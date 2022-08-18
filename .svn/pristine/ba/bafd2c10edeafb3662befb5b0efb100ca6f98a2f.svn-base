@@ -1,0 +1,133 @@
+package kr.or.ddit.service;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dao.Co_TaskDAO;
+import kr.or.ddit.dao.Medi_RecoDAO;
+import kr.or.ddit.dao.My_OrderDAO;
+import kr.or.ddit.dto.ChartFormVO;
+import kr.or.ddit.dto.Medi_RecoVO;
+import kr.or.ddit.dto.My_OrderListVO;
+import kr.or.ddit.dto.PatientVO;
+
+public class Medi_RecoServiceImpl implements Medi_RecoService {
+	private Medi_RecoDAO medi_recoDAO;
+	private Co_TaskDAO co_TaskDAO;
+	private My_OrderDAO my_OrderDAO;
+	public My_OrderDAO getMy_OrderDAO() {
+		return my_OrderDAO;
+	}
+
+	public void setMy_OrderDAO(My_OrderDAO my_OrderDAO) {
+		this.my_OrderDAO = my_OrderDAO;
+	}
+
+	public void setMedi_recoDAO(Medi_RecoDAO medi_recoDAO) {
+		this.medi_recoDAO = medi_recoDAO;
+	}
+
+	public void setCo_TaskDAO(Co_TaskDAO co_TaskDAO) {
+		this.co_TaskDAO = co_TaskDAO;
+	}
+
+	@Override
+	public Map<String, Object> selectAllReco(String d_id) throws Exception {
+		List<ChartFormVO> result = new ArrayList<ChartFormVO>();
+		Map<String,Object> map = new HashMap<String, Object>();
+		List<ChartFormVO> medilist =medi_recoDAO.selectAllReco(d_id);
+		List<ChartFormVO> colist =co_TaskDAO.selectAllReco(d_id);
+		List<My_OrderListVO> orderlist = my_OrderDAO.myorderList(d_id);
+		for(int i =0; i< medilist.size(); i++) {
+
+			result.add(medilist.get(i));
+		}
+		for(int i = 0; i<colist.size(); i++) {
+			result.add(colist.get(i));
+		}
+		Collections.sort(result, new SortByDate());
+		map.put("patient", result);
+		map.put("orderset", orderlist);
+
+
+		return map;
+	}
+    class SortByDate implements Comparator<ChartFormVO> {
+
+		@Override
+		public int compare(ChartFormVO o1, ChartFormVO o2) {
+			// TODO Auto-generated method stub
+			return ( o1.getReservedate()).compareTo((String) o2.getReservedate());
+		}
+    }
+	@Override
+	public Map<String, Object> selectOneReco(String p_no, String d_id) throws Exception {
+		List<ChartFormVO> result = new ArrayList<ChartFormVO>();
+		Map<String,Object> map = new HashMap<String, Object>();
+		List<ChartFormVO> medilist =medi_recoDAO.selectAllReco(d_id);
+		List<ChartFormVO> colist =co_TaskDAO.selectAllReco(d_id);
+		List<My_OrderListVO> orderlist = my_OrderDAO.myorderList(d_id);
+		List<Medi_RecoVO> pastreco = medi_recoDAO.pastmedireco(p_no);
+		PatientVO patientinfo = medi_recoDAO.patientinfo(p_no);
+
+		//나이 구하기
+		String p_rnum = patientinfo.getP_rnum();
+		p_rnum = age(p_rnum);
+		patientinfo.setP_rnum(p_rnum);
+
+		//보험가입여부
+		String p_insurance = patientinfo.getP_insurance();
+		if(p_insurance.equals("Y")) {
+			p_insurance = "의료보험가입";
+		}else {
+			p_insurance = "보험미가입";
+		}
+		patientinfo.setP_insurance(p_insurance);
+		//재진 여부 확인
+		if(pastreco == null) {
+			patientinfo.setP_address("초진");
+		}else {
+			patientinfo.setP_address("재진");
+		}
+
+
+		if(medilist != null) {
+		for(int i =0; i< medilist.size(); i++) {
+
+			result.add(medilist.get(i));
+		}
+		}
+		if(colist != null) {
+		for(int i = 0; i<colist.size(); i++) {
+			result.add(colist.get(i));
+		}
+		}
+		Collections.sort(result, new SortByDate());
+		result.remove(0);
+		map.put("patient", result);
+		map.put("orderset", orderlist);
+		map.put("pastreco", pastreco);
+		map.put("patientinfo",patientinfo);
+		return map;
+	}
+	public String age(String rnum) {
+
+		int age = Integer.parseInt(rnum.substring(0,2));
+		char ch = rnum.charAt(7);
+		 LocalDate current_date = LocalDate.now();
+		 int current_Year = current_date.getYear();
+
+		if(ch=='1' || ch=='2') {
+			age = current_Year-(1900+age)+1;
+		}else if(ch=='3' || ch=='4') {
+			age = current_Year-(2000+age)+1;
+		}
+		return age+"";
+	}
+	}

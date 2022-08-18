@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MediReco-Mapper">
+		<select id="selectAllReco1" resultType="chartformVO" parameterType="str" >
+				select b.p_no as p_no, b.p_name as p_name, <![CDATA[to_char(a.rsv_day, 'YYYY-MM-DD HH24:Mi') ]]>as reservedate , a.rsv_name as rsv_name ,substr(b.p_rnum,0,8) as p_rnum
+				from reservation a, patient b
+				where a.p_no = b.p_no
+				and a.d_id = #{dId}
+		</select>
+
+		<select id="pastmedireco" resultType="medirecoVO">
+			select m_no, <![CDATA[to_char(m_date, 'YYYY-MM-DD HH24:Mi') ]]>as m_date
+			from medi_reco
+			where p_no = #{p_no}
+			order by m_date desc
+		</select>
+			<select id="pastmedireco2" resultType="medirecoVO">
+			select a.m_no, <![CDATA[to_char(a.m_date, 'YYYY-MM-DD') ]]>as m_date, a.d_name, b.d_name as do_name, c.ma_name
+			from medi_reco a, doctor b , major c
+			where  a.d_id = b.d_id
+			and b.ma_no = c.ma_no
+			and	p_no = #{p_no}
+			order by a.m_date desc
+		</select>
+		<select id="patientinfo" resultType="patientVO" parameterType="str">
+	select
+    p_no,
+    p_name,
+    p_sex,
+    p_rnum,
+    p_tel,
+    p_address,
+    p_insurance
+	from
+    patient
+    where p_no = #{p_no}
+		</select>
+		<select id="checkpastco">
+			select co_no
+			from co_med
+			where p_no= #{p_no}
+			and co_ing_status ="2"
+		</select>
+		<select id="searchdisease" resultType="str">
+			select de_ko
+			from disease
+			where trim(de_ko) like '%'|| trim(#{de_ko}) || '%'
+		</select>
+
+		<select id="searchmedicine" resultType="str">
+			select me_name
+			from medicine
+			where trim(me_name) like '%'|| trim(#{me_name}) || '%'
+		</select>
+  		<select id="docuinput" resultType="str">
+  		select
+    do_input
+from
+    docu_order
+where doc_id = #{d_id}
+and do_main = 'Y'
+
+
+  		</select>
+  		<select id="pastsymptom" resultType="medirecoVO">
+  			select d_name, symptom, to_char(m_date,'YYYY-MM-DD') as m_date
+  			from medi_reco
+  			where m_no = #{m_no}
+  		</select>
+	<select id="gettemppdsSeq" resultType="int">
+			select temppds_seq.nextval from dual
+	</select>
+	<update id="registTempPic" parameterType="str">
+		 insert into temppds (
+    	t_name
+) values (
+  	#{t_name}
+
+)
+	</update>
+	<select id="getChartSeq" resultType="int">
+	select medireco_seq.nextval from dual
+
+	</select>
+	<update id="registchart" parameterType="medirecoVO">
+	 INSERT INTO medi_reco (
+    m_no,
+    d_id,
+    p_no,
+      <if test="issNo != null and issNo != ''">
+     iss_no,
+      </if>
+    symptom,
+    m_date,
+    d_name
+) VALUES (
+
+   #{mNo},
+    #{dId},
+    #{pNo},
+      <if test="issNo != null and issNo != ''">
+     #{issNo},
+      </if>
+    #{symptom},
+    sysdate,
+    #{dName}
+)
+
+	</update>
+	<select id="getSubDSeq" resultType="int">
+	select subd_seq.nextval from dual
+	</select>
+	<update id="registSubD" parameterType="subdVO">
+	      INSERT INTO sub_d (
+    sub_d_name,
+    m_no
+) VALUES (
+   #{subDName},
+    #{mNo}
+)
+	</update>
+	<select id="getIssueSeq" resultType="int">
+	select issue_seq.nextval from dual
+	</select>
+	<update id="registIssue" parameterType="issueVO">
+		INSERT INTO issue (
+    iss_no,
+    iss_content
+) VALUES (
+ #{issNo},
+    #{issContent}
+)
+
+	</update>
+
+	<select id="getPrescriptSeq" resultType="int">
+	select prescript_seq.nextval from dual
+	</select>
+	<update id="registPrescript" parameterType="prescriptVO">
+	 INSERT INTO prescript (
+    m_no,
+    pre_no,
+    cure_name,
+    p_quantity,
+    p_aday,
+    p_days
+) VALUES (
+      #{mNo},
+    #{preNo},
+    #{cureName},
+    #{quantity},
+    #{aday},
+    #{days}
+)
+
+	</update>
+	<select id="getMediPictureSeq" resultType="int">
+	select medipicture_seq.nextval from dual
+	</select>
+	<update id="registMedPic" parameterType="medPicVO">
+	      INSERT INTO med_pic (
+    mp_no,
+    m_no,
+    mp_name
+) VALUES (
+     #{mpNo},
+    #{mNo},
+
+    #{mpName}
+)
+
+	</update>
+
+	<select id="getMediFileSeq" resultType="int">
+	select medifile_seq.nextval from dual
+	</select>
+	<update id="registMedFile" parameterType="medFileVO">
+	 INSERT INTO medi_file (
+    mf_no,
+    m_no,
+    mf_filename
+) VALUES (
+	#{mfNo},
+    #{mNo},
+   #{mfFilename}
+)
+</update>
+	<select id="getAllPic" resultType="medPicVO">
+		select mp_no from med_pic
+		where m_no = #{mNo}
+	</select>
+	<select id="getAllFile" resultType="medFileVO">
+		select mf_no, mf_filename from medi_file
+		where m_no = #{mNo}
+	</select>
+	<select id="getPic" resultType="str">
+		select mp_name from med_pic
+		where mp_no = #{mpNo}
+	</select>
+	<select id="getFile" resultType="str">
+		select mf_filename from medi_file
+		where mf_no = #{mfNo}
+	</select>
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

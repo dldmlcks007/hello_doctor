@@ -1,0 +1,65 @@
+package kr.or.ddit.service;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dao.Co_TaskDAO;
+import kr.or.ddit.dao.Medi_RecoDAO;
+import kr.or.ddit.dao.My_OrderDAO;
+import kr.or.ddit.dto.My_OrderListVO;
+
+public class Medi_RecoServiceImpl implements Medi_RecoService {
+	private Medi_RecoDAO medi_recoDAO;
+	private Co_TaskDAO co_TaskDAO;
+	private My_OrderDAO my_OrderDAO;
+	public My_OrderDAO getMy_OrderDAO() {
+		return my_OrderDAO;
+	}
+
+	public void setMy_OrderDAO(My_OrderDAO my_OrderDAO) {
+		this.my_OrderDAO = my_OrderDAO;
+	}
+
+	public void setMedi_recoDAO(Medi_RecoDAO medi_recoDAO) {
+		this.medi_recoDAO = medi_recoDAO;
+	}
+
+	public void setCo_TaskDAO(Co_TaskDAO co_TaskDAO) {
+		this.co_TaskDAO = co_TaskDAO;
+	}
+
+	@Override
+	public Map<String, Object> selectAllReco(String d_id) throws Exception {
+		List<Map<String,String>> result = new ArrayList<Map<String,String>>();
+		Map<String,Object> map = new HashMap<String, Object>();
+		List<Map<String,String>> medilist =medi_recoDAO.selectAllReco(d_id);
+		List<Map<String,String>> colist =co_TaskDAO.selectAllReco(d_id);
+		List<My_OrderListVO> orderlist = my_OrderDAO.myorderList(d_id);
+		for(int i =0; i< medilist.size(); i++) {
+
+			result.add(medilist.get(i));
+		}
+		for(int i = 0; i<colist.size(); i++) {
+			result.add(colist.get(i));
+		}
+		Collections.sort(result, new SortByDate());
+		map.put("patient", result);
+		map.put("orderset", orderlist);
+
+
+		return map;
+	}
+    class SortByDate implements Comparator<Map<String,String>> {
+
+		@Override
+		public int compare(Map<String, String> o1, Map<String, String> o2) {
+			// TODO Auto-generated method stub
+			return o1.get("date").compareTo(o2.get("date"));
+		}
+    }
+
+	}

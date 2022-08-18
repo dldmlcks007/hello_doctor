@@ -1,0 +1,79 @@
+package kr.or.ddit.controller;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.service.Co_MedService;
+
+@Controller
+@RequestMapping("/colist")
+public class CoWorkController {
+	HttpSession session = null;
+	
+	@Autowired
+	private Co_MedService service;
+	
+	//협진메인(전체리스트)
+	@RequestMapping("/coworklist")
+	public String coopermainlist(SearchCriteria cri, Model model) throws SQLException {
+		String url = "colist/coworklist";
+		Map<String, Object> dataMap = null;
+		
+		dataMap = service.getCooperationMainList(cri);
+//		System.out.println(dataMap);
+		model.addAttribute("dataMap",dataMap);
+		
+		return url;
+	}
+	
+	//협진메인(진행중리스트)
+	@RequestMapping("/proceedingCooperation")
+	public String proceedingCooperation(SearchCriteria cri, Model model) throws SQLException{
+		String url = "colist/proceedingCooperation";
+		Map<String, Object> dataMap = null;
+		System.out.println(dataMap);
+		dataMap = service.proceedingCooperation(cri);
+		model.addAttribute("dataMap",dataMap);
+		return url;
+		
+	}
+	
+	//협진메인(완료리스트)
+	@RequestMapping("/completeCooperation")
+	public String completeCooperation(SearchCriteria cri, Model model) throws SQLException{
+		String url = "colist/completeCooperation";
+		Map<String, Object> dataMap = null;
+		
+		dataMap = service.completeCooperation(cri);
+		model.addAttribute("dataMap",dataMap);
+		return url;
+	}
+	
+	//사용자의 전공과 일치하는 협진리스트
+	@RequestMapping("/myCooperation")
+	public String myCooperation(SearchCriteria cri,HttpServletRequest request,  Model model) throws SQLException{
+		String url = "colist/myCooperation";
+		session = request.getSession();
+		DoctorVO doctorLogin = (DoctorVO) session.getAttribute("doctorLogin");
+		String d_id = doctorLogin.getD_id();
+		
+		Map<String, Object> dataMap= null;
+		dataMap = service.myCooperation(d_id,cri);
+		model.addAttribute("dataMap",dataMap);
+		return url;
+		
+	}
+	
+}
+

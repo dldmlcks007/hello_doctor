@@ -1,0 +1,10 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+public interface Co_MedDAO {
+	
+	List<Map<String, String>> selectAll(String co_no)throws SQLException;
+}

@@ -1,0 +1,22 @@
+package kr.or.ddit.service;
+
+import java.util.List;
+
+
+import kr.or.ddit.dto.ChartFormVO;
+import kr.or.ddit.dto.SchedulerVO;
+
+import java.sql.SQLException;
+
+
+
+public interface SchedulerService {
+
+	//오늘 나의 일정 진료 왼쪽화면
+	List<ChartFormVO> TodayMyList(String dId) throws SQLException;
+
+	//협진스케줄러 리스트 오른쪽화면
+	List<SchedulerVO> Cooperation() throws SQLException;
+
+
+}

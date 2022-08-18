@@ -1,0 +1,58 @@
+package kr.or.ddit.dto;
+
+public class ChartFormVO {
+	private String p_no;
+	private String p_name;
+	private String reservedate;
+	private String rsv_name;
+	private String p_rnum;
+	private String co_no;
+	private String ta_no;
+
+
+	public String getTa_no() {
+		return ta_no;
+	}
+	public void setTa_no(String ta_no) {
+		this.ta_no = ta_no;
+	}
+	public String getP_no() {
+		return p_no;
+	}
+	public void setP_no(String p_no) {
+		this.p_no = p_no;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public String getReservedate() {
+		return reservedate;
+	}
+	public void setReservedate(String reservedate) {
+		this.reservedate = reservedate;
+	}
+	public String getRsv_name() {
+		return rsv_name;
+	}
+	public void setRsv_name(String rsv_name) {
+		this.rsv_name = rsv_name;
+	}
+	public String getP_rnum() {
+		return p_rnum;
+	}
+	public void setP_rnum(String p_rnum) {
+		this.p_rnum = p_rnum;
+	}
+	public String getCo_no() {
+		return co_no;
+	}
+	public void setCo_no(String co_no) {
+		this.co_no = co_no;
+	}
+
+
+
+}

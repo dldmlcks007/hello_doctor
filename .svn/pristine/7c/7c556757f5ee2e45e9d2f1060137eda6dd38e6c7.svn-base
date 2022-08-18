@@ -1,0 +1,55 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.Co_MedDAO;
+import kr.or.ddit.dto.Co_MedVO;
+
+public class Co_MedServiceImpl implements Co_MedService{
+	
+	private Co_MedDAO co_medDAO;
+	
+	public void setCo_medDAO(Co_MedDAO co_medDAO) {
+		this.co_medDAO = co_medDAO;
+	}
+	
+	@Override
+	public List<Co_MedVO> selectAll(String co_no) throws SQLException {
+		List<Co_MedVO> coopermainlist = co_medDAO.selectAll(co_no);
+		return coopermainlist;
+	}
+
+	@Override
+	public List<Co_MedVO> proceedingCooperation(String co_no) throws SQLException {
+		List<Co_MedVO> proceedingCooperationlist = co_medDAO.proceedingCooperation(co_no);
+		return proceedingCooperationlist;
+	}
+
+	@Override
+	public Co_MedVO selectOneProceed(String co_no) throws SQLException {
+		
+		
+		return null;
+		
+	}
+
+	@Override
+	public List<Co_MedVO> completeCooperation(String co_no) throws SQLException {
+		List<Co_MedVO> completeCooperationlist = co_medDAO.completeCooperation(co_no);
+		return completeCooperationlist;
+	}
+
+	@Override
+	public Co_MedVO selectOneComplete(String co_no) throws SQLException {
+		
+		return null;
+	}
+
+
+
+}

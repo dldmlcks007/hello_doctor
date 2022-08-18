@@ -1,0 +1,138 @@
+package kr.or.ddit.controller;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.CaseVO;
+import kr.or.ddit.service.CaseService;
+
+@Controller
+@RequestMapping("case")
+public class CaseDiscussionController {
+	
+//	@Autowired
+//	private SqlSession session;
+//	
+	@Autowired
+	private CaseService service;
+	
+	@RequestMapping("main")
+	public ModelAndView main(ModelAndView mnv) throws Exception{
+		String url = "casediscussion/main";
+		List<CaseVO> list = service.selectCase();
+		
+		
+		mnv.addObject("list", list);
+		mnv.setViewName(url);
+		
+		return mnv;
+	}
+
+	@RequestMapping(value = "/regist", method = RequestMethod.POST)
+	public String regist(CaseVO casevo, HttpServletRequest request, RedirectAttributes rttr)throws Exception {
+		String url ="redirect:/casediscussion/list";
+		
+		service.insertCase(casevo);
+		
+		rttr.addFlashAttribute("from", "regist");
+		return url;
+
+	}
+	
+	@RequestMapping("/registForm")
+	public String registForm() {
+		String url = "casediscussion/regist";
+		return url;
+	}
+
+
+	@RequestMapping("/detail")
+	public ModelAndView detail(String dis_no, String from, ModelAndView mnv)throws SQLException {
+		String url ="casediscussion/detail";
+		
+		CaseVO casevo = null;
+		if(from != null && from.equals("list")) {
+			casevo = service.detailCase(dis_no);
+			url = "redirect:/case/detail.do?dis_no="+dis_no;
+			System.out.println("****************************");
+		}else {
+			casevo = service.detailCase(dis_no);
+			System.out.println("aihfioaejofijaoiejfi");
+		}
+		System.out.println("===============");
+		System.out.println("===============");
+		System.out.println("===============");
+		System.out.println(casevo.getDis_no());
+		System.out.println(casevo.getMa_name());
+		System.out.println(casevo.getDis_cnt());
+		System.out.println("sub" + casevo.getSub_d_name());
+		System.out.println("===============");
+		System.out.println("===============");
+		System.out.println("===============");
+		mnv.addObject("casevo", casevo);
+		mnv.setViewName(url);
+		
+		
+		return mnv;
+
+	}
+
+	@RequestMapping("comment")
+	public String comment() {
+		String url ="casediscussion/comment_regist";
+
+		return url;
+
+	}
+
+	@RequestMapping("modify")
+	public String modify() {
+		String url ="casediscussion/modify";
+
+		return url;
+
+	}
+
+	@RequestMapping("list")
+	public ModelAndView list(SearchCriteria cri, HttpServletRequest request, ModelAndView mnv) throws Exception{
+		String url = "casediscussion/list";
+		
+		Map<String, Object> dataMap = null;
+		
+		try {
+			dataMap = service.getCaseListForPage(cri);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		mnv.addObject("dataMap", dataMap);
+		mnv.addAllObjects(dataMap);
+		mnv.setViewName(url);
+		
+		return mnv;
+	}
+
+	@RequestMapping("test")
+	public String test() {
+		String url = "casediscussion/test";
+		return url;
+	}
+
+
+
+
+
+
+}

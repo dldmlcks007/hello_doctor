@@ -1,0 +1,185 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import kr.or.ddit.command.InsertOrderSetCommand;
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.OrdersetDAO;
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.dto.OrdersetVO;
+
+public class OrdersetServiceImpl implements OrdersetService {
+
+	private OrdersetDAO ordersetDAO;
+
+	public void setOrdersetDAO(OrdersetDAO ordersetDAO) {
+		this.ordersetDAO = ordersetDAO;
+	}
+
+	@Override
+	public Map<String,Object> getOrdersetList(SearchCriteria cri) throws SQLException {
+		SearchCriteria searchCri = (SearchCriteria) cri;
+		searchCri.setPerPageNum(12);
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		List<Map<String, Object>> ordersetList = new ArrayList<Map<String,Object>>();
+		Map<String, Object> map= null;
+
+		List<OrdersetVO> list = ordersetDAO.selectOrdersetList(cri);
+		List<OrdersetVO> drugList = null;
+		int recoCnt = 0;
+
+		for(OrdersetVO orderset : list) {
+			map= new HashMap<String, Object>();
+			recoCnt = ordersetDAO.selectRecommendCount(orderset.getoNo());
+			drugList = ordersetDAO.selectDrugList(orderset.getoNo());
+
+			orderset.setRecoCnt(recoCnt);
+			map.put("orderset", orderset);
+			map.put("drugList", drugList);
+			ordersetList.add(map);
+		}
+
+		// 전체 오더세트리스트 개수
+		int totalCount = ordersetDAO.selectOrdersetListCount(cri);
+
+		// PageMaker 생성.
+				PageMaker pageMaker = new PageMaker();
+				pageMaker.setCri(cri);
+				pageMaker.setTotalCount(totalCount);
+
+				dataMap.put("ordersetList", ordersetList);
+				dataMap.put("pageMaker", pageMaker);
+
+
+		return dataMap;
+	}
+
+	@Override
+	public void insertOrderset( HttpSession session, InsertOrderSetCommand vo) throws SQLException {
+		DoctorVO doctor = (DoctorVO) session.getAttribute("doctorLogin");
+		String dId = doctor.getdId();
+
+		String oNo = ordersetDAO.selectOrdersetSeqNext();
+		String oCla = ordersetDAO.selectMyMajor(dId);
+
+		vo.setDocId(dId);
+		vo.setoNo(oNo);
+		vo.setoCla(oCla);
+		ordersetDAO.insertOrderset(vo);
+
+		List<OrdersetVO> drugList = vo.getDrugList();
+		for(OrdersetVO ordersetVO : drugList) {
+			ordersetVO.setoNo(oNo);
+			ordersetDAO.insertDrugs(ordersetVO);
+		}
+	}
+
+	@Override
+	public List<OrdersetVO> searchDrugList(String keyword) throws SQLException {
+		List<OrdersetVO> list= ordersetDAO.searchDrugList(keyword);
+		return list;
+	}
+
+	@Override
+	public Map<String, Object> getOrdersetDetail(HttpSession session,String oNo) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+
+		OrdersetVO ordersetVo = ordersetDAO.selectOrdersetDetail(oNo);
+		int recoCnt = ordersetDAO.selectRecommendCount(ordersetVo.getoNo());
+		ordersetVo.setRecoCnt(recoCnt);
+
+		//내 추천상태
+		String rStatus = selectMyRecommand(session,oNo);
+
+		OrdersetVO vo = new OrdersetVO();
+		vo.setoNo(oNo);
+		vo.setoDname(ordersetVo.getoDname());
+
+		if(rStatus.equals("1")) {
+			ordersetVo.setrStatus(rStatus);
+		}else {
+			ordersetVo.setrStatus("0");
+		}
+		//처방내역
+		List<OrdersetVO> drugList = ordersetDAO.selectDrugList(oNo);
+
+
+		dataMap.put("ordersetVo", ordersetVo);
+		dataMap.put("drugList", drugList);
+		//연관오더세트
+        dataMap.put("ordersetList", getRelationOrderset(vo));
+
+		return dataMap;
+	}
+
+	@Override
+	public List<Map<String, Object>> getRelationOrderset(OrdersetVO ordersetVO) throws SQLException {
+		List<Map<String, Object>> ordersetList = new ArrayList<Map<String,Object>>();
+		Map<String, Object> map= null;
+
+		List<OrdersetVO> list = ordersetDAO.selectRelationOrderset(ordersetVO);
+
+		List<OrdersetVO> drugList = null;
+		int recoCnt = 0;
+
+		for(OrdersetVO orderset : list) {
+			map= new HashMap<String, Object>();
+			recoCnt = ordersetDAO.selectRecommendCount(orderset.getoNo());
+			drugList = ordersetDAO.selectDrugList(orderset.getoNo());
+
+			orderset.setRecoCnt(recoCnt);
+			map.put("orderset", orderset);
+			map.put("drugList", drugList);
+			ordersetList.add(map);
+		}
+
+		return ordersetList;
+	}
+
+	@Override
+	public void increaseViewCnt(String oNo) throws SQLException {
+		ordersetDAO.increaseViewCnt(oNo);
+	}
+
+	@Override
+	public String updateRecommand(Map<String, String> map) throws SQLException {
+		String result = null;
+		String rStatus = (String) map.get("rStatus");
+
+		if(rStatus.equals("1")) {
+			ordersetDAO.insertRecommand(map);
+			result = "1";
+		}else {
+			ordersetDAO.deleteRecommand(map);
+			result = "0";
+		}
+
+		return result;
+	}
+
+	@Override
+	public String selectMyRecommand(HttpSession session, String oNo) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		DoctorVO doctor = (DoctorVO) session.getAttribute("doctorLogin");
+		String dId = doctor.getdId();
+		map.put("oNo",oNo);
+		map.put("dId",dId);
+
+		String result = ordersetDAO.selectMyRecommand(map);
+
+		return result;
+	}
+
+
+
+}

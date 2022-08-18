@@ -1,0 +1,11 @@
+package kr.or.ddit.service;
+
+import java.util.List;
+import java.util.Map;
+
+public interface Medi_RecoService {
+
+	Map<String, Object> selectAllReco(String d_id)throws Exception;
+
+	Map<String,Object> selectOneReco(String p_no,String d_id)throws Exception;
+}

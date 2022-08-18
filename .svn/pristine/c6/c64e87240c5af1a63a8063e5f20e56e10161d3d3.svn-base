@@ -1,0 +1,61 @@
+package kr.or.ddit.restController;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import kr.or.ddit.dto.My_OrderListVO;
+import kr.or.ddit.service.DiseaseService;
+import kr.or.ddit.service.My_OrderService;
+
+@RestController
+@RequestMapping("medi")
+public class MediRestController {
+		@Autowired
+		private My_OrderService my_OrderService;
+
+		@Autowired
+		private DiseaseService diseaseService;
+	@RequestMapping("orderlist")
+	public ResponseEntity<List<My_OrderListVO>> orderlist(@RequestBody Map<String,String> vo) throws Exception{
+		ResponseEntity<List<My_OrderListVO>> entity = null;
+		String mo_no = vo.get("mo_no");
+		System.out.println(mo_no);
+		List<My_OrderListVO> list = my_OrderService.orderdruglist(mo_no);
+		entity =  new ResponseEntity<List<My_OrderListVO>>(list, HttpStatus.OK);
+
+		return entity;
+	}
+	@RequestMapping("pastchart")
+	public ResponseEntity<Map<String,Object>> pastchart(@RequestBody Map<String,String> vo)throws Exception{
+		ResponseEntity<Map<String,Object>> entity = null;
+
+
+		return entity;
+	}
+	@RequestMapping("searchdisease")
+	public ResponseEntity<List<String>> searchdisease(@RequestBody Map<String,String> vo)throws Exception{
+		ResponseEntity<List<String>> entity = null;
+			String de_ko = vo.get("de_ko");
+			List<String> list = diseaseService.searchdisease(de_ko);
+				entity = new ResponseEntity<List<String>>(list, HttpStatus.OK);
+
+
+			return entity;
+	}
+	@RequestMapping("searchmedicine")
+	public ResponseEntity<List<String>> searchmedicine(@RequestBody Map<String,String> vo)throws Exception{
+		ResponseEntity<List<String>> entity = null;
+		String me_name = vo.get("me_name");
+		List<String> list = diseaseService.searchmedicine(me_name);
+		entity = new ResponseEntity<List<String>>(list, HttpStatus.OK);
+		return entity;
+	}
+}

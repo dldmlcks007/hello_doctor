@@ -1,0 +1,31 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("regist")
+public class RegistController {
+
+	@RequestMapping("/")
+	public String main() {
+		String url="regist/regist";
+
+		return url;
+	}
+
+	@RequestMapping("pass")
+	public String pass() {
+		String url = "regist/pass_find";
+
+		return url;
+	}
+
+	@RequestMapping("doctorChart")
+	public String doctorChart() {
+		String url = "regist/doctorChart";
+
+		return url;
+	}
+
+}

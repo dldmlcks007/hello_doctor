@@ -1,0 +1,249 @@
+package kr.or.ddit.controller;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.CoDocApproveVO;
+import kr.or.ddit.dto.DidApproveVO;
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.dto.IssueVO;
+import kr.or.ddit.dto.JoinCooperVO;
+import kr.or.ddit.dto.MyHistoryCommentVO;
+import kr.or.ddit.dto.NotiVO;
+import kr.or.ddit.service.CooperMainService;
+import kr.or.ddit.service.MediRecoService;
+
+
+
+
+
+
+@Controller
+@RequestMapping("/cooperation") //대분류
+public class CooperationController {
+
+	HttpSession session = null;
+
+@Autowired
+private CooperMainService service;
+
+@Autowired
+private MediRecoService mediRecoService;
+
+	@RequestMapping("/request") //기능
+	public String request(){
+		String url = "cooperation/request";
+		return url;
+	}
+
+	@RequestMapping("/requestDeny") //기능
+	public String request_deny(){
+		String url = "cooperation/requestDeny";
+		return url;
+	}
+
+	@RequestMapping("/requestPermit") //기능
+	public String request_permit(){
+		String url = "cooperation/requestPermit";
+		return url;
+	}
+	@RequestMapping("/detail")
+	public String cooperdetail() {
+		String url = "cooperation/cooperdetail";
+
+		return url;
+
+	}
+
+	@RequestMapping("/main")
+	public String main() {
+		String url = "cooperation/main";
+
+
+		return url;
+	}
+
+	@RequestMapping("/coopermain")
+	public ModelAndView coopermain(ModelAndView mnv,HttpServletRequest request,SearchCriteria cri) throws SQLException {
+		String url = "cooperation/coopermain";
+		session = request.getSession();
+		DoctorVO doctorLogin = (DoctorVO) session.getAttribute("doctorLogin");
+		String dId = doctorLogin.getdId();
+
+		//참여중인 협진리스트
+		Map<String,Object> dataMap =  service.selectCooperList(dId,cri);
+          List<JoinCooperVO> cooList = (List<JoinCooperVO>) dataMap.get("cooList");
+		for (JoinCooperVO vo : cooList) {
+
+			vo.setpRnum(vo.getpRnum().substring(0,8));
+		}
+
+		mnv.addObject("dataMap", dataMap);
+
+
+		//특이사항
+		List<IssueVO> issueList = service.selectIssueList(dId);
+		for (IssueVO vo : issueList) {
+			vo.setpRnum(vo.getpRnum().substring(0, 8));
+		}
+
+		mnv.addObject("issueList",issueList);
+
+
+        //내가 올린 진료에 달린 코멘트 리스트
+        List<MyHistoryCommentVO> historyCommentList =service.selectHistoryComment(dId);
+        mnv.addObject("historyCommentList",historyCommentList);
+
+        //내가받은 협진요청
+        List<NotiVO> notiList = service.selectNoti(dId);
+        //응답코드 : 0이면 거절 1이면 수락 2이면 보류
+        for(NotiVO vo : notiList) {
+        	if(vo.getResponse()==0) vo.setMysetting("거절");
+        	if(vo.getResponse()==1) vo.setMysetting("수락");
+        	if(vo.getResponse()==2) vo.setMysetting("보류");
+        	System.out.println(vo.getMysetting());
+        }
+        mnv.addObject("notiList",notiList);
+
+        //내가 주치의 일 때 승인 요청 의료행위들
+         List<CoDocApproveVO>approveList = service.selectapproveList(dId);
+         System.out.println("내가주치의일 때 승인요청 받은 의료행위들"+approveList);
+         //tn_status가 1:등록 2:수정 3:삭제
+         for(CoDocApproveVO vo : approveList) {
+         	if(vo.getTnStatus()==1) vo.setTnStatusResult("등록");
+         	if(vo.getTnStatus()==1) vo.setTnStatusResult("수정");
+         	if(vo.getTnStatus()==1) vo.setTnStatusResult("삭제");
+
+         	vo.setpRnum(vo.getpRnum().substring(0, 8));
+         }
+         mnv.addObject("approveList",approveList);
+
+         ////내가 주치의가 아닌 경우 요청한 사항들에 대한 결과값(업무) 환자정보 주상병 주치의 상태(수락 ,거절)
+         List<DidApproveVO> myApproveList = service.selectmyapproveList(dId);
+         System.out.println("내가 일반의료진일때 승인 요청한 의료행위들 "+myApproveList);
+
+         //ta_status 1:승인 2:미승인
+         for(DidApproveVO vo : myApproveList) {
+
+          	if(vo.getTaStatus()==1)vo.setTaStatusResult("수락");
+          	if(vo.getTaStatus()==2)vo.setTaStatusResult("거절");
+          	vo.setpRnum(vo.getpRnum().substring(0,8));
+          }
+         mnv.addObject("myApproveList",myApproveList);
+
+
+		mnv.setViewName(url);
+
+		return mnv;
+	}
+
+	@RequestMapping("/significantDetail")
+	public String significant_detail() {
+		String url = "cooperation/significantDetail";
+		return url;
+	}
+	@RequestMapping("/cooperationRegist")
+	public String cooperation_regist() {
+		String url = "cooperation/cooperationRegist";
+		return url;
+	}
+	@RequestMapping("/reservationform")
+	public String reservationform() {
+		String url = "cooperation/reservationform";
+		return url;
+	}
+
+	@RequestMapping("/cooperationProgress")
+	public String cooperation_progress() {
+		String url = "cooperation/cooperationProgress";
+		return url;
+	}
+
+	@RequestMapping("/cooperationRecruit")
+	public String cooperation_recruit() {
+		String url = "cooperation/cooperationRecruit";
+		return url;
+	}
+
+	@RequestMapping("/cooperationRequest")
+	public String cooperation_request() {
+		String url = "cooperation/cooperationRequest";
+		return url;
+	}
+	@RequestMapping("/reservationDetail")
+	public String reservation_detail(String ta_no, Model model) throws Exception {
+		String url = "cooperation/reservationDetail";
+
+
+		Map<String,Object> map = mediRecoService.reservationDetail(ta_no);
+
+		model.addAttribute("coTask", map.get("coTask"));
+		model.addAttribute("subCoTask", map.get("subCoTask"));
+		model.addAttribute("dName", map.get("dName"));
+
+		return url;
+	}
+	@RequestMapping("/historyDetail")
+	public String history_detail() {
+		String url = "cooperation/historyDetail";
+		return url;
+	}
+
+
+	@RequestMapping("/doctorInvite")
+	public String doctor_invite() {
+		String url = "cooperation/doctorInvite";
+		return url;
+	}
+
+	@RequestMapping("/doctorDetail")
+	public String doctor_detail() {
+		String url = "cooperation/doctordetail";
+		return url;
+	}
+	@RequestMapping("/takeover")
+	public String takeover() {
+		String url = "cooperation/takeover";
+		return url;
+	}
+
+	@RequestMapping("/cooperover")
+	public String cooperover() {
+		String url = "cooperation/cooperover";
+		return url;
+	}
+//등록
+	@RequestMapping("/approveRegistDetail")
+	public String approve_regist_detail() {
+		String url = "cooperation/approveReservationDetail";
+		return url;
+	}
+	//수정
+	@RequestMapping("/approveModifyDetail")
+	public String approve_modify_detail() {
+		String url = "cooperation/approveModifyDetail";
+		return url;
+	}
+	//삭제
+	@RequestMapping("/approveDeleteDetail")
+	public String approve_delete_detail() {
+		String url = "cooperation/approveDeleteDetail";
+		return url;
+	}
+
+
+
+}
+
+

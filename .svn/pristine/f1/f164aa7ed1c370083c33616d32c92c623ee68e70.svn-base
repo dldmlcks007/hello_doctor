@@ -1,0 +1,22 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.InsertOrderSetCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.OrdersetVO;
+
+public interface OrdersetDAO {
+
+	List<OrdersetVO> selectOrdersetList(SearchCriteria cri) throws SQLException;
+	List<OrdersetVO> selectDrugList(String oNo) throws SQLException;
+	int selectOrdersetListCount(SearchCriteria cri) throws SQLException;
+	int selectRecommendCount(String oNo) throws SQLException;
+	String selectOrdersetSeqNext() throws SQLException;
+	void insertOrderset(InsertOrderSetCommand vo) throws SQLException;
+	List<OrdersetVO> searchDrugList(String keyword)throws SQLException;
+	void insertDrugs(OrdersetVO ordersetVO) throws SQLException;
+	String selectMyMajor(String dId) throws SQLException;
+	OrdersetVO selectOrdersetDetail(String oNo) throws SQLException;
+}

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MediReco-Mapper">
+		<select id="selectAllReco1" resultType="chartformVO" parameterType="str" >
+				select b.p_no as p_no, b.p_name as p_name, <![CDATA[to_char(a.rsv_day, 'YYYY-MM-DD HH24:Mi') ]]>as reservedate , a.rsv_name as rsv_name ,substr(b.p_rnum,0,8) as p_rnum
+				from reservation a, patient b
+				where a.p_no = b.p_no
+				and a.d_id = #{d_id}
+
+		</select>
+
+		<select id="pastmedireco" resultType="medirecoVO">
+			select m_no, <![CDATA[to_char(m_date, 'YYYY-MM-DD HH24:Mi') ]]>as m_date
+			from medi_reco
+			where p_no = #{p_no}
+			order by m_date desc
+		</select>
+		<select id="patientinfo" resultType="patientVO" parameterType="str">
+	select
+    p_no,
+    p_name,
+    p_sex,
+    p_rnum,
+    p_tel,
+    p_address,
+    p_insurance
+	from
+    patient
+    where p_no = #{p_no}
+		</select>
+		<select id="checkpastco">
+			select co_no
+			from co_med
+			where p_no= #{p_no}
+			and co_ing_status ="2"
+		</select>
+		<select id="searchdisease" resultType="str">
+			select de_ko
+			from disease
+			where trim(de_ko) like '%'|| trim(#{de_ko}) || '%'
+		</select>
+
+		<select id="searchmedicine" resultType="str">
+			select me_name
+			from medicine
+			where trim(me_name) like '%'|| trim(#{me_name}) || '%'
+		</select>
+  		<select id="docuinput" resultType="str">
+  		select
+    do_input
+from
+    docu_order
+where doc_id = #{d_id}
+and do_main = 'Y'
+
+
+  		</select>
+  		<select id="pastsymptom" resultType="medirecoVO">
+  			select d_name, symptom, to_char(m_date,'YYYY-MM-DD') as m_date
+  			from medi_reco
+  			where m_no = #{m_no}
+  		</select>
+	<select id="gettemppdsSeq" resultType="int">
+			select temppds_seq.nextval from dual
+	</select>
+	<update id="registTempPic" parameterType="str">
+		 insert into temppds (
+    	t_name
+) values (
+  	#{t_name}
+
+)
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

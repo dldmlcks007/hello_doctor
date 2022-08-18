@@ -1,0 +1,54 @@
+package kr.or.ddit.command;
+
+import java.util.Date;
+
+public class ReplyPagingCommand extends SearchCriteria{
+
+	private String disRplyNo; // 댓글 번호
+	private String disContent; // 댓글 내용
+	private Date disDate; // 댓글 입력일
+	private String disNo; // 대글
+	private String dId; // 작성자 아이디
+	private String delYn; // 삭제 여부
+
+
+	public String getDisRplyNo() {
+		return disRplyNo;
+	}
+	public void setDisRplyNo(String disRplyNo) {
+		this.disRplyNo = disRplyNo;
+	}
+	public String getDisContent() {
+		return disContent;
+	}
+	public void setDisContent(String disContent) {
+		this.disContent = disContent;
+	}
+	public Date getDisDate() {
+		return disDate;
+	}
+	public void setDisDate(Date disDate) {
+		this.disDate = disDate;
+	}
+	public String getDisNo() {
+		return disNo;
+	}
+	public void setDisNo(String disNo) {
+		this.disNo = disNo;
+	}
+	public String getdId() {
+		return dId;
+	}
+	public void setdId(String dId) {
+		this.dId = dId;
+	}
+	public String getDelYn() {
+		return delYn;
+	}
+	public void setDelYn(String delYn) {
+		this.delYn = delYn;
+	}
+
+
+
+}

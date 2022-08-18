@@ -1,0 +1,102 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.InsertOrderSetCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.OrdersetVO;
+
+public class OrdersetDAOImpl implements OrdersetDAO {
+
+	private SqlSession session;
+
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+
+	@Override
+	public List<OrdersetVO> selectOrdersetList(SearchCriteria cri) throws SQLException {
+		List<OrdersetVO> list = session.selectList("Orderset-Mapper.selectOrdersetList",cri);
+		return list;
+	}
+
+	@Override
+	public List<OrdersetVO> selectDrugList(String oNo) throws SQLException {
+		List<OrdersetVO> list = session.selectList("Orderset-Mapper.selectDrugList",oNo);
+		return list;
+	}
+
+
+	@Override
+	public int selectOrdersetListCount(SearchCriteria cri) throws SQLException {
+		int cnt = session.selectOne("Orderset-Mapper.selectOrdersetListCount",cri);
+		return cnt;
+	}
+
+
+	@Override
+	public int selectRecommendCount(String oNo) throws SQLException {
+		int cnt = session.selectOne("Orderset-Mapper.selectRecommendCount",oNo);
+		return cnt;
+	}
+
+
+	@Override
+	public void insertOrderset(InsertOrderSetCommand vo) throws SQLException {
+	    session.update("Orderset-Mapper.insertOrderset",vo);
+	}
+
+
+	@Override
+	public String selectOrdersetSeqNext() throws SQLException {
+		String o_no = session.selectOne("Orderset-Mapper.selectOrdersetSeqNext");
+		return o_no;
+	}
+
+
+	@Override
+	public List<OrdersetVO> searchDrugList(String keyword) throws SQLException {
+		List<OrdersetVO> list = session.selectList("Orderset-Mapper.searchDrugList",keyword);
+		return list;
+	}
+
+
+	@Override
+	public void insertDrugs(OrdersetVO vo) throws SQLException {
+		 session.update("Orderset-Mapper.insertDrugs",vo);
+	}
+
+
+	@Override
+	public String selectMyMajor(String dId) throws SQLException {
+		String major = session.selectOne("Orderset-Mapper.selectMyMajor",dId);
+		return major;
+	}
+
+
+	@Override
+	public OrdersetVO selectOrdersetDetail(String oNo) throws SQLException {
+		OrdersetVO vo = session.selectOne("Orderset-Mapper.selectOrdersetDetail",oNo);
+		return vo;
+	}
+
+
+	@Override
+	public void increaseViewCnt(String oNo) throws SQLException {
+		 session.update("Orderset-Mapper.insertDrugs",oNo);
+
+	}
+
+
+	@Override
+	public List<OrdersetVO> selectRelationOrderset(OrdersetVO ordersetVO) throws SQLException {
+		List<OrdersetVO> list = session.selectList("Orderset-Mapper.selectRelationOrderset",ordersetVO);
+		return list;
+	}
+
+}

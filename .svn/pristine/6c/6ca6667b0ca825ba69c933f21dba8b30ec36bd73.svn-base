@@ -1,0 +1,48 @@
+package kr.or.ddit.dto;
+
+public class PrescriptVO {
+	private String m_no        ;
+	private String pre_no      ;
+	private String cure_name   ;
+	private int quantity    ;
+	private int aday        ;
+	private int days        ;
+	public String getM_no() {
+		return m_no;
+	}
+	public void setM_no(String m_no) {
+		this.m_no = m_no;
+	}
+	public String getPre_no() {
+		return pre_no;
+	}
+	public void setPre_no(String pre_no) {
+		this.pre_no = pre_no;
+	}
+	public String getCure_name() {
+		return cure_name;
+	}
+	public void setCure_name(String cure_name) {
+		this.cure_name = cure_name;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public int getAday() {
+		return aday;
+	}
+	public void setAday(int aday) {
+		this.aday = aday;
+	}
+	public int getDays() {
+		return days;
+	}
+	public void setDays(int days) {
+		this.days = days;
+	}
+
+
+}

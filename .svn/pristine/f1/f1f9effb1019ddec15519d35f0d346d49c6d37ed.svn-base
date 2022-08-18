@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Realtime communication with WebRTC</title>
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/webcapture.css" />
+
+    <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.css" rel="stylesheet">
+      <link href="<%=request.getContextPath()%>/resources/css/animate.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/css/style.css" rel="stylesheet">
+    <style type="text/css">
+
+	#camera{
+		width: 520px !important;
+		height: 420px !important;
+
+	}
+	#photo{
+	}
+
+    </style>
+</head>
+<body>
+  <h1>사진 등록</h1>
+
+
+  <div id="videoCanvas">
+    <video id="camera" autoplay playsinline></video>
+    <canvas id="photo" hidden="true"></canvas>
+  </div>
+
+  <div id="buttons">
+    <button id="snap" onclick="check()">사진 촬영</button>
+	<button id="resnap" onclick="resnap()" hidden="true">다시 촬영</button>
+	<button id="regist" onclick="regist()" hidden="true">사진 등록</button>
+  </div>
+    <div id="incoming">
+
+    <div id="trail"></div>
+  </div>
+
+ <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+  <script src="<%=request.getContextPath() %>/resources/js/webcapture.js"></script>
+   <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/popper.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.js"></script>
+
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+	<script type="text/javascript">
+		function check(){
+		var photo = document.getElementById('photo');
+		console.log(photo.getContext('2d').getImageData(0,0,photo.width, photo.height).data);
+			$('#snap').hide();
+			$('#camera').hide();
+			$('#photo').show();
+			$('#resnap').show();
+			$('#regist').show();
+		}
+		console.log(photo.toDataURL('image/png'));
+
+	</script>
+</body>
+</html>

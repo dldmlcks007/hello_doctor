@@ -1,0 +1,24 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.CoTaskASubVO;
+
+public class CooperMyDaoImpl implements CooperMyDao {
+
+	private SqlSession session;
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public List<CoTaskASubVO> selectCoTaskList(String coNo) throws SQLException {
+		List<CoTaskASubVO> coTaskSubList = session.selectList("CooperMain-Mapper.selectCoTaskList",coNo);
+		return coTaskSubList;
+	}
+
+}

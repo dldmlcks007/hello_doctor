@@ -1,0 +1,56 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dao.MainDAO;
+import kr.or.ddit.dto.MainVO;
+import kr.or.ddit.dto.PrescriptVO;
+
+public class MainServiceImpl implements MainService {
+
+	private MainDAO maindao;
+
+	public void setMaindao(MainDAO maindao) {
+		this.maindao = maindao;
+	}
+	private MediRecoService mediRecoService;
+
+
+	public void setMediRecoService(MediRecoService mediRecoService) {
+		this.mediRecoService = mediRecoService;
+	}
+
+	@Override
+	public Map<String, Object> mainMyPaintStatus(String dId) throws SQLException {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		List<MainVO> myPaintList = maindao.mainMyPaintStatus(dId);
+
+		for(MainVO vo : myPaintList) {
+			vo.setpRnum(vo.getpRnum().substring(0,8));
+
+
+		}
+
+		map.put("myPaintList", myPaintList);
+
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> mainMyPaintDetail(String mNo) throws SQLException {
+
+
+		Map<String, Object> map =  mediRecoService.pastreco(mNo);
+
+
+		return map;
+
+	}
+
+
+}

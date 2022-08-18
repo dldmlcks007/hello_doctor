@@ -1,0 +1,15 @@
+package kr.or.ddit.service;
+
+import java.util.Map;
+
+public class Co_MedServiceImpl implements Co_MedService{
+	
+	
+
+	@Override
+	public Map<String, Object> selectAll(String co_no) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

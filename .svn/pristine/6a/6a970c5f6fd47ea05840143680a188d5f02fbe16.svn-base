@@ -1,0 +1,23 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+
+import kr.or.ddit.dao.CooperMyDao;
+import kr.or.ddit.dto.CoTaskASubVO;
+
+public class CooperMyServiceImpl implements CooperMyService {
+
+	private CooperMyDao cooperMyDao;
+	public void setCooperMyDao(CooperMyDao cooperMyDao) {
+		this.cooperMyDao = cooperMyDao;
+	}
+
+
+	@Override
+	public List<CoTaskASubVO> selectCoTaskList(String coNo) throws SQLException {
+		return cooperMyDao.selectCoTaskList(coNo);
+	}
+
+}

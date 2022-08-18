@@ -1,0 +1,27 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import kr.or.ddit.dto.HistoryVO;
+
+public interface HistoryDAO {
+
+	//진료히스토리
+	List<HistoryVO> diagnosisHistory(String dId) throws SQLException;
+	//협진히스토리
+	List<HistoryVO> CooperationHistory(String dId) throws SQLException;
+
+	//진료히스토리 상세보기
+	List<HistoryVO> selectbyMno(String mNo) throws SQLException;
+	//협진히스토리 상세보기
+	List<HistoryVO> selectbyComNo(String comNo) throws SQLException;
+
+	//알림
+//	List<HistoryVO> alarmList(String dId) throws SQLException;
+	//공지사항
+	List<HistoryVO> NoticeList(String dId) throws SQLException;
+	//로그
+//	List<HistoryVO> LogList(String dId) throws SQLException;
+
+
+}

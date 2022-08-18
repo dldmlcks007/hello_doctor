@@ -1,0 +1,40 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.ChartFormVO;
+import kr.or.ddit.dto.Co_taskVO;
+import kr.or.ddit.dto.SubTaskVO;
+
+public class Co_TaskDAOImpl implements Co_TaskDAO {
+	private SqlSession session;
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public List<ChartFormVO> selectAllReco(String d_id) throws SQLException {
+
+			List<ChartFormVO> list = session.selectList("Co_task-Mapper.selectAllReco2", d_id);
+				System.out.println("co"+list);
+			return list;
+	}
+
+	@Override
+	public Co_taskVO mycotask(String ta_no) throws SQLException {
+		Co_taskVO vo = session.selectOne("Co_task-Mapper.mycotask", ta_no);
+		return vo;
+	}
+
+	@Override
+	public List<SubTaskVO> mySubCoTask(String ta_no) throws SQLException {
+		List<SubTaskVO> list = session.selectList("Co_task-Mapper.mySubCoTask", ta_no);
+		return list;
+	}
+
+
+}

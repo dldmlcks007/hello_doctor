@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Co_task-Mapper">
+		<select id="selectAllReco" resultType="map" >
+
+			a.co_no as co_no, c.p_name as p_name, to_char(a.ta_date, YYYY-MM-DD HH24:Mi:SS) as date, c.p_rnum as p_rnum, a.ta_name as rsv_name
+			from co_task a, co_med b, patient c
+			where a.p_no = b.p_no
+			and b.p_no = c.p_no
+			and	a.d_id = #{d_id}
+			and a.reserv_yn = 'y'
+
+		</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

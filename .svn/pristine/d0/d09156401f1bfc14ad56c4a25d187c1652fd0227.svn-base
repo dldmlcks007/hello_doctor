@@ -1,0 +1,72 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class My_Order {
+	private String mo_no         ;
+	private String d_id          ;
+	private String d_name        ;
+	private String o_cla         ;
+	private String o_target      ;
+	private Date o_regdate     ;
+	private String o_caution     ;
+	private String o_result      ;
+	private String del_yn        ;
+	public String getMo_no() {
+		return mo_no;
+	}
+	public void setMo_no(String mo_no) {
+		this.mo_no = mo_no;
+	}
+	public String getD_id() {
+		return d_id;
+	}
+	public void setD_id(String d_id) {
+		this.d_id = d_id;
+	}
+	public String getD_name() {
+		return d_name;
+	}
+	public void setD_name(String d_name) {
+		this.d_name = d_name;
+	}
+	public String getO_cla() {
+		return o_cla;
+	}
+	public void setO_cla(String o_cla) {
+		this.o_cla = o_cla;
+	}
+	public String getO_target() {
+		return o_target;
+	}
+	public void setO_target(String o_target) {
+		this.o_target = o_target;
+	}
+	public Date getO_regdate() {
+		return o_regdate;
+	}
+	public void setO_regdate(Date o_regdate) {
+		this.o_regdate = o_regdate;
+	}
+	public String getO_caution() {
+		return o_caution;
+	}
+	public void setO_caution(String o_caution) {
+		this.o_caution = o_caution;
+	}
+	public String getO_result() {
+		return o_result;
+	}
+	public void setO_result(String o_result) {
+		this.o_result = o_result;
+	}
+	public String getDel_yn() {
+		return del_yn;
+	}
+	public void setDel_yn(String del_yn) {
+		this.del_yn = del_yn;
+	}
+
+
+
+}

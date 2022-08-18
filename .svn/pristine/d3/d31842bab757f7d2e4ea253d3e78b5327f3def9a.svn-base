@@ -1,0 +1,126 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.Case_DAO;
+import kr.or.ddit.dto.CaseVO;
+import kr.or.ddit.dto.RecomVO;
+
+public class CaseServiceImpl implements CaseService{
+
+	private Case_DAO casedao;
+
+	public void setCasedao(Case_DAO casedao) {
+		this.casedao = casedao;
+	}
+
+	@Override
+	public List<CaseVO> selectCase() throws SQLException {
+		// TODO Auto-generated method stub
+		return casedao.selectCase();
+	}
+
+	@Override
+	public Map<String, Object> getCaseListForPage(SearchCriteria cri) throws Exception {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		List<CaseVO> caselist = casedao.selectSearchCaseList(cri);
+		int totalCount = casedao.selectSearchCaseListCount(cri);
+		System.out.println("searchType : " + cri.getSearchType());
+		System.out.println("filter : " + cri.getUserFilter());
+		System.out.println("getPage : " + cri.getPage());
+		System.out.println("perPageNum : " + cri.getPerPageNum());
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+
+		map.put("caselist", caselist);
+		map.put("pageMaker", pageMaker);
+
+		return map;
+	}
+
+	@Override
+	public void insertCase(CaseVO casevo) throws SQLException {
+
+		int disNo = casedao.selectCaseSeqNextValue();
+		String no = Integer.toString(disNo);
+		if(disNo < 10) {
+			no = "DIS00" + no;
+		}else if(disNo >= 10 && disNo <= 100) {
+			no = "DIS0" + no;
+		}else {
+			no = "DIS" + no;
+		}
+
+		casevo.setDisNo(no);
+
+		casedao.insertCase(casevo);
+		casedao.insertSub(casevo);
+
+	}
+
+	@Override
+	public CaseVO detailCase(String disNo) throws SQLException {
+		CaseVO casevo = casedao.selectCaseByNo(disNo);
+		casedao.increaseViewCnt(disNo);
+
+		return casevo;
+	}
+
+	@Override
+	public void deleteCase(String disNo) throws SQLException {
+		casedao.deleteCase(disNo);
+
+
+	}
+
+	@Override
+	public void updateCase(CaseVO casevo) throws SQLException {
+		casedao.updateCase(casevo);
+		casedao.updateSubCase(casevo);
+	}
+
+	@Override
+	public CaseVO getCaseForModify(String disNo) throws SQLException {
+		return casedao.selectCaseByNo(disNo);
+	}
+
+	@Override
+	public Map<String, Object> mainBottomShow(CaseVO casevo) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<CaseVO> bottomList = casedao.mainBottomShow(casevo);
+		map.put("bottomList", bottomList);
+		return map;
+	}
+
+	@Override
+	public int recomSelect(RecomVO recomvo) throws SQLException {
+		int exist = 0;
+			if(casedao.recomSelect(recomvo) != 0) {
+				exist = 0;
+			}else {
+				exist = 1;
+			}
+		System.out.println("i dont know how" + exist);
+		return exist;
+	}
+
+	@Override
+	public Map<String, Object> selectMajor(String dId) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<CaseVO> majorList = casedao.selectMajor(dId);
+		dataMap.put("majorList", majorList);
+		return dataMap;
+	}
+
+
+
+
+
+}

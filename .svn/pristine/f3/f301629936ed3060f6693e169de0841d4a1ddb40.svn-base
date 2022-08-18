@@ -1,0 +1,49 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.My_OrderListVO;
+import kr.or.ddit.dto.PrescriptVO;
+import kr.or.ddit.dto.Sub_dVO;
+
+public class My_OrderDAOImpl implements My_OrderDAO{
+	private SqlSession session;
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public List<My_OrderListVO> myorderList(String d_id) throws SQLException {
+		List<My_OrderListVO> list = session.selectList("My_Order-Mapper.myorderList", d_id);
+		System.out.println("orderset"+list);
+		return list;
+	}
+
+	@Override
+	public List<My_OrderListVO> orderdruglist(String mo_no) throws SQLException {
+
+
+		List<My_OrderListVO> list = session.selectList("My_Drug-Mapper.orderdruglist", mo_no);
+
+
+		return list;
+	}
+
+	@Override
+	public List<PrescriptVO> pastdrug(String m_no) throws SQLException {
+		List<PrescriptVO> list = session.selectList("My_Drug-Mapper.pastdrug", m_no);
+		return list;
+	}
+
+	@Override
+	public List<Sub_dVO> pastsub_d(String m_no) throws SQLException {
+
+		List<Sub_dVO>list = session.selectList("My_Drug-Mapper.pastsub_d", m_no);
+		return list;
+	}
+
+}

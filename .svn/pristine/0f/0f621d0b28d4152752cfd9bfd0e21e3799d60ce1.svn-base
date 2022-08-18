@@ -1,0 +1,37 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+
+import kr.or.ddit.dao.DoctorDAO;
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.exception.InvalidPasswordException;
+import kr.or.ddit.exception.NotFoundIdException;
+
+public class DoctorServiceImpl implements DoctorService {
+
+	private DoctorDAO doctorDAO;
+
+	public void setDoctorDAO(DoctorDAO doctorDAO) {
+		this.doctorDAO = doctorDAO;
+	}
+
+	@Override
+	public DoctorVO doctorLogin(DoctorVO vo) throws SQLException,NotFoundIdException,InvalidPasswordException {
+
+	DoctorVO result = 	doctorDAO.doctorLogin(vo);
+
+		if(result == null) {
+			//id틀림;
+			throw new NotFoundIdException();
+		}else if(!result.getPwd().equals(vo.getPwd())) {
+			//pwd 틀림;
+			throw new InvalidPasswordException();
+		}
+		System.out.println(result.getD_id());
+		System.out.println(result.getPwd());
+		System.out.println("result!!!!!!!!!!!!!!!!!!!!!!"+result);
+
+		return result;
+	}
+
+}

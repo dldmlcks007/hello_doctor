@@ -1,0 +1,40 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.CaseVO;
+import kr.or.ddit.dto.RecomVO;
+
+public interface CaseService {
+
+	List<CaseVO> selectCase() throws SQLException;
+
+	Map<String, Object> getCaseListForPage(SearchCriteria cri) throws Exception;
+
+	// insert
+	void insertCase(CaseVO casevo)throws SQLException;
+
+	CaseVO detailCase(String disNo)throws SQLException;
+
+	//delete
+	void deleteCase(String disNo)throws SQLException;
+
+	// 수정
+	void updateCase(CaseVO casevo)throws SQLException;
+
+	CaseVO getCaseForModify(String disNo)throws SQLException;
+
+	Map<String, Object> mainBottomShow(CaseVO casevo, String dId)throws SQLException;
+
+	// 좋아요
+	RecomVO recomSelect(RecomVO recomvo)throws SQLException;
+	void recomInsert(RecomVO recomvo)throws SQLException;
+	void recomDelete(RecomVO recomvo)throws SQLException;
+
+//	void updateFile(CaseVO caseVO)throws SQLException;
+
+}

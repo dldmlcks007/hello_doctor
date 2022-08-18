@@ -1,0 +1,81 @@
+package kr.or.ddit.controller;
+
+import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.exception.InvalidPasswordException;
+import kr.or.ddit.exception.NotFoundIdException;
+import kr.or.ddit.service.DoctorService;
+
+
+
+
+@Controller
+@RequestMapping("login")
+public class login {
+	@Autowired
+	private DoctorService doctorService;
+
+
+	@RequestMapping("/loginForm")
+	public String home() {
+		String url = "login/loginForm";
+		return url;
+	}
+	@RequestMapping("/login")
+	public String login(DoctorVO vo, HttpSession session, RedirectAttributes rttr) throws Exception {
+		System.out.println(vo.getD_id());
+		System.out.println(vo.getPwd());
+		String url ="redirect:/index.do";
+
+		try {
+				DoctorVO doctorLogin = doctorService.doctorLogin(vo);
+
+				session.setAttribute("doctorLogin", doctorLogin);
+				//model.addAttribute("doctorLogin", doctorLogin);
+//				System.out.println("session!~!~@~!@~!@~!@~!@~~@!");
+
+
+			} catch (NotFoundIdException | InvalidPasswordException e) {
+
+				rttr.addFlashAttribute("loginfail","login");
+				url ="redirect:/login/loginForm";
+			} catch(SQLException e) {
+				e.printStackTrace();
+				throw e;
+			}
+
+
+		if(vo.getD_id().equals("admin")) {
+			// pwd 틀림
+			System.out.println(vo.getD_id());
+			if(vo.getPwd().equals("admin")) {
+				url = "redirect:/manager/manager";
+			}
+
+		}
+
+		return url;
+
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		String url = "redirect:/login/loginForm";
+		session.invalidate();
+		return url;
+	}
+
+
+
+}

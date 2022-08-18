@@ -1,0 +1,26 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+public class Co_TaskDAOImpl implements Co_TaskDAO {
+	private SqlSession session;
+
+
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public List<Map<String, String>> selectAllReco(String d_id) throws SQLException {
+
+			List<Map<String,String>> list = session.selectList("Co_task-Mapper.selectAllReco", d_id);
+
+		return list;
+	}
+
+}

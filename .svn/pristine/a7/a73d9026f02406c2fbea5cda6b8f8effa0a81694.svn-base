@@ -1,0 +1,561 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="cooList" value="${cooList}" />
+<c:set var="issueList" value="${issueList}" />
+<c:set var="historyCommentList" value="${historyCommentList}" />
+<c:set var="notiList" value="${notiList}" />
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+* {
+}
+
+.container {
+	max-width: none;
+}
+
+.row {
+	margin-bottom: -10px;
+	margin-top: 5px;
+}
+
+.col-md-3, .col-md-4, .col-md-5, .col-md-9, .col-md-8 {
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 400px;
+}
+.col-md-6{
+padding-bottom: 15px;
+}
+
+.col-3 {
+	height: 63px;
+}
+
+.ibox-content {
+	padding: 0px;
+}
+
+.list-group.clear-list .list-group-item {
+	padding: 2px;
+}
+
+.btn btn-primary btn-rounded {
+	color: white;
+	padding: 10px 10px;
+}
+
+.p-xs {
+	padding: 5px;
+	width: 30%;
+	text-align: center;
+	font-size: 2.5em;
+}
+
+.btn-group {
+	float: middle;
+}
+
+.input-group {
+	width: 50%;
+}
+
+.contact-box {
+	padding: 1px;
+	margin-bottom: 1px;
+	height:78.5px;
+}
+
+element.style {
+	display: inline-block;
+}
+.input-group{
+	float: right;
+	margin-bottom: 7px;
+}
+
+.btn-group_1{
+text-align:center;
+margin-top: -9px;
+
+}
+
+.btn-group_2{
+text-align:center;
+margin-top: -15px;
+}
+
+
+</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<h2>
+			My 협진
+			</h2>
+			<hr style="background-color:black;">
+			<div class="row">
+				<div class="col-md-6" style="margin-bottom: 7px;">
+					<div class="top">
+ 						<div class="bg-primary p-xs b-r-xl" style="float: left; font-size: 12px;">참여중인 협진</div>
+
+						<div class="input-group" >
+							<input placeholder="Search" type="text" class="form-control form-control-sm"> <span class="input-group-append">
+								<button type="button" class="btn btn-sm btn-primary">Go!</button>
+							</span>
+						</div>
+					</div>
+
+					<div class="ibox-content">
+
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th width="27%;">환자정보</th>
+									<th width="30%;">주상병</th>
+									<th>주치의</th>
+									<th>최근진료일</th>
+								</tr>
+							</thead>
+
+							<tbody>
+
+							<c:forEach items="${cooList}" var="coo">
+
+							<tr onclick="subgoPage('/cooperation/detail.do')">
+									<td>${coo.p_name}&nbsp;&nbsp;${coo.p_rnum}</td>
+									<td>${coo.co_disease }</td>
+									<td>${coo.co_doc}</td>
+									<td><fmt:formatDate value="${coo.maxDate}" pattern="yyyy-MM-dd"/></td>
+
+								</tr>
+</c:forEach>
+
+
+
+								<tr onclick="subgoPage('/cooperation/detail.do')">
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr onclick="subgoPage('/cooperation/detail.do')">
+									<td>오태정 810623-1</td>
+									<td>기흉</td>
+									<td>노혜지</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>김남수 491130-1</td>
+									<td>기흉</td>
+									<td>이의찬</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>이수미 810623-1</td>
+									<td>기흉</td>
+									<td>이정규</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>김수민 810623-1</td>
+									<td>기흉</td>
+									<td>노혜지</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>이수미 810623-1</td>
+									<td>기흉</td>
+									<td>이정규</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>김수민 810623-1</td>
+									<td>기흉</td>
+									<td>노혜지</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>김수민 810623-1</td>
+									<td>기흉</td>
+									<td>노혜지</td>
+									<td>2022-07-05</td>
+								</tr>
+
+							</tbody>
+
+						</table>
+						<div class="btn-group_1">
+							<button type="button" class="btn btn-white">
+								<i class="fa fa-chevron-left"></i>
+							</button>
+							<button class="btn btn-white">1</button>
+							<button class="btn btn-white  active">2</button>
+							<button class="btn btn-white">3</button>
+							<button class="btn btn-white">4</button>
+							<button type="button" class="btn btn-white">
+								<i class="fa fa-chevron-right"></i>
+							</button>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="bg-primary p-xs b-r-xl" style="font-size: 12px; margin-bottom: 10px">특이사항</div>
+
+					<div class="ibox-content">
+
+						<table class="table">
+							<thead>
+								<tr>
+									<th width="18%;">환자정보</th>
+									<th>주상병</th>
+									<th>특이사항</th>
+									<th>발생일</th>
+								</tr>
+							</thead>
+							<tbody>
+
+
+<c:forEach items="${issueList}" var="issue">
+
+							<tr onclick="window.open('significant_detail.do','','width=800, height=440, left=500, top=100');return false;">
+
+									<td >${issue.p_name} &nbsp;&nbsp;${issue.p_rnum}</td>
+									<td>${issue.co_disease}</td>
+									<td>${issue.iss_content }</td>
+									<td><fmt:formatDate value="${issue.m_date}" pattern="yyyy-MM-dd"/></td>
+
+								</tr>
+</c:forEach>
+
+
+
+
+
+
+								<tr onclick="window.open('significant_detail.do','','width=800, height=440, left=500, top=100');return false;">
+
+									<td ></td>
+									<td></td>
+									<td></td>
+									<td></td>
+
+								</tr>
+								<tr>
+									<td>박기훈 19491130-1</td>
+									<td>강현수 호흡기내과</td>
+									<td>기흉폐포증가,시술요망...</td>
+									<td>2022-07-05 09:45</td>
+								</tr>
+								<tr>
+									<td>박기훈 19491130-1</td>
+									<td>강현수 호흡기내과</td>
+									<td>기흉폐포증가,시술요망...</td>
+									<td>2022-07-04 09:45</td>
+								</tr>
+								<tr>
+									<td>박기훈 19491130-1</td>
+									<td>강현수 호흡기내과</td>
+									<td>기흉폐포증가,시술요망...</td>
+									<td>2022-07-03 09:45</td>
+								</tr>
+								<tr>
+									<td>박기훈 19491130-1</td>
+									<td>강현수 호흡기내과</td>
+									<td>기흉폐포증가,시술요망...</td>
+									<td>2022-07-03 09:45</td>
+								</tr>
+								<tr>
+									<td>박기훈 19491130-1</td>
+									<td>강현수 호흡기내과</td>
+									<td>기흉폐포증가,시술요망...</td>
+									<td>2022-07-03 09:45</td>
+								</tr>
+
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-4" style="height: 400px;">
+					<div class="bg-primary p-xs b-r-xl" style="margin-bottom: 15px; font-size: 12px;">진료스케줄</div>
+					<div class="ibox-content">
+
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th width="23%;">환자정보</th>
+									<th width="30%;">주상병</th>
+									<th>작성의료진</th>
+									<th>최근진료일</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr onclick="window.open('reservation_detail.do','','width=800, height=640, left=500, top=100');return false;">
+									<td>김수민 810623-1</td>
+									<td>기흉</td>
+									<td>노혜지</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>오태정 810623-1</td>
+									<td>기흉</td>
+									<td>노혜지</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>이수미 810623-1</td>
+									<td>기흉</td>
+									<td>이정규</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>김민수 510421-1</td>
+									<td>기흉</td>
+									<td>강현수</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>이수미 510421-1</td>
+									<td>기흉</td>
+									<td>이정규</td>
+									<td>2022-07-05</td>
+								</tr>
+								<tr>
+									<td>김민수 510421-1</td>
+									<td>기흉</td>
+									<td>강현수</td>
+									<td>2022-07-05</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="btn-group_2">
+							<button type="button" class="btn btn-white">
+								<i class="fa fa-chevron-left"></i>
+							</button>
+							<button class="btn btn-white">1</button>
+							<button class="btn btn-white  active">2</button>
+							<button class="btn btn-white">3</button>
+							<button class="btn btn-white">4</button>
+							<button type="button" class="btn btn-white">
+								<i class="fa fa-chevron-right"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4" style="height: 400px;">
+					<div class="bg-primary p-xs b-r-xl" style="margin-bottom: 10px; font-size: 12px;">협진코멘트</div>
+					<div class="contact-box" >
+						<a class="row" onclick="window.open('history_detail.do','','width=750, height=938, left=500, top=100');return false;">
+							<div class="col-3">
+								<div class="text-center">
+									<img alt="프로필" src="<%=request.getContextPath()%>/resources/img/user.png" style="width: 40px; height: 40px;">
+									<div class="m-t-xs font-bold">강현수</div>
+								</div>
+							</div>
+							<div class="col-9">
+								<h5>
+									호흡기내과<i class="fa fa-clock-o" style="float: right; padding-right: 10px;">2022-06-29 09:00pm</i>
+								</h5>
+								<br> <strong>해당 환자 기흉 수술 전 당 수치 검사필요</strong><br>
+
+							</div>
+						</a>
+					</div>
+
+
+
+
+<c:forEach items="${historyCommentList}" var="comment">
+<div class="contact-box">
+						<a class="row">
+							<div class="col-3">
+								<div class="text-center">
+									<img alt="프로필" src="<%=request.getContextPath()%>/resources/img/user.png" style="width: 40px; height: 40px;">
+									<div class="m-t-xs font-bold">${comment.d_id}</div>
+								</div>
+							</div>
+							<div class="col-9">
+								<h5>
+									호흡기내과<i class="fa fa-clock-o" style="float: right; padding-right: 10px;">
+									<fmt:formatDate value="${comment.com_date}" pattern="yyyy-MM-dd"/>
+									</i>
+								</h5>
+								<br> <strong>${comment.com_content}</strong><br>
+
+							</div>
+						</a>
+					</div>
+</c:forEach>
+
+					<div class="contact-box">
+						<a class="row">
+							<div class="col-3">
+								<div class="text-center">
+									<img alt="프로필" src="<%=request.getContextPath()%>/resources/img/user.png" style="width: 40px; height: 40px;">
+									<div class="m-t-xs font-bold"></div>
+								</div>
+							</div>
+							<div class="col-9">
+								<h5>
+									호흡기내과<i class="fa fa-clock-o" style="float: right; padding-right: 10px;"> 2022-06-29 09:00pm</i>
+								</h5>
+								<br> <strong>해당 환자 기흉 수술 전 당 수치 검사필요</strong><br>
+
+							</div>
+						</a>
+					</div>
+
+					<div class="contact-box">
+						<a class="row">
+							<div class="col-3">
+								<div class="text-center">
+									<img alt="프로필" src="<%=request.getContextPath()%>/resources/img/user.png" style="width: 40px; height: 40px;">
+									<div class="m-t-xs font-bold">강현수</div>
+								</div>
+							</div>
+							<div class="col-9">
+								<h5>
+									호흡기내과<i class="fa fa-clock-o" style="float: right; padding-right: 10px;"> 2022-06-29 09:00pm</i>
+								</h5>
+								<br> <strong>해당 환자 기흉 수술 전 당 수치 검사필요</strong><br>
+
+							</div>
+						</a>
+					</div>
+
+					<div class="contact-box">
+						<a class="row">
+							<div class="col-3">
+								<div class="text-center">
+									<img alt="프로필" src="<%=request.getContextPath()%>/resources/img/user.png" style="width: 40px; height: 40px;">
+									<div class="m-t-xs font-bold">강현수</div>
+								</div>
+							</div>
+							<div class="col-9">
+								<h5>
+									호흡기내과<i class="fa fa-clock-o" style="float: right; padding-right: 10px;"> 2022-06-29 09:00pm</i>
+								</h5>
+								<br> <strong>해당 환자 기흉 수술 전 당 수치 검사필요</strong><br>
+
+							</div>
+						</a>
+					</div>
+
+				</div>
+				<div class="col-md-4" style="height: 400px;">
+					<div style="padding-bottom: 16px;">
+						<div class="bg-primary p-xs b-r-xl" style="font-size: 12px; margin-bottom: -8px;">협진요청</div>
+						<a class="view_all" href="#" style="float: right; font-size: 12px;"> 전체보기 </a><span style="clear: both;"></span>
+					</div>
+					<div class="ibox-content table-responsive">
+						<table class="table table-hover no-margins">
+							<thead>
+								<tr>
+									<th>요청날짜</th>
+									<th>요청한 사람</th>
+									<th>상태</th>
+								</tr>
+							</thead>
+							<tbody>
+
+<c:forEach items="${notiList}" var="noti">
+
+<tr onclick="window.open('cooperation_request.do','','width=800, height=700, left=500, top=100');return false;">
+									<td><i class="fa fa-clock-o"></i><fmt:formatDate value="${noti.noti_date}" pattern="yyyy-MM-dd"/></td>
+									<td>${noti.reqd_id}</td>
+									<td>${noti.mysetting}</td>
+								</tr>
+
+
+</c:forEach>
+
+
+								<tr>
+									<td><i class="fa fa-clock-o"></i>2022-06-29 15:20</td>
+									<td>김기웅</td>
+									<td><span class="label label-warning">거절</span></td>
+
+								</tr>
+								<tr>
+									<td><i class="fa fa-clock-o"></i>2022-06-29 15:20</td>
+									<td>김민지</td>
+									<td><span class="label label-primary">수락</span></td>
+
+
+								</tr>
+								<tr>
+									<td><i class="fa fa-clock-o"></i>2022-06-29 15:20</td>
+									<td>서난희</td>
+									<td><span class="label label-primary">수락</span></td>
+
+								</tr>
+								<tr>
+									<td><i class="fa fa-clock-o"></i>2022-06-29 15:20</td>
+									<td>이종민</td>
+									<td>보류중</td>
+
+								</tr>
+								<tr>
+									<td><i class="fa fa-clock-o"></i>2022-06-29 15:20</td>
+									<td>노혜지</td>
+									<td><span class="label label-primary">수락</span></td>
+
+								</tr>
+								<tr>
+									<td><i class="fa fa-clock-o"></i>2022-06-29 15:20</td>
+									<td>오지현</td>
+									<td><span class="label label-primary">수락</span></td>
+								</tr>
+								<tr>
+									<td><i class="fa fa-clock-o"></i>2022-06-29 15:20</td>
+									<td>이정수</td>
+									<td><span class="label label-warning">거절</span></td>
+
+								</tr>
+								<tr>
+									<td><i class="fa fa-clock-o"></i>2022-06-29 15:20</td>
+									<td>이종희</td>
+									<td><span class="label label-warning">거절</span></td>
+
+								</tr>
+								<tr>
+									<td><i class="fa fa-clock-o"></i>2022-06-29 15:20</td>
+									<td>김예림</td>
+									<td><span class="label label-warning">거절</span></td>
+
+								</tr>
+
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+	</div>
+	<script>
+function (){
+	window.open("http://localhost/ddit/cooperation/significant_detail.do", "","width=600, height=400, left=500, top=300")
+}
+
+</script>
+</body>
+</html>

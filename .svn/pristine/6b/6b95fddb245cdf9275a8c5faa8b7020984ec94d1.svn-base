@@ -1,0 +1,126 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.CaseVO;
+import kr.or.ddit.dto.CoMedVO;
+
+
+public class CoMedDAOImpl implements CoMedDAO{
+
+	private SqlSession session;
+	private CoMedDAO comedDao;
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	public void setCo_medDao(CoMedDAO comedDao) {
+		this.comedDao = comedDao;
+	}
+
+	//전체 협진리스트
+	@Override
+	public List<CoMedVO> selectAll(SearchCriteria cri) throws SQLException {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		System.out.println("limit : "+limit);
+		RowBounds rowBounds = new RowBounds(offset,limit);
+
+		List<CoMedVO> coopermainlist= session.selectList("Co_Med-Mapper.selectAll",cri,rowBounds);
+
+		return coopermainlist;
+	}
+	@Override
+	public List<CoMedVO> coopermain_doctors(String coNo) throws SQLException {
+		List<CoMedVO> coopermain_doctors = session.selectList("Co_Med-Mapper.coopermain_doctors",coNo);
+		return coopermain_doctors;
+	}
+
+	//페이징...
+	@Override
+	public int selectSearchCooperationCount(SearchCriteria cri) throws Exception {
+		int count = session.selectOne("Co_Med-Mapper.selectSearchListCount",cri);
+		return count;
+	}
+
+
+
+	//나의 전공과 일치
+	@Override
+	public List<CoMedVO> myCooperation(String maNo) throws SQLException {
+		String maName = session.selectOne("Co_Med-Mapper.selectName",maNo);
+		List<CoMedVO> myCooperationList = session.selectList("Co_Med-Mapper.myCooperation",maName);
+		System.out.println("dao에서!==>"+myCooperationList);
+		return myCooperationList;
+	}
+	@Override
+	public List<CoMedVO> myCooperation_doctors(String coNo) throws SQLException {
+		System.out.println("dao에서 cono!!!"+coNo);
+		List<CoMedVO> myCooperation_doctors = session.selectList("Co_Med-Mapper.myCooperation_doctors",coNo);
+		System.out.println("다오에서 doctors불러오기"+myCooperation_doctors);
+		return myCooperation_doctors;
+	}
+
+
+
+
+
+	//진행중인 협진리스트
+	@Override
+	public List<CoMedVO> proceedingCooperation(SearchCriteria cri) throws SQLException {
+		List<CoMedVO> proceedingCooperationlist= session.selectList("Co_Med-Mapper.proceedingCooperation",cri);
+		return proceedingCooperationlist;
+	}
+	@Override
+	public List<CoMedVO> proceeding_doctors(String coNo) throws SQLException {
+		List<CoMedVO> proceeding_doctors=session.selectList("Co_Med-Mapper.proceeding_doctors",coNo);
+		return proceeding_doctors;
+	}
+
+	//나의 전공과 일치
+	@Override
+	public List<CoMedVO> myCooperation_proceeding(String maNo) throws SQLException {
+		String maName = session.selectOne("Co_Med-Mapper.selectNameProceeding",maNo);
+		List<CoMedVO> myCooperation_proceeding = session.selectList("Co_Med-Mapper.myCooperation_proceeding",maName);
+		return myCooperation_proceeding;
+	}
+	@Override
+	public List<CoMedVO> myCooperation_proceedingdoctors(String coNo) throws SQLException {
+		List<CoMedVO> myCooperation_proceedingdoctors = session.selectList("Co_Med-Mapper.myCooperation_proceedingdoctors",coNo);
+		return myCooperation_proceedingdoctors;
+	}
+
+
+	//완료된 협진리스트
+	@Override
+	public List<CoMedVO> completeCooperation(SearchCriteria cri) throws SQLException {
+		List<CoMedVO> completeCooperationList = session.selectList("Co_Med-Mapper.completeCooperation",cri);
+		return completeCooperationList;
+	}
+	@Override
+	public List<CoMedVO> complete_doctors(String coNo) throws SQLException {
+		List<CoMedVO> complete_doctors = session.selectList("Co_Med-Mapper.complete_doctors",coNo);
+		return complete_doctors;
+	}
+
+	//나의 전공과 일치
+	@Override
+	public List<CoMedVO> myCooperation_complete(String maNo) throws SQLException {
+		String maName = session.selectOne("Co_Med-Mapper.selectNameComplete",maNo);
+		List<CoMedVO> myCooperation_complete = session.selectList("Co_Med-Mapper.myCooperation_complete",maName);
+		return myCooperation_complete;
+	}
+	@Override
+	public List<CoMedVO> myCooperation_completedoctors(String coNo) throws SQLException {
+		List<CoMedVO> myCooperation_completedoctors = session.selectList("Co_Med-Mapper.myCooperation_completedoctors",coNo);
+		return myCooperation_completedoctors;
+	}
+
+}
+

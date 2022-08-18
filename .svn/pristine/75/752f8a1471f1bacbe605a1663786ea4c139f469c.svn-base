@@ -1,0 +1,53 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.ReplyPagingCommand;
+import kr.or.ddit.dao.CaseReplyDAO;
+import kr.or.ddit.dto.CaseReplyVO;
+
+public class CaseReplyServiceImpl implements CaseReplyService{
+
+	private CaseReplyDAO replydao;
+
+	public void setReplydao(CaseReplyDAO replydao) {
+		this.replydao = replydao;
+	}
+
+	@Override
+	public void registReply(CaseReplyVO replyvo) throws SQLException {
+		int seq = replydao.selectCaseReplySeqNextValue();
+		String disNo = Integer.toString(seq);
+		if(seq < 10) {
+			disNo = "DR00" + disNo;
+		}else if(seq >= 10 && seq <= 100) {
+			disNo = "DR0" + disNo;
+		}else {
+			disNo = "DR" + disNo;
+		}
+		replyvo.setDisRplyNo(disNo);
+		replydao.registReply(replyvo);
+
+	}
+
+	@Override
+	public Map<String, Object> listReply(ReplyPagingCommand command, String disNo) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<CaseReplyVO> replylist = replydao.listReply(command);
+
+		int count = replydao.countReply(command.getDisNo());
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(command);
+		pageMaker.setTotalCount(count);
+
+		dataMap.put("replylist", replylist);
+		dataMap.put("pageMaker", pageMaker);
+		return dataMap;
+	}
+
+}

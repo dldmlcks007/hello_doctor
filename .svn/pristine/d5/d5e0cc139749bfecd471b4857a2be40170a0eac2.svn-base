@@ -1,0 +1,53 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.ReplyPagingCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.CaseReplyVO;
+
+
+public class CaseReplyDAOImpl implements CaseReplyDAO{
+
+	private SqlSession session;
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public void registReply(CaseReplyVO replyvo) throws SQLException {
+		session.update("CaseReply-Mapper.registReply", replyvo);
+
+	}
+
+	@Override
+	public int selectCaseReplySeqNextValue() throws SQLException {
+		int num = session.selectOne("CaseReply-Mapper.selectCaseReplySeqNextValue");
+		return num;
+	}
+
+	@Override
+	public List<CaseReplyVO> listReply(ReplyPagingCommand command) throws SQLException {
+
+		List<CaseReplyVO> list = session.selectList("CaseReply-Mapper.listReply", command);
+		return list;
+
+	}
+
+	@Override
+	public int countReply(String disNo) throws SQLException {
+		int count = session.selectOne("CaseReply-Mapper.countReply", disNo);
+		return count;
+	}
+
+	@Override
+	public void updateReply(CaseReplyVO replyvo) throws SQLException {
+		session.update("CaseReply-Mapper.updateReply", replyvo);
+
+	}
+
+}

@@ -1,0 +1,468 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.table>tbody>tr>td {
+	font-size: 15px;
+	padding-top: 15px;
+}
+
+.title {
+	font-size: 15px;
+	margin-bottom: 30px;
+	padding-top: 20px;
+}
+
+.clean {
+	clear: both;
+}
+
+.titleright {
+	float: right;
+}
+
+#mainname {
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.inputinfo {
+	    width: 18%;
+    height: 46px;
+    margin-top: 50px;
+    margin-left: 79%;
+    margin-right: 18px;
+}
+
+.collapsed {
+	height: 15px;
+}
+	.mediname{
+	width: 565px;
+	}
+	.medicine{
+		width: 100%;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.empty{
+		padding: 0px !important;
+	}
+	#selectboxdiv{
+	display: block;
+	height: 15px;
+
+	}
+</style>
+</head>
+<body>
+	<div class="ibox" style="margin-bottom: 0" id="prescriptionbox">
+
+
+		<div class="ibox-content" style="height: 100%;">
+			<div class="ibox-content" style="height: 100%;">
+				<div class="title">
+
+					<span id="mainname">My 오더세트</span>
+					<div class="titleright">
+						<button class="btn btn-outline btn-success dim" type="button"
+							id="regist"  onclick="location.href='myorderset_regist.do'">
+							<i class="fa fa-s1ign-out ">등록하기</i>
+						</button>
+
+						<input type="text" placeholder="별칭을 입력해 주세요"
+							class="typeahead_2 form-control"
+							style="width: 55%; display: inline-block; margin-left: 10px; margin-bottom: 10px; margin-top: 20px;">
+						<button class="btn btn-primary " type="button">
+							<i class="fa fa-search"></i>&nbsp;
+						</button>
+						<span class="clear"></span>
+
+					</div>
+					<div id="selectboxdiv">
+					 <select
+							class="form-control m-b inputinfo" name="account">
+							<option>정렬</option>
+							<option>사용여부</option>
+							<option>상태</option>
+							<option>날짜</option>
+						</select>
+					</div>
+
+				</div>
+				<div class="panel-body">
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-default">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th></th>
+									<th>별칭(병명)</th>
+									<th>사용여부</th>
+									<th>상태</th>
+									<th>작성일</th>
+									<th>상세보기</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td data-toggle="collapse" data-parent="#accordion"
+										href="#collapse1" class="collapsed clickable"
+										aria-expanded="false"><a><i
+											class="fa fa-chevron-down"></i></a></td>
+									<td>아토피(소아)</td>
+									<td>Y</td>
+									<td>결과 작성 완료</td>
+									<td>2022-06-27</td>
+									<td><button type="button"
+											class="btn btn-outline btn-info  dim">상세보기</button></td>
+
+								</tr>
+								<tr>
+									<td colspan="6" class="empty">
+										<div id="collapse1" class="panel-collapse collapse in" data-parent="#accordion">
+											<div class="panel-body">
+											<table class="medicine">
+													<tbody>
+														<tr>
+															<td class="mediname">소아용프리마란시럽</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">프로토픽 연고</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">소야용에포프림연질캡슐</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														</tbody>
+														</table>
+
+											</div>
+										</div>
+
+									</td>
+								</tr>
+								<tr>
+									<td data-toggle="collapse" data-parent="#accordion"
+										href="#collapse2" class="collapsed clickable"
+										aria-expanded="false"><a><i
+											class="fa fa-chevron-down"></i></a></td>
+									<td>아토피(소아)</td>
+									<td>Y</td>
+									<td>결과 작성 완료</td>
+									<td>2022-06-27</td>
+									<td><button type="button"
+											class="btn btn-outline btn-info  dim">상세보기</button></td>
+
+								</tr>
+								<tr>
+									<td colspan="6" class="empty">
+										<div id="collapse2" class="panel-collapse collapse in" data-parent="#accordion">
+											<div class="panel-body">
+												<table class="medicine">
+													<tbody>
+														<tr>
+															<td class="mediname">소아용프리마란시럽</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">프로토픽 연고</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">소야용에포프림연질캡슐</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														</tbody>
+														</table>
+											</div>
+										</div>
+
+									</td>
+								</tr>
+								<tr>
+									<td data-toggle="collapse" data-parent="#accordion"
+										href="#collapse3" class="collapsed clickable"
+										aria-expanded="false"><a><i
+											class="fa fa-chevron-down"></i></a></td>
+									<td>아토피(소아)</td>
+									<td>Y</td>
+									<td>결과 작성 완료</td>
+									<td>2022-06-27</td>
+									<td><button type="button"
+											class="btn btn-outline btn-info  dim">상세보기</button></td>
+
+								</tr>
+								<tr>
+									<td colspan="6" class="empty">
+										<div id="collapse3" class="panel-collapse collapse in" data-parent="#accordion">
+											<div class="panel-body">
+											<table class="medicine">
+													<tbody>
+														<tr>
+															<td class="mediname">소아용프리마란시럽</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">프로토픽 연고</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">소야용에포프림연질캡슐</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														</tbody>
+														</table>
+											</div>
+										</div>
+
+									</td>
+								</tr>
+								<tr>
+									<td data-toggle="collapse" data-parent="#accordion"
+										href="#collapse4" class="collapsed clickable"
+										aria-expanded="false"><a><i
+											class="fa fa-chevron-down"></i></a></td>
+									<td>아토피(소아)</td>
+									<td>Y</td>
+									<td>결과 작성 완료</td>
+									<td>2022-06-27</td>
+									<td><button type="button"
+											class="btn btn-outline btn-info  dim">상세보기</button></td>
+
+								</tr>
+								<tr>
+									<td colspan="6" class="empty">
+										<div id="collapse4" class="panel-collapse collapse in" data-parent="#accordion">
+											<div class="panel-body">
+											<table class="medicine">
+													<tbody>
+														<tr>
+															<td class="mediname">소아용프리마란시럽</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">프로토픽 연고</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">소야용에포프림연질캡슐</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														</tbody>
+														</table>
+											</div>
+										</div>
+
+									</td>
+								</tr>
+								<tr>
+									<td data-toggle="collapse" data-parent="#accordion"
+										href="#collapse5" class="collapsed clickable"
+										aria-expanded="false"><a><i
+											class="fa fa-chevron-down"></i></a></td>
+									<td>아토피(소아)</td>
+									<td>Y</td>
+									<td>결과 작성 완료</td>
+									<td>2022-06-27</td>
+									<td><button type="button"
+											class="btn btn-outline btn-info  dim">상세보기</button></td>
+
+								</tr>
+								<tr>
+									<td colspan="6" class="empty">
+										<div id="collapse5" class="panel-collapse collapse in" data-parent="#accordion">
+											<div class="panel-body">
+											<table class="medicine">
+													<tbody>
+														<tr>
+															<td class="mediname">소아용프리마란시럽</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">프로토픽 연고</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">소야용에포프림연질캡슐</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														</tbody>
+														</table>
+											</div>
+										</div>
+
+									</td>
+								</tr>
+								<tr>
+									<td data-toggle="collapse" data-parent="#accordion"
+										href="#collapse6" class="collapsed clickable"
+										aria-expanded="false"><a><i
+											class="fa fa-chevron-down"></i></a></td>
+									<td>아토피(소아)</td>
+									<td>Y</td>
+									<td>결과 작성 완료</td>
+									<td>2022-06-27</td>
+									<td><button type="button"
+											class="btn btn-outline btn-info  dim">상세보기</button></td>
+
+								</tr>
+								<tr>
+									<td colspan="6" class="empty">
+										<div id="collapse6" class="panel-collapse collapse in" data-parent="#accordion">
+											<div class="panel-body">
+											<table class="medicine">
+													<tbody>
+														<tr>
+															<td class="mediname">소아용프리마란시럽</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">프로토픽 연고</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">소야용에포프림연질캡슐</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														</tbody>
+														</table>
+											</div>
+										</div>
+
+									</td>
+								</tr>
+								<tr>
+									<td data-toggle="collapse" data-parent="#accordion"
+										href="#collapse7" class="collapsed clickable"
+										aria-expanded="false"><a><i
+											class="fa fa-chevron-down"></i></a></td>
+									<td>아토피(소아)</td>
+									<td>Y</td>
+									<td>결과 작성 완료</td>
+									<td>2022-06-27</td>
+									<td><button type="button"
+											class="btn btn-outline btn-info  dim">상세보기</button></td>
+
+								</tr>
+								<tr>
+									<td colspan="6" class="empty">
+										<div id="collapse7" class="panel-collapse collapse in" data-parent="#accordion">
+											<div class="panel-body">
+											<table class="medicine">
+													<tbody>
+														<tr>
+															<td class="mediname">소아용프리마란시럽</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">프로토픽 연고</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														<tr>
+															<td class="mediname">소야용에포프림연질캡슐</td>
+															<td>1(mg)</td>
+															<td>3</td>
+															<td><span class="numbertd">3</span>
+															</td>
+														</tr>
+														</tbody>
+														</table>
+											</div>
+										</div>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+
+				</div>
+			</div>
+
+		<table style="width:100%; font-size: 20px; margin-bottom: 200px;">
+<tfoot>
+                                <tr>
+                                    <td colspan="5" class="footable-visible">
+                                        <ul class="pagination float-right"><li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li><li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li><li class="footable-page active"><a data-page="0" href="#">1</a></li><li class="footable-page"><a data-page="1" href="#">2</a></li><li class="footable-page"><a data-page="2" href="#">3</a></li><li class="footable-page"><a data-page="3" href="#">4</a></li><li class="footable-page"><a data-page="4" href="#">5</a></li><li class="footable-page-arrow"><a data-page="next" href="#next">›</a></li><li class="footable-page-arrow"><a data-page="last" href="#last">»</a></li></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+</table>
+
+		</div>
+
+		</div>
+	</div>
+
+
+</body>
+</html>

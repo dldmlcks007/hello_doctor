@@ -1,0 +1,21 @@
+package kr.or.ddit.dto;
+
+public class MajorVO {
+	private String maNo      ;
+	private String maName    ;
+
+	public String getMaNo() {
+		return maNo;
+	}
+	public void setMaNo(String maNo) {
+		this.maNo = maNo;
+	}
+	public String getMaName() {
+		return maName;
+	}
+	public void setMaName(String maName) {
+		this.maName = maName;
+	}
+
+
+}

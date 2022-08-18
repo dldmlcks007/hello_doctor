@@ -1,0 +1,23 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.OtherDoctorCommand;
+import kr.or.ddit.dto.CoDoctorVO;
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.dto.MajorVO;
+
+public interface DoctorDAO {
+
+	DoctorVO doctorLogin(DoctorVO vo)throws SQLException;
+
+	DoctorVO profileChange(DoctorVO vo)throws SQLException;
+	String searchDoctorName(String d_id)throws SQLException;
+	DoctorVO selectDoctorVO(String dId) throws SQLException;
+	List<MajorVO> majorList()throws SQLException;
+	List<MajorVO> majorDoctors(String maNo)throws SQLException;
+	MajorVO detailDoctor(String doId)throws SQLException;
+	List<CoDoctorVO> coDoctor(OtherDoctorCommand command)throws SQLException;
+
+}

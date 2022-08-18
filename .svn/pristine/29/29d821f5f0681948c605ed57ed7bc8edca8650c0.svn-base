@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="Orderset-Mapper">
+  
+  <sql id="search">
+		<if test="searchType == 'c'.toString()">
+			and o_cla like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'd'.toString()">
+			and doc_id like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 't'.toString()">
+			and (
+			o_dname like '%'||#{keyword}||'%'
+			or
+			o_title like '%'||#{keyword}||'%'						
+			)			
+		</if>
+		<if test="searchType == 'cdt'.toString()">
+			and (
+			o_cla like '%'||#{keyword}||'%'
+			or
+			doc_id like '%'||#{keyword}||'%'
+			or
+			o_dname like '%'||#{keyword}||'%'						
+			or
+			o_title like '%'||#{keyword}||'%'						
+			)			
+		</if>
+	</sql>
+	
+  <select id="selectOrdersetList" resultType="ordersetVO">
+		SELECT
+		    a.o_no
+		  , b.d_name
+		  , a.o_dname
+		  , a.o_viewcnt
+		  , a.o_cla
+		  , a.o_target
+		  , to_char(a.o_regdate,'YYYY-MM-DD')as o_regdate
+		  , a.o_caution
+		  , a.o_result
+		  , a.del_yn
+		  , a.o_title
+		FROM
+		    drug_orderset a
+		  , doctor        b
+		WHERE
+	        b.d_id = a.doc_id
+	    AND o_no IS NOT NULL			  	
+		<include refid="search" />
+		order by o_regdate desc
+  </select>
+  
+  <select id="selectDrugList" parameterType="string" resultType="ordersetVO">
+		SELECT
+		    o_drug
+		  , o_no
+		  , quantity
+		  , dg_aday
+		  , dg_days
+		FROM
+		    drugs
+		WHERE
+		    o_no = #{o_no}
+  </select>
+  
+   <select id="selectOrdersetListCount" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			drug_orderset
+		WHERE 
+			o_no IS NOT NULL 			  	
+		<include refid="search" />
+		order by o_regdate desc
+	</select>
+  
+  </mapper>

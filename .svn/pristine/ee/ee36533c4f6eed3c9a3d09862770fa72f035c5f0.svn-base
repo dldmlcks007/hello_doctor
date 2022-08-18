@@ -1,0 +1,113 @@
+package kr.or.ddit.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.dto.ChartFormVO;
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.dto.MediRecoVO;
+import kr.or.ddit.dto.MyOrderListVO;
+import kr.or.ddit.dto.PatientVO;
+import kr.or.ddit.service.MediRecoService;
+
+
+
+
+
+@Controller
+@RequestMapping("medi")
+public class MediController {
+	@Autowired
+	private mediRecoservice mediRecoservice;
+
+	@RequestMapping("form")
+	public String main(HttpSession session, Model model) throws Exception {
+		String url = "medi/mediForm";
+		DoctorVO doctor = (DoctorVO) session.getAttribute("doctorLogin");
+		String dId = doctor.getdId();
+
+
+
+			Map<String, Object> map = mediRecoservice.selectAllReco(dId);
+
+			model.addAttribute("patient", map.get("patient"));
+			model.addAttribute("orderset", map.get("orderset"));
+
+		return url;
+	}
+	@RequestMapping("chart")
+	public String chart(String p_no, Model model, HttpSession session) throws Exception {
+		String url="medi/chart";
+		DoctorVO doctor = (DoctorVO) session.getAttribute("doctorLogin");
+		String dId = doctor.getdId();
+			Map<String,Object> map = mediRecoservice.selectOneReco(pNo, dId);
+
+			 model.addAttribute("patient", map.get("patient"));
+			 model.addAttribute("orderset", map.get("orderset"));
+			 model.addAttribute("pastreco", map.get("pastreco"));
+			 model.addAttribute("patientinfo", map.get("patientinfo"));
+
+		return url;
+	}
+	@RequestMapping("cochart")
+	public String cochart(String pNo, String taNo,Model model, HttpSession session ) throws Exception{
+		String url="medi/chart";
+		DoctorVO doctor = (DoctorVO) session.getAttribute("doctorLogin");
+		String dId = doctor.getdId();
+
+			Map<String,Object> map = mediRecoservice.selectOneReco(pNo, dId);
+
+			 model.addAttribute("patient", map.get("patient"));
+			 model.addAttribute("orderset", map.get("orderset"));
+			 model.addAttribute("pastreco", map.get("pastreco"));
+			 model.addAttribute("patientinfo", map.get("patientinfo"));
+			 model.addAttribute("taNo", taNo);
+		return url;
+
+	}
+
+	@RequestMapping("detailImg")
+	public String detailImg(String img,Model model ) {
+
+		String url = "medi/detailImg";
+
+		model.addAttribute("img", img);
+		return url;
+
+	}
+	@RequestMapping("pastcooper")
+	public String pastcooper() {
+		String url = "medi/pastcooper";
+
+		return url;
+
+	}
+	@RequestMapping("issueregist")
+	public String issueregist() {
+		String url = "medi/issueregist";
+
+		return url;
+
+
+	}
+	@RequestMapping("automodify")
+	public String automodify() {
+		String url = "medi/automodify";
+
+		return url;
+	}
+	@RequestMapping("webcapture")
+	public String webcapture() {
+		String url = "medi/webcapture";
+
+		return url;
+	}
+
+}

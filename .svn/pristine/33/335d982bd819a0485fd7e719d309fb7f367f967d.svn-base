@@ -1,0 +1,54 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+
+import java.util.List;
+
+import kr.or.ddit.dao.CooperMainDao;
+import kr.or.ddit.dto.IssueVO;
+import kr.or.ddit.dto.JoinCooperVO;
+import kr.or.ddit.dto.MyHistoryCommentVO;
+import kr.or.ddit.dto.NotiVO;
+
+
+public class CooperMainServiceImpl implements CooperMainService {
+
+	private CooperMainDao cooperMainDao;
+	public void setCooperMainDao(CooperMainDao cooperMainDao) {
+		this.cooperMainDao = cooperMainDao;
+	}
+
+
+	//참여중인 협진리스트 가져오기
+	@Override
+	public List<JoinCooperVO> selectCooperList(String d_id) throws SQLException {
+		List<JoinCooperVO> cooList = cooperMainDao.selectCooperList(d_id);
+		return  cooList;
+	}
+
+
+	@Override
+	public List<IssueVO> selectIssueList(String d_id) throws SQLException {
+		List<IssueVO> issueList = cooperMainDao.selectIssueList(d_id);
+		return issueList;
+	}
+
+
+	@Override
+	public List<MyHistoryCommentVO> selectHistoryComment(String d_id) throws SQLException {
+		List<MyHistoryCommentVO>  historyCommentList = cooperMainDao.selectHistoryComment(d_id);
+		return historyCommentList;
+	}
+
+
+	@Override
+	public List<NotiVO> selectNoti(String d_id) throws SQLException {
+		List<NotiVO> notiList = cooperMainDao.selectNoti(d_id);
+		return notiList;
+	}
+
+
+
+
+
+}

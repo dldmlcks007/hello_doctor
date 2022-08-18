@@ -1,0 +1,90 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class Co_MedVO {
+	
+	private String co_no         ;
+	private String p_no          ;
+	private String co_name       ;
+	private String co_doc        ;
+	private String co_disease    ;
+	private String co_opinion    ;
+	private Date co_open_date  ;
+	private int co_ing_status ;
+	private String co_release    ;
+	private Date co_start_date ;
+	private int co_importance ;
+	
+	
+	public String getCo_no() {
+		return co_no;
+	}
+	public void setCo_no(String co_no) {
+		this.co_no = co_no;
+	}
+	public String getP_no() {
+		return p_no;
+	}
+	public void setP_no(String p_no) {
+		this.p_no = p_no;
+	}
+	public String getCo_name() {
+		return co_name;
+	}
+	public void setCo_name(String co_name) {
+		this.co_name = co_name;
+	}
+	public String getCo_doc() {
+		return co_doc;
+	}
+	public void setCo_doc(String co_doc) {
+		this.co_doc = co_doc;
+	}
+	public String getCo_disease() {
+		return co_disease;
+	}
+	public void setCo_disease(String co_disease) {
+		this.co_disease = co_disease;
+	}
+	public String getCo_opinion() {
+		return co_opinion;
+	}
+	public void setCo_opinion(String co_opinion) {
+		this.co_opinion = co_opinion;
+	}
+	public Date getCo_open_date() {
+		return co_open_date;
+	}
+	public void setCo_open_date(Date co_open_date) {
+		this.co_open_date = co_open_date;
+	}
+	public int getCo_ing_status() {
+		return co_ing_status;
+	}
+	public void setCo_ing_status(int co_ing_status) {
+		this.co_ing_status = co_ing_status;
+	}
+	public String getCo_release() {
+		return co_release;
+	}
+	public void setCo_release(String co_release) {
+		this.co_release = co_release;
+	}
+	public Date getCo_start_date() {
+		return co_start_date;
+	}
+	public void setCo_start_date(Date co_start_date) {
+		this.co_start_date = co_start_date;
+	}
+	public int getCo_importance() {
+		return co_importance;
+	}
+	public void setCo_importance(int co_importance) {
+		this.co_importance = co_importance;
+	}
+	
+	
+	
+
+}

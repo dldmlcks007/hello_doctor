@@ -1,0 +1,25 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+public class Medi_RecoDAOImpl implements Medi_RecoDAO {
+	private SqlSession session;
+
+
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public List<Map<String, String>> selectAllReco(String d_id) throws SQLException {
+		List<Map<String,String>> list = session.selectList("Medi_Reco-Mapper.selectAllReco", d_id);
+
+		return list;
+	}
+
+}

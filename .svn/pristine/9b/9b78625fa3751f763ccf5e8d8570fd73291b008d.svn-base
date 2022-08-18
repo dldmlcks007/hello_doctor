@@ -1,0 +1,510 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link href="<%=request.getContextPath() %>/resources/css/plugins/iCheck/custom.css" rel="stylesheet">
+<style type="text/css">
+	div{
+		border: 1px solid gray;
+		
+	}
+	.diagnosis{
+		width: 70%;
+		float:left;
+		height: 450px;
+	}
+	.history{
+		width: 30%;
+		float: right;
+		height: 900px;
+	}
+	.clean{
+		clear: both;
+	}
+	.rest{
+		width: 70%;
+		float:left;
+		height: 450px;
+	}
+	.container{
+		max-width: none;
+		margin: 0;
+		padding: 0;
+		height: 100%;
+	}
+	.buttonplace{
+		width: 100%;
+		height: 70px;
+		    padding-top: 13px;
+    padding-left: 30px;
+    padding-right: 15px;
+		
+	}
+	.todaydiagnosis, .alldiagnosis{
+		width: 50%;
+		height: 100%;
+		float:left;
+	}
+	.allrest{
+		width: 35%;
+		height: 100%;
+	float:left;
+	}
+	.issue{
+		width: 65%;
+		height: 100%;
+	float:left;
+	}
+	.i-checks{
+		display: inline-block;
+		float: right;s
+	}
+	.ibox-title{
+		margin: 0;
+		padding : 0;
+		padding-top: 10px;
+	}
+	
+	.time{
+		font-size: 70%;
+	}
+
+.titlefont{
+	font-size: 15px;
+}
+.ibox{
+	margin-bottom : 0px;
+}
+.ibox-content{
+    padding: 0;
+    display: block;
+    height: 400px;
+    overflow: auto;
+}
+ 
+.fa-plus-circle::before{
+	font-size: 20px;
+}
+.btn-default{
+   
+    width: 25px;
+    height: 20px;
+    padding: 0;
+    margin-left: 12px;
+}
+button.dim{
+ margin-bottom: 0 !important;
+ padding-top: 0;
+}
+.selectbox{
+	 width: 130px;
+    float: right;
+    margin-right: 20px;
+
+    font-size: 15px
+}
+.nav-tabs > li > a{
+	width: 80px;
+	padding: 0;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 8px;
+	margin-right: 5px;
+	
+}
+.tabicon{
+
+	font-size: 20px;
+}
+.panel-body{
+	height: 380px;
+	
+	margin:0;
+	
+}
+.tabs-container .panel-body{
+padding:0;
+}
+.disc{
+	margin-top: 30px;
+	font-size: 50px;
+	width: 20%;
+	float: left;
+}
+.download{
+width: 100%;
+height:13%;
+padding:0;
+
+
+}
+.fileinfo{
+	width:80%;
+	float: right;
+	padding-left: 5px;
+
+}
+#recordtable > tbody > tr > td, #recordtable > tfoot > tr > td{
+	padding:0;
+	border-top: 1px solid black;
+}
+#recordtable > tbody > tr{
+	display: flex;
+}
+#recordtable > tbody{
+	display: block;
+    overflow: auto;
+    height: 380px;
+}
+#vertical-timeline{
+	margin: 0;
+	width: 100%;
+}
+.datefont{
+	color:#1ab394;
+}
+.historyibox{
+	height: 850px;
+
+}
+</style>
+</head>
+<body>
+<div class="container">
+			<div class="buttonplace">
+			<button class="btn btn-outline btn-warning dim" type="button">업무등록</button>
+			<button class="btn btn-outline btn-success  dim" type="button">전체 채팅</button>
+			<button class="btn btn-outline btn-primary  dim" type="button">의료진 초대</button>
+			<button class="btn btn-outline btn-danger  dim" type="button" style="float:right">협진 종료</button>
+			</div>
+			<div class="diagnosis">
+			<div class="todaydiagnosis">
+			<div class="ibox">
+                        <div class="ibox-title">
+                           <span class="titlefont">오늘 진료</span>
+                            <div class="i-checks"><label class=""> <div class="icheckbox_square-green" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>나의 진료 </label></div>
+                        </div>
+                        <div class="ibox-content" style="">
+
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>진료일시</th>
+                                    <th>담당의료진</th>
+                                    <th>진료구분</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>입원 치료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래 진료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>입원치료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래진료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래진료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래진료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래진료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래진료</td>
+                                </tr>
+                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+			
+			
+			</div>
+			<div class="alldiagnosis">
+			
+			<div class="ibox">
+                        <div class="ibox-title">
+                           <span class="titlefont">전체 진료</span><button class="btn btn-outline btn-default dim" type="button"><i class="fa fa-plus-circle"></i></button>
+                             
+                            <div class="i-checks"><label class=""> <div class="icheckbox_square-green" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>나의 진료 </label></div>
+                       <select class="form-control selectbox" name="account">
+                          
+                                        <option>최신순</option>
+                                        <option>등록일순</option>
+                                        
+                                    </select>
+                        </div>
+                        <div class="ibox-content" style="">
+
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>진료일시</th>
+                                    <th>담당의료진</th>
+                                    <th>진료구분</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>입원 치료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래 진료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>입원치료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래진료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래진료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래진료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래진료</td>
+                                </tr>
+                                 <tr>
+                                    <td class="time">2022-07-05 09:15</td>
+                                    <td>이정규</td>
+                                    <td>외래진료</td>
+                                </tr>
+                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+			
+			
+			</div>
+			</div>
+			<div class="history">
+			
+			 <div class="ibox-title">
+                          <a style="font-size: 20px"><i class="fa fa-history"></i>히스토리</a>
+                          
+                          <select class="form-control selectbox" name="account" >
+                          
+                                        <option>최신순</option>
+                                        <option>등록일순</option>
+                                        
+                                    </select>
+                        </div>
+							<div class="ibox-content historyibox" id="ibox-content">
+
+                        <div id="vertical-timeline" class="vertical-container dark-timeline">
+                            <div class="vertical-timeline-block">
+                                <div class="vertical-timeline-icon navy-bg">
+                                    <i class="fa fa-briefcase"></i>
+                                </div>
+
+                                <div class="vertical-timeline-content">
+                                    <h2>노혜지(정신의학과)</h2>
+                                   	<p>외래진료</p>
+                                    <span class="vertical-date">
+                                      
+                                        <p class="datefont">2022-05-23</p>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="vertical-timeline-block">
+                                <div class="vertical-timeline-icon blue-bg">
+                                    <i class="fa fa-file-text"></i>
+                                </div>
+
+                                <div class="vertical-timeline-content">
+                                    <h2>Send documents to Mike</h2>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+                                    <a href="#" class="btn btn-sm btn-success"> Download document </a>
+                                    <span class="vertical-date">
+                                        Today <br>
+                                        <small>Dec 24</small>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="vertical-timeline-block">
+                                <div class="vertical-timeline-icon lazur-bg">
+                                    <i class="fa fa-coffee"></i>
+                                </div>
+
+                                <div class="vertical-timeline-content">
+                                    <h2>Coffee Break</h2>
+                                    <p>Go to shop and find some products. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. </p>
+                                    <a href="#" class="btn btn-sm btn-info">Read more</a>
+                                    <span class="vertical-date"> Yesterday <br><small>Dec 23</small></span>
+                                </div>
+                            </div>
+
+                            <div class="vertical-timeline-block">
+                                <div class="vertical-timeline-icon yellow-bg">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+
+                                <div class="vertical-timeline-content">
+                                    <h2>Phone with Jeronimo</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+                                    <span class="vertical-date">Yesterday <br><small>Dec 23</small></span>
+                                </div>
+                            </div>
+
+                            <div class="vertical-timeline-block">
+                                <div class="vertical-timeline-icon lazur-bg">
+                                    <i class="fa fa-user-md"></i>
+                                </div>
+
+                                <div class="vertical-timeline-content">
+                                    <h2>Go to the doctor dr Smith</h2>
+                                    <p>Find some issue and go to doctor. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. </p>
+                                    <span class="vertical-date">Yesterday <br><small>Dec 23</small></span>
+                                </div>
+                            </div>
+
+                            <div class="vertical-timeline-block">
+                                <div class="vertical-timeline-icon navy-bg">
+                                    <i class="fa fa-comments"></i>
+                                </div>
+
+                                <div class="vertical-timeline-content">
+                                    <h2>Chat with Monica and Sandra</h2>
+                                    <p>Web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). </p>
+                                    <span class="vertical-date">Yesterday <br><small>Dec 23</small></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+			</div><span class="clean"></span>
+			
+			
+			<div class="rest">
+			<div class="allrest">
+			<div class="tabs-container" >
+                        <ul class="nav nav-tabs" style="background-color: #e7eaec">
+                            <li><a class="nav-link active" data-toggle="tab" href="#tab-3"> <i class="fa fa-laptop tabicon" ></i>로그</a></li>
+                            <li><a class="nav-link" data-toggle="tab" href="#tab-4"><i class="fa fa-user-md tabicon"></i>의료진</a></li>
+                            <li><a class="nav-link" data-toggle="tab" href="#tab-5"><i class="fa fa-database tabicon"></i>자료실</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab-3" class="tab-pane active">
+                                <div class="panel-body">
+                                
+                                
+                                </div>
+                            </div>
+                            <div id="tab-4" class="tab-pane">
+                                <div class="panel-body">
+                                   
+                                </div>
+                            </div>
+                            <div id="tab-5" class="tab-pane">
+                                <div class="panel-body">
+                                  <table class="table table-bordered" id="recordtable">
+
+						<tbody>
+						<tr>
+								<td class="download">
+								
+								<div class="disc"><a href="#"><i class="fa fa-floppy-o "></i></a></div>
+								<div class="fileinfo">
+								<p><label>파일명 : </label>박태정_CHESTPA</p>
+								<p><label>등록일 : </label>2022-07-05</p>
+								<p><label>작성자 : </label>노혜지</p>
+								</div>
+								
+								</td>
+
+							</tr>
+							<tr>
+								<td class="download">
+								
+								<div class="disc"><a href="#"><i class="fa fa-floppy-o "></i></a></div>
+								<div class="fileinfo">
+								<p><label>파일명 : </label>박태정_CHESTPA</p>
+								<p><label>등록일 : </label>2022-07-05</p>
+								<p><label>작성자 : </label>노혜지</p>
+								</div>
+								
+								</td>
+
+							</tr>
+							<tr>
+								<td class="download">
+								
+								<div class="disc"><a href="#"><i class="fa fa-floppy-o "></i></a></div>
+								<div class="fileinfo">
+								<p><label>파일명 : </label>박태정_CHESTPA</p>
+								<p><label>등록일 : </label>2022-07-05</p>
+								<p><label>작성자 : </label>노혜지</p>
+								</div>
+								
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+			
+			</div>
+			<div class="issue"></div>
+		</div>
+		</div>
+		
+		  <script src="<%=request.getContextPath() %>/resources/js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
+</body>
+</html>

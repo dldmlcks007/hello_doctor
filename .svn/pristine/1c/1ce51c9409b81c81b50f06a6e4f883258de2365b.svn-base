@@ -1,0 +1,35 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/cooperation") //대분류
+public class CooperationController {
+	
+	@RequestMapping("/agile") //기능
+	public String agile(){
+		String url = "cooperation/agile";
+		return url;
+	}
+	
+	@RequestMapping("/request") //기능
+	public String request(){
+		String url = "cooperation/request";
+		return url;
+	}
+	
+	@RequestMapping("/request_deny") //기능
+	public String request_deny(){
+		String url = "cooperation/request_deny";
+		return url;
+	}
+	
+	@RequestMapping("/request_permit") //기능
+	public String request_permit(){
+		String url = "cooperation/request_permit";
+		return url;
+	}
+}
+
+

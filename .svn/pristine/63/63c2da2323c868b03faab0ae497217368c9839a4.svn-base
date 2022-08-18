@@ -1,0 +1,26 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dto.ChartFormVO;
+import kr.or.ddit.dto.Medi_RecoVO;
+import kr.or.ddit.dto.PatientVO;
+import kr.or.ddit.dto.Sub_dVO;
+
+public interface Medi_RecoDAO {
+
+	List<ChartFormVO> selectAllReco(String d_id)throws SQLException;
+
+	List<Medi_RecoVO> pastmedireco(String p_no)throws SQLException;
+
+	PatientVO patientinfo(String p_no)throws SQLException;
+
+	String docuinput(String d_id)throws SQLException;
+
+	Medi_RecoVO pastsymptom(String m_no) throws SQLException;
+
+
+
+}

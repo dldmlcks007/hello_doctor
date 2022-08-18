@@ -1,0 +1,34 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.CaseVO;
+
+public interface Case_DAO {
+	
+	// paging
+	List<CaseVO> selectSearchCaseList(SearchCriteria cri)throws SQLException;
+	int selectSearchCaseListCount(SearchCriteria cri)throws SQLException;
+	
+	List<CaseVO> selectCase() throws SQLException;
+	List<CaseVO> selectCase(SearchCriteria cri) throws SQLException;
+	
+	// 시퀀스 다음값 가져오기
+	int selectCaseSeqNextValue() throws SQLException;
+	// insert case
+	void insertCase(CaseVO casevo) throws SQLException;
+	
+	// insert subcase
+	void insertSub(CaseVO casevo)throws SQLException;
+	
+	// detail
+	CaseVO selectCaseByNo(String dis_no)throws SQLException;
+	
+	// 조회수
+	void increaseViewCnt(String dis_no)throws SQLException;
+}

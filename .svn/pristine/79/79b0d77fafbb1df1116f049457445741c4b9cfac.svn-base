@@ -1,0 +1,76 @@
+package kr.or.ddit.controller;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.or.ddit.dto.DoctorVO;
+import kr.or.ddit.service.RegistService;
+import kr.or.ddit.util.Sendsms;
+
+@Controller
+@RequestMapping("regist")
+public class RegistController {
+
+	@Autowired
+	private RegistService service;
+
+	@RequestMapping("/")
+	public String main() {
+		String url="regist/regist";
+//		Sendsms.sendSMS("01071144823", "21231");
+		return url;
+	}
+
+	@RequestMapping("phonecheck")
+	public String pass() {
+		String url = "regist/phoneCheck";
+
+		return url;
+	}
+
+	@RequestMapping("doctorChart")
+	public String doctorChart() {
+		String url = "regist/doctorChart";
+
+		return url;
+	}
+
+	@RequestMapping("regist")
+	public String doctorChart(DoctorVO vo) {
+		String url = "regist/doctorChart";
+
+		return url;
+	}
+
+	@ResponseBody
+	@RequestMapping("major")
+	public ResponseEntity<List<String>> major(@RequestBody Map<String,String> vo) throws Exception{
+		String word = vo.get("word");
+		ResponseEntity<List<String>> entity = null;
+		List<String> result = null;
+
+		try {
+			result = service.registMajorList(word);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		entity = new ResponseEntity<List<String>>(result, HttpStatus.OK);
+
+		return entity;
+	}
+
+
+
+
+
+}

@@ -1,0 +1,94 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dao.CooperMyDao;
+import kr.or.ddit.dto.ChartPicFileVO;
+import kr.or.ddit.dto.CoDoctorListVO;
+import kr.or.ddit.dto.CoFreqVO;
+import kr.or.ddit.dto.CoTaskASubVO;
+import kr.or.ddit.dto.ComRecoVO;
+import kr.or.ddit.dto.LastChartFileVO;
+import kr.or.ddit.dto.LastPrescriptVO;
+import kr.or.ddit.dto.MyIssueVO;
+import kr.or.ddit.dto.ReserveHistoryVO;
+
+public class CooperMyServiceImpl implements CooperMyService {
+
+	private CooperMyDao cooperMyDao;
+	public void setCooperMyDao(CooperMyDao cooperMyDao) {
+		this.cooperMyDao = cooperMyDao;
+	}
+
+
+	@Override
+	public List<CoTaskASubVO> selectCoTaskList(String coNo) throws SQLException {
+		return cooperMyDao.selectCoTaskList(coNo);
+	}
+
+
+	@Override
+	public List<ReserveHistoryVO> selectHistoryList(String coNo) throws SQLException {
+
+		return cooperMyDao.selectHistoryList(coNo);
+	}
+
+
+	@Override
+	public ComRecoVO selectLast(String coNo) throws SQLException {
+		// TODO Auto-generated method stub
+		return cooperMyDao.selectLast(coNo);
+	}
+
+
+	@Override
+	public List<LastPrescriptVO> selectLastPrescript(String mNo) throws SQLException {
+
+		return cooperMyDao.selectLastPrescript(mNo);
+	}
+
+
+	@Override
+	public List<MyIssueVO> myIssueList(String coNo) throws SQLException {
+		// TODO Auto-generated method stub
+		return cooperMyDao.myIssueList(coNo);
+	}
+
+
+	@Override
+	public List<CoDoctorListVO> coDocList(String coNo) throws SQLException {
+		// TODO Auto-generated method stub
+		return cooperMyDao.coDocList(coNo);
+	}
+
+
+	@Override
+	public List<LastChartFileVO> selectChartFile(String mNo) throws SQLException {
+		// TODO Auto-generated method stub
+		return cooperMyDao.selectChartFile(mNo);
+	}
+
+
+	@Override
+	public List<ChartPicFileVO> selectChartPicFile(String mNo) throws SQLException {
+		// TODO Auto-generated method stub
+		return cooperMyDao.selectChartPicFile(mNo);
+	}
+
+
+	@Override
+	public List<ReserveHistoryVO> selectDateHistory(Map<String, String> map) throws SQLException {
+		// TODO Auto-generated method stub
+		return cooperMyDao.selectDateHistory(map);
+	}
+
+
+	@Override
+	public List<CoFreqVO> selectCoFreq(String dId) throws SQLException {
+		// TODO Auto-generated method stub
+		return cooperMyDao.selectCoFreq(dId);
+	}
+
+}

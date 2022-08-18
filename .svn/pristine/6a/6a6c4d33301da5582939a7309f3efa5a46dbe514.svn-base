@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Manager-Mapper">
+
+<select id="doctorListForPage" resultType="doctorListVO">
+   select
+    a.d_id
+  , a.ma_no
+  , a.d_name
+  , a.tel
+  , a.status
+  , a.regdate
+  , a.resident_num
+  , a.account_status
+  , a.retiredate
+  , a.sus_startdate
+  , a.sus_enddate
+  ,(select b.ma_name from major b where a.ma_no = b.ma_no) as maName
+from
+    doctor a
+</select>
+
+<select id="doctorListCount" resultType="int">
+	select count(*) from doctor
+</select>
+
+</mapper>

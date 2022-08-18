@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h3>처방내역 커스터마이징</h3>
+					<hr style="background-color: black; width: 1900px;">
+
+
+				</div>
+				<div class="ibox-content">
+
+					<form id="form" action="#" class="wizard-big">
+						<div class="bootstrap-duallistbox-container row moveonselect">
+							<div class="box1 col-md-6">
+								<label for="bootstrap-duallistbox-nonselected-list_" style="display: none;"></label> <span class="info-container"> <span class="info">가져올 처방내역</span>
+									<button type="button" class="btn clear1 pull-right btn-default btn-xs">show all</button>
+								</span> <input class="filter form-control" type="text" placeholder="Filter">
+								<div class="btn-group buttons">
+									<button type="button" class="btn moveall btn-default" title="Move all" style="width:400px;">
+										<i class="glyphicon glyphicon-arrow-right"></i> <i class="glyphicon glyphicon-arrow-right"></i>
+									</button>
+								</div>
+								<select multiple="multiple" id="bootstrap-duallistbox-nonselected-list_" class="form-control" name="_helper1" style="height: 162px;"></select>
+							</div>
+							<div class="box2 col-md-6">
+								<label for="bootstrap-duallistbox-selected-list_" style="display: none;"></label> <span class="info-container"> <span class="info">전체 처방내역</span>
+									<button type="button" class="btn clear2 pull-right btn-default btn-xs">show all</button>
+								</span> <input class="filter form-control" type="text" placeholder="Filter">
+								<div class="btn-group buttons">
+									</button>
+									<button type="button" class="btn removeall btn-default" title="Remove all" style="width:400px;">
+										<i class="glyphicon glyphicon-arrow-left"></i> <i class="glyphicon glyphicon-arrow-left"></i>
+									</button>
+								</div>
+								<select multiple="multiple" id="bootstrap-duallistbox-selected-list_" class="form-control" name="_helper2" style="height: 162px;"><option value="United States" data-sortindex="24">소아용프리마란시럽</option>
+									<option value="United Kingdom" data-sortindex="25">프로토픽연고</option>
+									<option value="Australia" data-sortindex="26">소아용에포프림연질캡슐</option>
+									<option selected="" value="Austria" data-sortindex="27">데스오웬로션</option></select>
+							</div>
+						</div>
+						<select class="form-control dual_select" multiple="" style="display: none;">
+							<option value="United States" data-sortindex="24">소아용프리마란시럽</option>
+							<option value="United Kingdom" data-sortindex="25">프로토픽연고</option>
+							<option value="Australia" data-sortindex="26">소아용에포프림연질캡슐</option>
+							<option selected="" value="Austria" data-sortindex="27">데스오웬로션</option>
+
+						</select>
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</body>
+</html>

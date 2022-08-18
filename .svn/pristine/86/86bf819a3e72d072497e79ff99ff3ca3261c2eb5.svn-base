@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="Orderset-Mapper">
+
+  <sql id="search">
+		<if test="searchType == 'c'.toString()">
+			and o_cla like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'd'.toString()">
+			and d_name like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 't'.toString()">
+			and (
+			o_dname like '%'||#{keyword}||'%'
+			or
+			o_title like '%'||#{keyword}||'%'
+			)
+		</if>
+		<if test="searchType == 'cdt'.toString()">
+			and (
+			o_cla like '%'||#{keyword}||'%'
+			or
+			d_name like '%'||#{keyword}||'%'
+			or
+			o_dname like '%'||#{keyword}||'%'
+			or
+			o_title like '%'||#{keyword}||'%'
+			)
+		</if>
+	</sql>
+
+  <select id="selectOrdersetList" resultType="ordersetVO">
+		SELECT
+		    a.o_no
+		  , b.d_name
+		  , a.o_dname
+		  , a.o_viewcnt
+		  , a.o_cla
+		  , a.o_target
+		  , to_char(a.o_regdate,'YYYY-MM-DD')as o_regdate
+		  , a.o_caution
+		  , a.o_result
+		  , a.del_yn
+		  , a.o_title
+		FROM
+		    drug_orderset a
+		  , doctor        b
+		WHERE
+	        b.d_id = a.doc_id
+	    AND o_no IS NOT NULL
+		<include refid="search" />
+		order by o_regdate desc
+  </select>
+
+  <select id="selectDrugList" parameterType="string" resultType="ordersetVO">
+		SELECT
+		    o_drug
+		  , o_no
+		  , quantity
+		  , dg_aday
+		  , dg_days
+		FROM
+		    drugs
+		WHERE
+		    o_no = #{oNo}
+  </select>
+
+   <select id="selectOrdersetListCount" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			drug_orderset
+		WHERE
+			o_no IS NOT NULL
+		AND del_yn = 'N'
+		<include refid="search" />
+		order by o_regdate desc
+	</select>
+
+	<select id="selectRecommendCount" parameterType="string" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			DRUG_RECOM
+		WHERE
+		    o_no = #{oNo}
+	</select>
+    <update id="insertOrderset" parameterType="ordersetCommand">
+	    INSERT INTO drug_orderset (
+	        o_no
+	        , doc_id
+	        , o_dname
+	        , o_viewcnt
+	        , o_cla
+	        , o_target
+	        , o_regdate
+	        , o_caution
+	        , o_result
+	        , del_yn
+	        , o_title
+	        , o_noti
+	    ) VALUES (
+	        #{oNo}
+	      , #{docId}
+	      , #{oDname}
+	      , 0
+	      , #{oCla}
+	      , #{oTarget}
+	      , sysdate
+	      , #{oCaution}
+	      , #{oResult}
+	      , 'N'
+	      , #{oTitle}
+	      , #{oNoti}
+	    )
+    </update>
+    <update id="insertDrugs" parameterType="ordersetVO">
+    	  INSERT
+		    INTO drugs (
+		        o_drug
+		        , o_no
+		        , quantity
+		        , dg_aday
+		        , dg_days
+		    ) VALUES (
+		        #{oDrug}
+		      , #{oNo}
+		      , #{quantity}
+		      , #{dgAday}
+		      , #{dgDays}
+		    )
+    </update>
+    <select id="selectOrdersetSeqNext" resultType="string" >
+    	select 'O' || lpad(os_seq.NEXTVAL,3,'0') as o_no FROM dual
+    </select>
+
+    <select id="searchDrugList" parameterType="string" resultType="ordersetVO">
+	    <![CDATA[
+		    SELECT
+			    a.cure_name, a.p_quantity, a.p_aday, a.p_days
+			FROM
+			    (
+			        SELECT
+			            m_no
+			          , cure_name
+			          , p_quantity, p_aday, p_days
+			          , count(*)
+			        FROM
+			            prescript
+			        GROUP BY
+			            m_no
+			          , cure_name
+			          , p_quantity, p_aday, p_days
+			        ORDER BY
+			            2 DESC
+			    )         a
+			  , medi_reco b
+			WHERE
+			        a.m_no = b.m_no
+			    AND b.d_name = #{keyword}
+			    AND rownum <= 5
+		    ]]>
+
+    </select>
+
+	<select id="selectMyMajor" parameterType="string" resultType="string">
+		SELECT
+		    a.ma_name
+		   ,a.ma_no
+		FROM
+		    major a
+		   ,doctor b
+		WHERE
+		    a.ma_no = b.ma_no
+		  AND
+		  	b.d_id = #{dId}
+	</select>
+	<select id="selectOrdersetDetail" parameterType="string" resultType="ordersetVO">
+			SELECT
+			    a.o_no
+			  , b.d_name
+			  , a.doc_id
+			  , a.o_dname
+			  , a.o_viewcnt
+			  , a.o_cla
+			  , a.o_target
+			  , to_char(a.o_regdate,'YYYY-MM-DD')as o_regdate
+			  , a.o_caution
+			  , a.o_result
+			  , a.del_yn
+			  , a.o_title
+	          , A.o_noti
+			FROM
+			    drug_orderset a
+			  , doctor        b
+			WHERE
+		        b.d_id = a.doc_id
+	        AND A.o_no = #{oNo}
+	</select>
+
+	<update id="increaseViewCnt" parameterType="string">
+		update
+			drug_orderset
+		set
+			o_viewcnt=o_viewcnt+1
+		where o_no=#{o_no}
+	</update>
+
+	<select id="selectRelationOrderset" parameterType="ordersetVO" resultType="ordersetVO">
+		   <![CDATA[
+		SELECT DISTINCT
+		    a.o_no
+		  , c.d_name
+		  , a.o_dname
+		  , a.o_viewcnt
+		  , a.o_cla
+		  , a.o_target
+		  , to_char(a.o_regdate, 'YYYY-MM-DD') AS o_regdate
+		  , a.o_caution
+		  , a.o_result
+		  , a.del_yn
+		  , a.o_title
+		FROM
+		    drugs         b
+		  , drug_orderset a
+		  , doctor        c
+		WHERE
+		        a.o_no = b.o_no
+		    AND a.doc_id = c.d_id
+		    AND a.o_dname = #{oDname}
+		    AND a.del_yn = 'N'
+		    AND EXISTS (
+		        SELECT
+		            1
+		        FROM
+		            (
+		                SELECT
+		                    b.o_drug
+		                FROM
+		                    drugs         b
+		                  , drug_orderset a
+		                WHERE
+		                        b.o_no = a.o_no
+		                    AND a.o_dname = #{oDname}
+		                    AND a.del_yn = 'N'
+		                INTERSECT
+		                SELECT
+		                    o_drug
+		                FROM
+		                    drugs
+		                WHERE
+		                    o_no = #{oNo}
+		            )
+		    )
+		    AND a.o_no NOT IN #{oNo}
+		    AND rownum <= 4
+	  ]]>
+	</select>
+	<update id="insertRecommand" parameterType="map" >
+		INSERT INTO DRUG_RECOM(o_no,d_id)
+ 		   VALUES (#{oNo},#{dId})
+	</update>
+
+	<update id="deleteRecommand" parameterType="map">
+		   DELETE FROM DRUG_RECOM
+			WHERE O_NO = #{oNo}
+			  and d_id = #{dId}
+	</update>
+
+	<select id="selectMyRecommand" parameterType="map" resultType="string">
+			(SELECT  1
+			  FROM drug_recom d
+			 WHERE d.o_no = #{oNo}
+			   AND d.d_id = #{dId}
+             )
+              union all
+
+              select 0
+              from dual
+            where not exists
+            (SELECT  1
+			  FROM drug_recom c
+			 WHERE c.o_no = #{oNo}
+			   AND c.d_id = #{dId}
+             )
+	</select>
+
+  </mapper>

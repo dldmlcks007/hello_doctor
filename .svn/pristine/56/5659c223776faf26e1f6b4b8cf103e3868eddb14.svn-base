@@ -1,0 +1,168 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Register</title>
+
+    <link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/css/animate.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/css/style.css" rel="stylesheet">
+
+<style type="text/css">
+body {
+   width: 1200px;
+   margin: 0 auto;
+}
+
+.fa-5x {
+    font-size: 10em;
+}
+
+.fa-3x {
+    font-size: 2.5em;
+}
+
+.form-control{
+
+	float: right;
+    margin-bottom: 20px;
+    width: 311px;
+}
+
+
+.registdiv{
+    float: left;
+
+}
+
+.loginscreen.middle-box {
+    width: 400px;
+}
+
+.logo-name {
+  color: #353030;
+    font-weight: bold;
+    letter-spacing: -10px;
+    margin-bottom: 0;
+    margin-left: 60px;
+}
+
+</style>
+
+
+</head>
+
+
+
+
+<body class="gray-bg">
+	
+		 <button class="btn btn-primary " type="button" style="position: absolute;margin-left: 802px;margin-top: 56.5%;border: 2px solid #0ea6d7;background-color: #0ea6d7;">
+                                             <i class="fa fa-check"></i>&nbsp;인증확인</button>
+         <button class="btn btn-primary " type="button" style="position: absolute;margin-left: 802px;margin-top: 52%;border: 2px solid #0ea6d7;background-color: #0ea6d7;">
+                                             <i class="fa fa-check"></i>&nbsp;인증확인</button>                                  
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name" style="font-size: 50px;">회원가입</h1>
+            </div>
+            	<h3 style="margin-left: 60px;">HELLO DOCTOR</h3>
+           		<div style="width: 200px;height: 130px;margin-left: 123px;">
+					<img alt="프로필" src="<%=request.getContextPath()%>/resources/img/profile.png" style="position: absolute; width: 147px;">
+						<i class="fa fa-pencil fa-3x" style=" margin-left: 110px; margin-top: 100px; color: #1ab394;"></i>
+           		 </div>
+			
+           
+            <form class="m-t" role="form" action="login.html">
+                <div class="form-group">
+                	<div class="registdiv" style=" margin-left: 50px; padding-top: 8px;">이름</div>
+                	<input type="text" class="form-control" placeholder="이름" required="">
+                </div>
+                 <div class="form-group">
+            	    <div class="registdiv" style="margin-bottom: 21px; padding-top: 35px;">주민등록번호</div>
+            	    <input type="text" class="form-control" style="width: 150px; float: left; margin-left: 10px;"
+            	    placeholder="주민등록번호" required=""><p style="position: absolute; margin-left: 242px; margin-top: 63px;">-</p>
+            	    <input type="password"class="form-control" style="width: 150px; float: right;">
+                </div>
+                 <div class="form-group">
+                   <div class="registdiv" style="margin-left: 38px; margin-top: 8px;">아이디</div>
+                   <input type="text" class="form-control" placeholder="아이디" required="">
+                   <button class="btn btn-primary" style=" position: absolute; float: right; margin-left: 223px; margin-top: 112px;" type="button">
+                   <i class="fa fa-check"></i>&nbsp;중복확인</button>
+                </div>
+                 <div class="form-group">
+                     <div class="registdiv" style="margin-left: 26px; margin-top: 37px;">비밀번호</div>
+                     <input type="text" class="form-control" placeholder="비밀번호" required="">
+                </div>
+                 <div class="form-group">
+                   <div class="registdiv" style="padding-top: 35px;">비밀번호 확인</div>
+                   <input type="text" class="form-control" placeholder="비밀번호 확인" required="">
+                </div>
+                <div class="form-group">
+                   	<div class="registdiv" style="padding-top: 37px; margin-left: 53px;">전공</div>
+                   		
+                   		<div class="input-group-prepend" style="margin-left: 91px;padding-top: 167px;">
+                                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button" aria-expanded="false">내과 </button>
+                                                <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 35px; left: 0px; will-change: top, left;">
+                                                    <li><a href="#">외과</a></li>
+                                                   
+                                                </ul>
+                                                 <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button" aria-expanded="false" style="margin-left: 6px; ">호흡기 내과</button>
+                                                <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 35px; left: 0px; will-change: top, left;">
+                                                    <li><a href="#">소화기 내과</a></li>
+                                                    <li><a href="#">순환기 내과</a></li>
+                                                    <li><a href="#">감염 내과</a></li>
+                                                    <li><a href="#">알레르기 내과</a></li>
+                                                </ul>
+                                                <button class="btn btn-primary " type="button" style="position: absolute; margin-left: 185px;">
+                                                <i class="fa fa-check"></i>&nbsp;세부전공 등록</button>
+                                                
+                       </div>
+                </div>
+                <div class="form-group">
+                    <div class="registdiv" style="padding-top: 7px; margin-left: 30px;">전화번호</div>
+                    <input type="password" class="form-control" placeholder="전화번호" required="">
+                    <button class="btn btn-primary " type="button" style="position: absolute;margin-left: 220px;margin-top: 1px;">
+                                             <i class="fa fa-check"></i>&nbsp;인증요청</button>
+                </div>
+                 <div class="form-group">
+                     <div class="registdiv" style="padding-top: 36px; margin-left: 42px;">이메일</div><input type="text" class="form-control" placeholder="이메일" required="">
+                	 <button class="btn btn-primary " type="button" style="position: absolute;margin-left: 220px;margin-top: 57px;">
+                                             <i class="fa fa-check"></i>&nbsp;인증요청</button> 
+                </div>
+                
+                <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+
+                <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+            </form>
+        </div>
+    </div>
+   
+    <!-- Mainly scripts -->
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/popper.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.js"></script>
+    <!-- iCheck -->
+    <script src="<%=request.getContextPath()%>/resources/js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    	</script>
+   
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- DAO -->
+<bean id="co_medDAO" class="kr.or.ddit.dao.Co_MedDAOImpl" p:session-ref="sqlSession"/>
+
+<!-- Service -->
+<bean id="co_medService" class="kr.or.ddit.service.Co_MedServiceImpl" p:co_medDAO-ref="co_medDAO"/>
+
+</beans>

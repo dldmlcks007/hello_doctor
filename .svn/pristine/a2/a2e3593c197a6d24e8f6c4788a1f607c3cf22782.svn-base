@@ -1,0 +1,26 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.Co_MedVO;
+
+public interface Co_MedService {
+	
+	// 전체 협진리스트
+	List<Co_MedVO> selectAll(String co_no) throws SQLException;
+
+	// 진행중인 협진리스트
+	List<Co_MedVO> proceedingCooperation(String co_no) throws SQLException;
+
+	// 진행중인 협진리스트 상세조회
+	public Co_MedVO selectOneProceed(String co_no) throws SQLException;
+
+	// 완료된 협진리스트
+	List<Co_MedVO> completeCooperation(String co_no) throws SQLException;
+
+	// 완료된 협진리스트 상세조회
+	public Co_MedVO selectOneComplete(String co_no) throws SQLException;
+}

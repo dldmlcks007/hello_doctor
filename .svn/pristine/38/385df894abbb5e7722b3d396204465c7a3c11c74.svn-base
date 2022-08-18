@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Scheduler-Mapper">
+<select id="TodayList" resultType="schedulerVO">
+	select distinct(a.rsv_no) as rsv_no,
+	to_char(a.rsv_day,'YYYY-MM-DD hh:mm')as rsv_day,
+	a.rsv_day,
+	a.rsv_name,
+	a.p_no, a.d_id,
+	b.d_name,
+	substr(c.p_rnum,0,8) as p_rnum,
+	c.p_sex
+	from reservation A, doctor B, patient C
+	where a.p_no=c.p_no
+	and a.d_id= b.d_id
+	and to_char(a.rsv_day, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
+	and a.d_id=#{d_id}
+	order by a.rsv_day
+</select>
+
+<select id="TodayCooperation" resultType="schedulerVO">
+	select distinct (a.ta_no) as ta_no,
+	a.co_no,
+	a.d_id,
+	b.d_name,
+	e.p_name,
+	substr(e.p_rnum,0,8) as p_rnum,
+	e.p_sex,
+	to_char(a.ta_date,'YYYY-MM-DD hh:mm')as rsvDay,
+	a.ta_name
+	from co_task A, doctor B, co_doctor C, co_med D, patient E
+	where a.d_id=b.d_id
+	and b.d_id=c.d_id
+	and d.p_no = e.p_no
+	and a.co_no = d.co_no
+	and to_char(a.ta_date, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
+	and a.d_id=#{d_id}
+	order by ta_date
+</select>
+
+
+</mapper>

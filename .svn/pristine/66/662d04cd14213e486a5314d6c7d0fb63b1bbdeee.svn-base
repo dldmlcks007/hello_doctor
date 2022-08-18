@@ -1,0 +1,93 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.CoTaskDAO;
+import kr.or.ddit.dao.MediRecoDAO;
+import kr.or.ddit.dao.SchedulerDAO;
+import kr.or.ddit.dto.ChartFormVO;
+import kr.or.ddit.dto.MyOrderListVO;
+import kr.or.ddit.dto.SchedulerVO;
+import kr.or.ddit.service.MediRecoServiceImpl.SortByDate;
+
+public class SchedulerServiceImpl implements SchedulerService{
+
+	private SchedulerDAO schedulerDao;
+	private MediRecoDAO mediRecoDAO;
+	private CoTaskDAO coTaskDAO;
+
+
+	public void setMediRecoDAO(MediRecoDAO mediRecoDAO) {
+		this.mediRecoDAO = mediRecoDAO;
+	}
+
+	public void setCoTaskDAO(CoTaskDAO coTaskDAO) {
+		this.coTaskDAO = coTaskDAO;
+	}
+	public void setSchedulerDao(SchedulerDAO schedulerDao) {
+		this.schedulerDao = schedulerDao;
+	}
+
+
+
+	@Override
+	public List<ChartFormVO> TodayMyList(String dId) throws SQLException {
+		List<ChartFormVO> result = new ArrayList<ChartFormVO>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<ChartFormVO> medilist = mediRecoDAO.selectAllReco(dId);
+		List<ChartFormVO> colist = coTaskDAO.selectAllReco(dId);
+		for (int i = 0; i < medilist.size(); i++) {
+
+			result.add(medilist.get(i));
+		}
+		for (int i = 0; i < colist.size(); i++) {
+			result.add(colist.get(i));
+		}
+
+		Collections.sort(result, new SortByDate());
+		//성별 구하기
+		for (int i = 0; i < result.size(); i++) {
+
+		}
+		System.out.println(result);
+		return result;
+	}
+
+	class SortByDate implements Comparator<ChartFormVO> {
+
+		@Override
+		public int compare(ChartFormVO o1, ChartFormVO o2) {
+			// TODO Auto-generated method stub
+			return (o1.getReservedate()).compareTo((String) o2.getReservedate());
+		}
+	}
+
+	@Override
+	public List<Map<String, Object>> Cooperation() throws SQLException {
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		List<SchedulerVO> cooperation = schedulerDao.Cooperation();
+		System.out.println("여기는 service" + cooperation);
+		for(int i=0;i<cooperation.size();i++) {
+			list.add((Map<String, Object>) cooperation.get(i));
+		}
+		return list;
+	}
+
+	@Override
+	public List<Map<String, Object>> myCooperation(String dId) throws SQLException {
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		List<SchedulerVO> myCooperation = schedulerDao.myCooperation(dId);
+		for(int i=0;i<myCooperation.size();i++) {
+			list.add((Map<String, Object>) myCooperation.get(i));
+		}
+		return list;
+	}
+
+}

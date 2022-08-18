@@ -1,0 +1,14 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.Map;
+
+public interface MainService {
+
+	// 환자 상태 출력
+	Map<String, Object> mainMyPaintStatus(String dId) throws SQLException;
+
+	// 환자 진료기록
+	Map<String, Object> mainMyPaintDetail(String mNo) throws SQLException;
+
+}

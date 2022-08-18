@@ -1,0 +1,26 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("case")
+public class CaseDiscussionController {
+	
+	@RequestMapping("/")
+	public String main() {
+		String url = "casediscussion/modify";
+		
+		return url; 
+	}
+	
+	@RequestMapping("/detail")
+	public String detail() {
+		String url ="casediscussion/detail";
+		
+		return url; 
+		
+	}
+	
+	
+}

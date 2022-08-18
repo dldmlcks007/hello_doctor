@@ -1,0 +1,99 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class CaseVO {
+	
+	private String dis_no = ""; // 게시판 코드
+	private String d_id = ""; // 의사 아이디
+	private String dis_title = ""; // 제목
+	private String dis_content = ""; // 내용
+	private String dis_date = ""; // 작성일
+	private int dis_cnt = 0; // 조회수
+	private String del_yn = ""; // 삭제여부
+	private String dis_d_name = ""; // 주상병
+	private String dis_sex = ""; // 환자성별
+	private String dis_class = ""; // 환자분류
+	
+	private String ma_name = "";
+	private int recom = 0; // 조회수
+	
+	
+	public int getRecom() {
+		return recom;
+	}
+	public void setRecom(int recom) {
+		this.recom = recom;
+	}
+	public String getMa_name() {
+		return ma_name;
+	}
+	public void setMa_name(String ma_name) {
+		this.ma_name = ma_name;
+	}
+	public String getDis_no() {
+		return dis_no;
+	}
+	public void setDis_no(String dis_no) {
+		this.dis_no = dis_no;
+	}
+	public String getD_id() {
+		return d_id;
+	}
+	public void setD_id(String d_id) {
+		this.d_id = d_id;
+	}
+	public String getDis_title() {
+		return dis_title;
+	}
+	public void setDis_title(String dis_title) {
+		this.dis_title = dis_title;
+	}
+	public String getDis_content() {
+		return dis_content;
+	}
+	public void setDis_content(String dis_content) {
+		this.dis_content = dis_content;
+	}
+	public String getDis_date() {
+		return dis_date;
+	}
+	public void setDis_date(String dis_date) {
+		this.dis_date = dis_date;
+	}
+	public int getDis_cnt() {
+		return dis_cnt;
+	}
+	public void setDis_cnt(int dis_cnt) {
+		this.dis_cnt = dis_cnt;
+	}
+	public String getDel_yn() {
+		return del_yn;
+	}
+	public void setDel_yn(String del_yn) {
+		this.del_yn = del_yn;
+	}
+	public String getDis_d_name() {
+		return dis_d_name;
+	}
+	public void setDis_d_name(String dis_d_name) {
+		this.dis_d_name = dis_d_name;
+	}
+	public String getDis_sex() {
+		return dis_sex;
+	}
+	public void setDis_sex(String dis_sex) {
+		this.dis_sex = dis_sex;
+	}
+	public String getDis_class() {
+		return dis_class;
+	}
+	public void setDis_class(String dis_class) {
+		this.dis_class = dis_class;
+	}
+	
+	
+	
+	
+	
+}

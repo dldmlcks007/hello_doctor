@@ -1,0 +1,44 @@
+package kr.or.ddit.dto;
+
+public class My_DrugVO {
+
+	private String o_drug    ;
+	private String mo_no     ;
+	private int quantity  ;
+	private int aday      ;
+	private int days      ;
+
+	public String getO_drug() {
+		return o_drug;
+	}
+	public void setO_drug(String o_drug) {
+		this.o_drug = o_drug;
+	}
+	public String getMo_no() {
+		return mo_no;
+	}
+	public void setMo_no(String mo_no) {
+		this.mo_no = mo_no;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public int getAday() {
+		return aday;
+	}
+	public void setAday(int aday) {
+		this.aday = aday;
+	}
+	public int getDays() {
+		return days;
+	}
+	public void setDays(int days) {
+		this.days = days;
+	}
+
+
+
+}

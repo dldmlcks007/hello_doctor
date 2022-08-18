@@ -1,0 +1,50 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.ChartFormVO;
+import kr.or.ddit.dto.Medi_RecoVO;
+import kr.or.ddit.dto.PatientVO;
+import kr.or.ddit.dto.Sub_dVO;
+
+public class Medi_RecoDAOImpl implements Medi_RecoDAO {
+	private SqlSession session;
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+	@Override
+	public List<ChartFormVO> selectAllReco(String d_id) throws SQLException {
+		List<ChartFormVO> list = session.selectList("Medi_Reco-Mapper.selectAllReco1", d_id);
+		System.out.println("medireco" +list);
+		return list;
+	}
+	@Override
+	public List<Medi_RecoVO> pastmedireco(String p_no) throws SQLException {
+
+		List<Medi_RecoVO> list = session.selectList("Medi_Reco-Mapper.pastmedireco" , p_no);
+
+		return list;
+	}
+	@Override
+	public PatientVO patientinfo(String p_no) throws SQLException {
+		PatientVO vo = session.selectOne("Medi_Reco-Mapper.patientinfo", p_no);
+		return vo;
+	}
+	@Override
+	public String docuinput(String d_id) throws SQLException {
+		String result = session.selectOne("Medi_Reco-Mapper.docuinput", d_id);
+		return result;
+	}
+	@Override
+	public Medi_RecoVO pastsymptom(String m_no) throws SQLException {
+
+		Medi_RecoVO result = session.selectOne("Medi_Reco-Mapper.pastsymptom", m_no);
+		return result;
+	}
+
+}

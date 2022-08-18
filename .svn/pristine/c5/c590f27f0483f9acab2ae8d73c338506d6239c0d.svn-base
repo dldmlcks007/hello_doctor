@@ -1,0 +1,25 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.DoctorVO;
+
+public class DoctorDAOImpl implements DoctorDAO {
+	private SqlSession session;
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public DoctorVO doctorLogin(DoctorVO vo) throws SQLException {
+
+
+		DoctorVO result = session.selectOne("Doctor-Mapper.doctorLogin", vo);
+
+		return result;
+	}
+
+}

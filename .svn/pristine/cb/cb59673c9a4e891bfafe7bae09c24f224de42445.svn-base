@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="java.lang.String" alias="str" />
+		<typeAlias type="java.lang.Integer" alias="int" />
+		<typeAlias type="kr.or.ddit.dto.Medi_RecoVO" alias="medirecoVO" />
+		<typeAlias type="kr.or.ddit.dto.PatientVO" alias="patientVO" />
+		<typeAlias type="kr.or.ddit.dto.ReservationVO" alias="reservationVO" />
+		<typeAlias type="kr.or.ddit.dto.Co_taskVO" alias="cotaskVO" />
+		<typeAlias type="kr.or.ddit.dto.My_DrugVO" alias="mydrugVO" />
+		<typeAlias type="kr.or.ddit.dto.My_OrderVO" alias="myorderVO" />
+		<typeAlias type="kr.or.ddit.dto.My_OrderListVO" alias="myorderlistVO" />
+		<typeAlias type="kr.or.ddit.dto.ChartFormVO" alias="chartformVO" />
+		<typeAlias type="kr.or.ddit.dto.DoctorVO" alias="doctorVO" />
+		<typeAlias type="kr.or.ddit.dto.CaseVO" alias="caseVO" />
+		<typeAlias type="kr.or.ddit.dto.Co_MedVO" alias="co_medVO" />
+		<typeAlias type="kr.or.ddit.dto.OrdersetVO" alias="ordersetVO" />
+
+<!-- 태정 -->
+<typeAlias type="kr.or.ddit.dto.JoinCooperVO" alias="joinCooperVO" />
+<typeAlias type="kr.or.ddit.dto.IssueVO" alias="issueVO" />
+<typeAlias type="kr.or.ddit.dto.MyHistoryCommentVO" alias="myHistoryCommentVO" />
+<typeAlias type="kr.or.ddit.dto.NotiVO" alias="notiVO" />
+
+
+
+	</typeAliases>
+
+</configuration>
+
+
+
+
+
+
+

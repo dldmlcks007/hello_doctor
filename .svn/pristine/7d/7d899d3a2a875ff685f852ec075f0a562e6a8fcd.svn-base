@@ -1,0 +1,245 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My 오더세트 수정</title>
+<style>
+	td{
+		width: 70px;
+	}
+	.title{
+		font-size: 15px;
+		margin-bottom: 30px;
+	}
+	.datediv{
+		width: 100px;
+		display: inline-block;
+		margin: 15px;
+	}
+
+	#mainname{
+		font-weight: bold;
+		font-size: 25px;
+		margin: 60px;
+	}
+	#writer{
+	margin: 60px;
+	}
+
+	#regist{
+	    float: right;
+    margin-right: 50px;
+    margin-top: 10px;
+	}
+	.registinfo{
+		width: 30%;
+		font-size: 16px;
+		display: inline-block;
+	}
+	.inputinfo{
+	display: inline-block;
+	width: 70%;
+	}
+	#infodiv{
+	margin-left: 25px;
+	}
+	.mediname{
+	width: 565px;
+	}
+	.medicine{
+		width: 80%;
+		margin: 0 auto;
+		text-align: center;
+		height: 250px;
+		overflow: auto;
+		display: block;
+	}
+	.plusbutton{
+		background-color: white;
+		border: none;
+		font-size: 20px;
+		float: right;
+	}
+	.buttontd{
+		width: 130px;
+	}
+	.numbertd{
+		margin-left: 15px;
+	}
+.number {
+	width: 50px;
+	display:inline-block;
+}
+
+</style>
+</head>
+<body>
+
+	<div class="ibox" style="margin-bottom: 0" id="prescriptionbox">
+
+
+				<div class="ibox-content" style="height: 100%;">
+				<div class="title">
+		<span id="mainname">My 오더세트 수정</span>
+			<div class="bg-primary p-xs b-r-xl datediv">2022-06-27</div>
+			<span id="writer">작성자 : 노혜지/ 피부과</span>
+			<button class="btn btn-outline btn-primary dim" type="button" id="regist">
+					<i class="fa fa-sign-out ">수정</i>
+				</button>
+
+	</div>
+
+
+				<div id="infodiv">
+					<p class="registinfo">별칭 : <input type="text" class="form-control inputinfo"></p>
+					<p class="registinfo">질병명 : <input type="text" class="form-control inputinfo"></p>
+					<p class="registinfo">급여대상 :
+				<select class="form-control m-b inputinfo" name="account">
+                                        <option>영유아</option>
+                                        <option>소아</option>
+                                        <option>성인</option>
+                                        <option>고령자</option>
+                                        <option>임산부</option>
+                                    </select>
+
+					</p>
+
+				</div>
+
+				 <span style="font-size: 17px; margin-left: 30px;">추천 검색 : </span><input type="text"
+						placeholder="질병명을 입력해 주세요" class="typeahead_2 form-control"
+						style="width: 30%; display: inline-block; margin-left: 10px; margin-bottom:10px; margin-top:20px;">
+					<button class="btn btn-primary " type="button">
+						<i class="fa fa-search"></i>&nbsp;
+					</button>
+					<table class="table table-bordered medicine" >
+						<thead>
+							<tr>
+								<th class="mediname">약명</th>
+								<th>수량</th>
+								<th>일투수</th>
+								<th class="buttontd">투약일</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="mediname">소아용프리마란시럽</td>
+								<td>1(mg)</td>
+								<td>3</td>
+								<td><span class="numbertd" >3</span>
+								<button type="button" class="plusbutton" >	 <i class="fa fa-plus-square"></i>
+									</button>
+								</td>
+
+							</tr>
+							<tr>
+								<td class="mediname">프로토픽연고</td>
+								<td>1(회)</td>
+								<td>3</td>
+								<td><span class="numbertd" >3</span>
+								<button type="button" class="plusbutton" >	 <i class="fa fa-plus-square"></i>
+									</button>
+								</td>
+
+							</tr>
+							<tr>
+								<td class="mediname">소야용에포프림연질캡슐</td>
+								<td>1(정)</td>
+								<td>3</td>
+								<td><span class="numbertd" >3</span>
+								<button type="button" class="plusbutton" >	 <i class="fa fa-plus-square"></i>
+									</button>
+								</td>
+
+							</tr>
+							<tr>
+								<td class="mediname">데스오웬로션</td>
+								<td>1(회)</td>
+								<td>3</td>
+								<td><span class="numbertd" >3</span>
+								<button type="button" class="plusbutton" >	 <i class="fa fa-plus-square"></i>
+									</button>
+								</td>
+
+							</tr>
+
+
+
+
+						</tbody>
+					</table>
+ <span style="font-size: 17px; margin-left: 30px;">처방 내역 : </span><input type="text"
+						placeholder="약품명을 입력해 주세요" class="typeahead_2 form-control"
+						style="width: 30%; display: inline-block; margin-left: 10px; margin-bottom:10px; margin-top:20px;">
+					<button class="btn btn-primary " type="button">
+						<i class="fa fa-search"></i>&nbsp;
+					</button>
+					<table class="table table-bordered medicine" >
+						<thead>
+							<tr>
+								<th class="mediname">약명</th>
+								<th>수량</th>
+								<th>일투수</th>
+								<th class="buttontd">투약일</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="mediname">소아용프리마란시럽</td>
+								<td><input type="number" class="form-control number" value="3"></td>
+								<td><input type="number" class="form-control number" value="3"></td>
+								<td><input type="number" class="form-control number" value="3">
+
+								<button type="button" class="plusbutton" >	 <i class="fa fa-minus-square"></i>
+									</button>
+								</td>
+
+							</tr>
+							<tr>
+								<td class="mediname">소아용프리마란시럽</td>
+								<td><input type="number" class="form-control number" value="3"></td>
+								<td><input type="number" class="form-control number" value="3"></td>
+								<td><input type="number" class="form-control number" value="3">
+
+								<button type="button" class="plusbutton" >	 <i class="fa fa-minus-square"></i>
+									</button>
+								</td>
+
+							</tr>
+							<tr>
+								<td class="mediname">소아용프리마란시럽</td>
+								<td><input type="number" class="form-control number" value="3"></td>
+								<td><input type="number" class="form-control number" value="3"></td>
+								<td><input type="number" class="form-control number" value="3">
+
+								<button type="button" class="plusbutton" >	 <i class="fa fa-minus-square"></i>
+									</button>
+								</td>
+
+							</tr>
+							<tr>
+								<td class="mediname">소아용프리마란시럽</td>
+								<td><input type="number" class="form-control number" value="3"></td>
+								<td><input type="number" class="form-control number" value="3"></td>
+								<td><input type="number" class="form-control number" value="3">
+
+								<button type="button" class="plusbutton" >	 <i class="fa fa-minus-square"></i>
+									</button>
+								</td>
+
+							</tr>
+
+
+
+						</tbody>
+					</table>
+
+				</div>
+
+			</div>
+</body>
+</html>

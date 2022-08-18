@@ -1,0 +1,16 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.OrdersetVO;
+
+public interface OrdersetService {
+
+	Map<String,Object> getOrdersetList(SearchCriteria cri) throws SQLException;
+	void insertOrderset(OrdersetVO ordersetVo) throws SQLException;
+	List<OrdersetVO> searchDrugList(String keyword)throws SQLException;
+	
+}

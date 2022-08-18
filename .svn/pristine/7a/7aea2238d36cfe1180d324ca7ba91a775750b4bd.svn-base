@@ -1,0 +1,70 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.MyOrderListVO;
+import kr.or.ddit.dto.MyOrderVO;
+import kr.or.ddit.dto.PrescriptVO;
+import kr.or.ddit.dto.SubDVO;
+
+public class MyOrderDAOImpl implements MyOrderDAO{
+	private SqlSession session;
+
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public List<MyOrderListVO> myorderList(String dId) throws SQLException {
+		List<MyOrderListVO> list = session.selectList("MyOrder-Mapper.myorderList", dId);
+		System.out.println("orderset"+list);
+		return list;
+	}
+
+	@Override
+	public List<MyOrderListVO> orderdruglist(String moNo) throws SQLException {
+
+
+		List<MyOrderListVO> list = session.selectList("MyDrug-Mapper.orderdruglist", moNo);
+
+
+		return list;
+	}
+
+	@Override
+	public List<PrescriptVO> pastdrug(String mNo) throws SQLException {
+		List<PrescriptVO> list = session.selectList("MyDrug-Mapper.pastdrug", mNo);
+		return list;
+	}
+
+	@Override
+	public List<SubDVO> pastsubD(String mNo) throws SQLException {
+
+		List<SubDVO>list = session.selectList("MyDrug-Mapper.pastsubD", mNo);
+		return list;
+	}
+
+
+
+	@Override
+	public List<MyOrderVO> myOrderList(SearchCriteria cri) throws SQLException {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+
+		RowBounds row = new RowBounds(offset,limit);
+		return session.selectList("MyDrug-Mapper.myOrderList", cri, row);
+
+	}
+
+	@Override
+	public int myOrderListCount(SearchCriteria cri) throws SQLException {
+
+		return session.selectOne("MyDrug-Mapper.myOrderListCount", cri);
+	}
+
+}

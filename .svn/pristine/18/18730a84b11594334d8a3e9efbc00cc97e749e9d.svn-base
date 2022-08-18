@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CooperMain-Mapper">
+
+
+<!-- 	<sql id="search">
+		환자이름
+		<if test="searchType == 't'.toString()">
+			and p_name like '%'||#{keyword}||'%'
+		</if>
+		주상병
+		<if test="searchType == 'w'.toString()">
+			and co_disease like '%'||#{keyword}||'%'
+		</if>
+		주치의 이름
+		<if test="searchType == 'c'.toString()">
+			and co_doc like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'tcw'.toString()">
+			and (
+			p_name like '%'||#{keyword}||'%'
+			or
+			co_disease like
+			'%'||#{keyword}||'%'
+			or
+			co_doc like '%'||#{keyword}||'%'
+			)
+		</if>
+	</sql>
+
+ -->
+
+	<!-- 참여중인 협진리스트 -->
+
+	<select id="selectJoinList" resultType="joinCooperVO"
+		parameterType="str">
+		select
+		d.p_no,d.p_name,d.p_rnum,c.co_disease,c.co_no,c.co_doc from
+		patient d,
+		(select b.D_ID,b.CO_NO,a.p_no,a.co_disease,a.co_doc
+		from co_doctor b,
+		(select co_no,p_no,co_disease,co_doc
+		from co_med
+		where co_ing_status =
+		1) a
+		where a.co_no=b.co_no
+		and b.paty_yn='Y'
+		and b.D_ID= #{d_id})c
+		where
+		d.p_no=c.p_no
+		<!-- <include refid="search"></include> -->
+
+	</select>
+
+	<!-- 참여중인 협진리스트 count(*)구하기 -->
+	<select id="joinListCount" resultType="int" parameterType="str">
+		select count(*)
+		from
+		(select d.p_no,d.p_name,d.p_rnum,c.co_disease,c.co_no,c.co_doc
+		from
+		patient d,
+		(select b.D_ID,b.CO_NO,a.p_no,a.co_disease,a.co_doc
+		from
+		co_doctor b,
+		(select co_no,p_no,co_disease,co_doc
+		from co_med
+		where
+		co_ing_status = 1) a
+		where a.co_no=b.co_no
+		and b.paty_yn='Y'
+		and b.D_ID=
+		#{d_id})c
+		where d.p_no=c.p_no)
+		<!-- <include refid="search"></include> -->
+	</select>
+
+
+	<!-- 환자의 최근 진료일 구하기 -->
+	<select id="selectMaxDate" resultType="Date" parameterType="str">
+
+		select max(m_date) as m_date
+		from medi_reco
+		where p_no= #{p_no}
+
+	</select>
+
+	<!-- 특이사항 -->
+
+	<select id="selectIssueList" resultType="issueVO"
+		parameterType="str">
+
+		select g.*, h.iss_title, h.iss_content
+		from issue h,
+		(select e.*, f.iss_no,f.m_date ,f.d_id
+		from
+		medi_reco f,
+		(select d.p_no,d.p_name,d.p_rnum,c.co_disease,c.co_doc from
+		patient d,
+		(select b.D_ID,b.CO_NO,a.p_no,a.co_disease,a.co_doc
+		from co_doctor b,
+		(select co_no,p_no,co_disease,co_doc
+		from co_med
+		where co_ing_status = 1) a
+		where a.co_no=b.co_no
+		and b.paty_yn='Y'
+		and b.D_ID=#{d_id})c
+		where d.p_no=c.p_no)e
+		where f.p_no = e.p_no
+		order by f.m_date DESC)g
+		where g.iss_no = h.iss_no
+
+	</select>
+
+	<select id="selectHistoryComment"
+		resultType="myHistoryCommentVO" parameterType="str">
+
+select e.*, f.d_pic
+from doctor f,
+		(select d.com_no,d.com_co_no,d.d_id,d.co_no,d.com_content,d.com_date
+		from com_coment d,
+		(select a.com_no
+		from com_reco a ,medi_reco b
+		where b.d_id = #{d_id}
+		and a.m_no = b.m_no)c
+		where c.com_no = d.com_no
+		and d.del_yn ='N')e
+		where f.d_id=e.d_id
+	</select>
+
+
+
+	<select id="selectNoti" resultType="notiVO" parameterType="str">
+		select noti_date, reqd_id,resd_id,response
+		from noti
+		where resd_id = #{d_id}
+
+	</select>
+
+	<select id="selectapproveList" resultType="coDocApproveVO"
+		parameterType="str">
+		select e.* ,f.tn_status
+		from task_approve f,
+		(select c.* ,d.d_id,d.ta_no
+		from co_task d,
+		(select a.co_no,a.p_no, a.co_disease,a.co_doc,b.p_name,b.p_rnum
+		from patient b,
+		(select co_no,p_no,co_disease,co_doc
+		from co_med
+		where co_ing_status = 1
+		and co_doc=#{d_id})a
+		where a.p_no = b.p_no)c
+		where c.co_no = d.co_no
+		and d.d_id != #{d_id})e
+		where e.ta_no = f.ta_no
+
+
+
+	</select>
+
+	<select id="selectmyapproveList" resultType="didApproveVO"
+		parameterType="str">
+
+		select e.*,f.ta_no,f.ta_name,f.ta_content,f.ta_date,f.ta_status
+		from co_task f,
+		(select c.* , d.p_name, d.p_rnum
+		from patient d,
+		(select b.D_ID,b.CO_NO,a.p_no,a.co_disease,a.co_doc
+		from co_doctor b,
+		(select co_no,p_no,co_disease,co_doc
+		from co_med
+		where co_ing_status = 1) a
+		where a.co_no=b.co_no
+		and b.paty_yn='Y'
+		and b.D_ID=#{d_id}
+		and b.d_id != a.co_doc)c
+		where c.p_no = d.p_no)e
+		where e.co_no = f.co_no
+		and f.ta_status != 0
+
+
+	</select>
+
+
+
+<!-- 협진상세페이지 -->
+<!-- 해당협진의 진료  -->
+<!-- 주치의의 1:승인 2:미승인  -->
+<select id="selectCoTaskList" parameterType="str" resultType="coTaskASubVO">
+
+	select *
+	from co_task
+	where co_no = #{coNo}
+	and ta_status = 1
+	and reserv_yn = 'N'
+
+</select>
+
+<!--해당 진료의 하위업무구하기 (yn상관없이) -->
+<select id= "selectSubTaskList" parameterType="Map" resultType="coSubTaskVO">
+
+	select b.sub_no,b.sub_name,b.sub_date,b.complete_yn,a.*
+	from sub_task b,
+	(select *
+	from co_task
+	where co_no = #{coNo}
+	and ta_status = 1
+	and reserv_yn = 'N') a
+	where a.ta_no = b.ta_no
+	and b.ta_no = #{taNo}
+</select>
+
+
+<!-- 하위업무중에서 완료Y인것 구하기(진행도를 위한 갯수구하기) -->
+<select id= "selectSubYCount" parameterType="Map" resultType="int">
+
+	select count(*)
+	from
+	(select b.sub_no,b.sub_name,b.sub_date,b.complete_yn,a.*
+	from sub_task b,
+	(select *
+	from co_task
+	where co_no = #{coNo}
+	and ta_status = 1
+	and reserv_yn = 'N') a
+	where a.ta_no = b.ta_no
+	and b.ta_no = #{taNo}
+	and complete_yn = 'Y')
+
+
+</select>
+
+
+<!-- 진료히스토리 -->
+<select id= "selectHistoryList" resultType="reserveHistoryVO" parameterType="str">
+
+	select c.*, d.p_name,d.p_sex,d.p_rnum
+    from patient d ,
+    (select a.*, b.p_no,b.co_disease
+    from co_med b,
+    (select *
+	from co_task
+	where co_no = #{coNo}
+	and ta_status = 1
+	and reserv_yn = 'Y')a
+    where a.co_no = b.co_no)c
+    where c.p_no = d.p_no
+
+
+</select>
+
+<!--해당 협진 환자의 가장 최근 진료기록 >-->
+<select id="selectLast" resultType="comRecoVO" parameterType="str">
+
+	select symptom,m_date ,m_no
+	from medi_reco
+	where m_no =(
+	select m_no
+	from
+	(select *
+	from com_reco
+	where co_no = #{coNo}
+	order by com_date DESC)
+	where ROWNUM =1)
+</select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

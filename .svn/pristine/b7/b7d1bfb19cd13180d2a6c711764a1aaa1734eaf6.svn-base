@@ -1,0 +1,40 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.OrdersetVO;
+
+public class OrdersetDAOImpl implements OrdersetDAO {
+
+	private SqlSession session;
+	
+	
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	
+	@Override
+	public List<OrdersetVO> selectOrdersetList(SearchCriteria cri) throws SQLException {
+		List<OrdersetVO> list = session.selectList("Orderset-Mapper.selectOrdersetList",cri);
+		return list;
+	}
+
+	@Override
+	public List<OrdersetVO> selectDrugList(String o_no) throws SQLException {
+		List<OrdersetVO> list = session.selectList("Orderset-Mapper.selectDrugList",o_no);
+		return list;
+	}
+
+
+	@Override
+	public int selectOrdersetListCount(SearchCriteria cri) throws SQLException {
+		int cnt = session.selectOne("Orderset-Mapper.selectOrdersetListCount",cri);
+		return cnt;
+	}
+
+}

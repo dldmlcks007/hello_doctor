@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section class="content container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card card-outline card-info">
+					<div class="card-header row">
+						<h4 class="col-md-8">스케줄 수정</h4>
+						
+					</div><!--end card-header  -->
+					<div class="card-body">
+						<form role="form" method="post" action="modify.do" name="modifyForm">
+							<input type="hidden" name="bno"  />
+							<div class="form-group">
+								<label for="title">협진명</label> 
+								<input type="text" id="title" name='title' class="form-control" >
+							</div>
+							<div class="form-group">
+								<label for="title">진료명</label> 
+								<input type="text" id="title" name='title' class="form-control" >
+							</div>
+							
+							<div class="form-group">
+								<label for="writer">담당자</label> 
+								<input type="text" id="writer" readonly	name="writer" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="content">내 용</label>		
+								<textarea class="form-control" name="content" id="content" rows="3"
+									placeholder="500자 내외로 작성하세요."></textarea>						
+							</div>
+						</form>
+						<div class="col-md-4">
+							<div class="float-right">
+								<button type="button" class="btn btn-warning" id="modifyBtn" onclick="modify_go();">수 정</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<button type="button" class="btn btn-default " id="cancelBtn" onclick="history.go(-1);">취 소</button>
+							</div>
+						</div>
+					</div><!--end card-body  -->
+					
+				</div><!-- end card -->				
+			</div><!-- end col-md-12 -->
+		</div><!-- end row -->
+    </section>
+
+
+</body>
+</html>

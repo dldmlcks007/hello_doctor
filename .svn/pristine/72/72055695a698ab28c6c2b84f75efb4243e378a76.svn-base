@@ -1,0 +1,20 @@
+package kr.or.ddit.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/orderset")
+public class OrderSetController {
+	@RequestMapping("/main")
+	public String main() {
+		String url = "orderset/main";
+		return url;
+	}
+	
+	@RequestMapping("/orderset_list")
+	public String orderset_list() {
+		String url = "orderset/orderset_list";
+		return url;
+	}
+}
